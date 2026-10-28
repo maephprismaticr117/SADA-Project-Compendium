@@ -1837,13 +1837,29 @@
             "isCurveSubpoint": false,
             "clickGroupId": "seg-1793219018225-7768",
             "label": ""
+          },
+          {
+            "x": 514.8,
+            "y": 867.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793219025589-5600",
+            "label": ""
+          },
+          {
+            "x": 521.9,
+            "y": 867.2,
+            "style": "road",
+            "isCurveSubpoint": false,
+            "clickGroupId": "seg-1793219025589-5600",
+            "label": ""
           }
         ]
       }
     ],
     "_calibratedScumMapExactV3": true
   },
-  "_cloudTimestamp": 1793219024820,
+  "_cloudTimestamp": 1793219026691,
   "githubRepoConfig": {
     "owner": "maephprismaticr117",
     "repo": "SADA-Project-Compendium",
@@ -3573,6 +3589,22 @@
             "style": "road",
             "isCurveSubpoint": false,
             "clickGroupId": "seg-1793219018225-7768",
+            "label": ""
+          },
+          {
+            "x": 514.8,
+            "y": 867.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793219025589-5600",
+            "label": ""
+          },
+          {
+            "x": 521.9,
+            "y": 867.2,
+            "style": "road",
+            "isCurveSubpoint": false,
+            "clickGroupId": "seg-1793219025589-5600",
             "label": ""
           }
         ],
