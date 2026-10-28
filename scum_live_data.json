@@ -125,7 +125,7 @@
       "id": "item-12",
       "name": "Laika",
       "trader": "Mecânico",
-      "category": "Veículos",
+      "category": "Veículo",
       "fame": 0,
       "rarity": "Incomum",
       "spawnCode": "N/A",
@@ -2559,12 +2559,13 @@
             "clickGroupId": "seg-1793205984441-3238",
             "label": ""
           }
-        ]
+        ],
+        "_roadAStarUpgradedV4": true
       }
     ],
     "_calibratedScumMapExactV3": true
   },
-  "_cloudTimestamp": 1793205985542,
+  "_cloudTimestamp": 1793208966933,
   "githubRepoConfig": {
     "owner": "maephprismaticr117",
     "repo": "SADA-Project-Compendium",
