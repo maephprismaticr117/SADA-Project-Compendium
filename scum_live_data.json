@@ -157,7 +157,7 @@
   ],
   "mapData": {
     "activeCategories": [],
-    "activeRouteId": "route-1793205961376",
+    "activeRouteId": "route-b2-b4",
     "showAllRoutes": true,
     "customPins": [
       {
@@ -172,6 +172,17 @@
         "instructions": "Entre agachado pelo sul da pista principal do Airport B2 para evitar os Mechs. Foque nos hangares militares e armários verdes."
       },
       {
+        "id": "pin-default-2",
+        "name": "Venda Segura & Abastecimento (B4 Outpost)",
+        "x": 31.5,
+        "y": 553.4,
+        "visible": true,
+        "iconType": "extract",
+        "color": "#06b6d4",
+        "routeId": "route-b2-b4",
+        "instructions": "Venda armas e miras no Armeiro e peças no Mecânico da Safezone B4. Abasteça no Posto de Preko (B4) na chegada."
+      },
+      {
         "id": "pin-default-3",
         "name": "Zona Radioativa & Urânio - Usina de Krsko (C0)",
         "x": 875.3,
@@ -181,17 +192,6 @@
         "color": "#f43f5e",
         "routeId": "",
         "instructions": "Obrigatório traje Hazmat! Excelente para farmar Contêineres de Urânio Empobrecido, Grafite e equipamentos médicos em Krsko."
-      },
-      {
-        "id": "pin-1793210174953",
-        "name": "Base da SADA Project",
-        "x": 179.6,
-        "y": 463.7,
-        "visible": true,
-        "iconType": "stash",
-        "color": "#facc15",
-        "routeId": "",
-        "instructions": ""
       }
     ],
     "customRoutes": [
@@ -200,7 +200,7 @@
         "name": "Rota Militar Oficial: Aeroporto B2 → Boot Camp B3 → Venda B4 Outpost",
         "color": "#10b981",
         "defaultStyle": "road",
-        "visible": false,
+        "visible": true,
         "instructions": "1. Inicie no Aeroporto Central B2 e saqueie os hangares.\n2. Siga para oeste passando pelo Posto e Delegacia de Spickovina (B2).\n3. Faça parada tática no Boot Camp B3 e na Delegacia de Mirkovci (B3).\n4. Passe pela Delegacia/Posto de Preko (B4) e venda todo o loot no B4 Outpost.",
         "points": [
           {
@@ -1450,7 +1450,7 @@
         "name": "Rota Norte: Samobor D4 → Represa C2 → Venda C2 Outpost",
         "color": "#f59e0b",
         "defaultStyle": "road",
-        "visible": false,
+        "visible": true,
         "instructions": "Rota de alto rendimento no norte: saqueie a metrópole e Delegacia de Samobor (D4), abasteça no Posto de Samobor (D3), passe pelo Bunker Secreto C3 e pela Represa C2 (Dam), finalizando na Safezone C2 Outpost.",
         "points": [
           {
@@ -2030,542 +2030,11 @@
           }
         ],
         "_roadAStarUpgradedV4": true
-      },
-      {
-        "id": "route-1793205961376",
-        "name": "frfr",
-        "color": "#10b981",
-        "defaultStyle": "road",
-        "visible": false,
-        "instructions": "",
-        "points": [
-          {
-            "x": 111.7,
-            "y": 234.4,
-            "style": "road",
-            "isCurveSubpoint": false,
-            "clickGroupId": "seg-1793205965611-5297",
-            "label": ""
-          },
-          {
-            "x": 110.2,
-            "y": 235.9,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205967512-5149",
-            "label": ""
-          },
-          {
-            "x": 110.9,
-            "y": 237.5,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205967512-5149",
-            "label": ""
-          },
-          {
-            "x": 107.8,
-            "y": 240.6,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205967512-5149",
-            "label": ""
-          },
-          {
-            "x": 106.3,
-            "y": 240.6,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205967512-5149",
-            "label": ""
-          },
-          {
-            "x": 99.2,
-            "y": 232.8,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205967512-5149",
-            "label": ""
-          },
-          {
-            "x": 92.2,
-            "y": 233.6,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205967512-5149",
-            "label": ""
-          },
-          {
-            "x": 91.4,
-            "y": 235.2,
-            "style": "road",
-            "isCurveSubpoint": false,
-            "clickGroupId": "seg-1793205967512-5149",
-            "label": ""
-          },
-          {
-            "x": 89.1,
-            "y": 238.3,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 92.2,
-            "y": 242.2,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 89.1,
-            "y": 245.3,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 89.1,
-            "y": 250.8,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 91.4,
-            "y": 254.7,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 91.4,
-            "y": 257.8,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 89.8,
-            "y": 260.2,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 90.6,
-            "y": 267.2,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 89.8,
-            "y": 276.6,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 93,
-            "y": 282.8,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 93,
-            "y": 285.2,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 96.9,
-            "y": 290.6,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 95.3,
-            "y": 300,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 92.2,
-            "y": 303.9,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 96.9,
-            "y": 308.6,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 96.9,
-            "y": 317.2,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 98.4,
-            "y": 325.8,
-            "style": "road",
-            "isCurveSubpoint": false,
-            "clickGroupId": "seg-1793205969078-7406",
-            "label": ""
-          },
-          {
-            "x": 102.3,
-            "y": 325,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 106.3,
-            "y": 327.3,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 110.2,
-            "y": 326.6,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 110.9,
-            "y": 322.7,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 108.6,
-            "y": 319.5,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 107.8,
-            "y": 310.2,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 110.9,
-            "y": 307.8,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 118,
-            "y": 307.8,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 132,
-            "y": 315.6,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 135.9,
-            "y": 316.4,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 143,
-            "y": 324.2,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 145.3,
-            "y": 329.7,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 147.7,
-            "y": 332,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 152.3,
-            "y": 331.3,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 155.5,
-            "y": 332.8,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 157,
-            "y": 331.3,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 157,
-            "y": 328.1,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 160.9,
-            "y": 325,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 168.8,
-            "y": 325,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 173.4,
-            "y": 327.3,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 175.8,
-            "y": 326.6,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 180.5,
-            "y": 319.5,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 175.8,
-            "y": 316.4,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 164.1,
-            "y": 304.7,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 160.9,
-            "y": 299.2,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 160.2,
-            "y": 293.8,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 162.5,
-            "y": 292.2,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 162.5,
-            "y": 285.2,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 165.6,
-            "y": 280.5,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 164.8,
-            "y": 275.8,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 167.2,
-            "y": 272.7,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 167.2,
-            "y": 270.3,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 168.8,
-            "y": 268.8,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 174.2,
-            "y": 270.3,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 175.8,
-            "y": 268,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 175.8,
-            "y": 264.8,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 182,
-            "y": 258.6,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 184.4,
-            "y": 258.6,
-            "style": "road",
-            "isCurveSubpoint": true,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 185.2,
-            "y": 257,
-            "style": "road",
-            "isCurveSubpoint": false,
-            "clickGroupId": "seg-1793205971316-8908",
-            "label": ""
-          },
-          {
-            "x": 223.7,
-            "y": 319.4,
-            "style": "direct",
-            "isCurveSubpoint": false,
-            "clickGroupId": "seg-1793205984441-3238",
-            "label": ""
-          }
-        ],
-        "_roadAStarUpgradedV4": true
       }
     ],
     "_calibratedScumMapExactV3": true
   },
-  "_cloudTimestamp": 1793210202197,
+  "_cloudTimestamp": 1793210212467,
   "githubRepoConfig": {
     "owner": "maephprismaticr117",
     "repo": "SADA-Project-Compendium",
