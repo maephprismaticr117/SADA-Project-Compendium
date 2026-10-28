@@ -2102,13 +2102,461 @@
             "isCurveSubpoint": false,
             "clickGroupId": "seg-1793205967512-5149",
             "label": ""
+          },
+          {
+            "x": 89.1,
+            "y": 238.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 92.2,
+            "y": 242.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 89.1,
+            "y": 245.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 89.1,
+            "y": 250.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 91.4,
+            "y": 254.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 91.4,
+            "y": 257.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 89.8,
+            "y": 260.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 90.6,
+            "y": 267.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 89.8,
+            "y": 276.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 93,
+            "y": 282.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 93,
+            "y": 285.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 96.9,
+            "y": 290.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 95.3,
+            "y": 300,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 92.2,
+            "y": 303.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 96.9,
+            "y": 308.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 96.9,
+            "y": 317.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 98.4,
+            "y": 325.8,
+            "style": "road",
+            "isCurveSubpoint": false,
+            "clickGroupId": "seg-1793205969078-7406",
+            "label": ""
+          },
+          {
+            "x": 102.3,
+            "y": 325,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 106.3,
+            "y": 327.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 110.2,
+            "y": 326.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 110.9,
+            "y": 322.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 108.6,
+            "y": 319.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 107.8,
+            "y": 310.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 110.9,
+            "y": 307.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 118,
+            "y": 307.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 132,
+            "y": 315.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 135.9,
+            "y": 316.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 143,
+            "y": 324.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 145.3,
+            "y": 329.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 147.7,
+            "y": 332,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 152.3,
+            "y": 331.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 155.5,
+            "y": 332.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 157,
+            "y": 331.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 157,
+            "y": 328.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 160.9,
+            "y": 325,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 168.8,
+            "y": 325,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 173.4,
+            "y": 327.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 175.8,
+            "y": 326.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 180.5,
+            "y": 319.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 175.8,
+            "y": 316.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 164.1,
+            "y": 304.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 160.9,
+            "y": 299.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 160.2,
+            "y": 293.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 162.5,
+            "y": 292.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 162.5,
+            "y": 285.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 165.6,
+            "y": 280.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 164.8,
+            "y": 275.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 167.2,
+            "y": 272.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 167.2,
+            "y": 270.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 168.8,
+            "y": 268.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 174.2,
+            "y": 270.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 175.8,
+            "y": 268,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 175.8,
+            "y": 264.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 182,
+            "y": 258.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 184.4,
+            "y": 258.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
+          },
+          {
+            "x": 185.2,
+            "y": 257,
+            "style": "road",
+            "isCurveSubpoint": false,
+            "clickGroupId": "seg-1793205971316-8908",
+            "label": ""
           }
         ]
       }
     ],
     "_calibratedScumMapExactV3": true
   },
-  "_cloudTimestamp": 1793205968616,
+  "_cloudTimestamp": 1793205972423,
   "githubRepoConfig": {
     "owner": "maephprismaticr117",
     "repo": "SADA-Project-Compendium",
