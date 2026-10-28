@@ -1,0 +1,2051 @@
+{
+  "security": {
+    "_uVec": [
+      291,
+      230,
+      109,
+      127,
+      44
+    ],
+    "_pVec": [
+      291,
+      230,
+      141,
+      125,
+      75,
+      62,
+      270,
+      251,
+      218,
+      150,
+      115,
+      78,
+      42,
+      210,
+      181,
+      254
+    ],
+    "startupMode": "visitor",
+    "showLoginHint": false,
+    "showSpawnToVisitors": true
+  },
+  "header": {
+    "telemetryCode": "LEITURA DE ECONOMIA · REG ECO-01",
+    "serverTag": "REDE DE OUTPOSTS SCUM",
+    "title": "[SADA Project] Compendium de Trades e Profit",
+    "subtitle": "Monitoramento completo de valores de compra, venda e profit rentavel em cada Outpost do servidor.",
+    "updatedDate": "OUTUBRO 2026 · PATCH 1.0+"
+  },
+  "zones": [
+    {
+      "id": "z1",
+      "name": "Trade B4"
+    },
+    {
+      "id": "z2",
+      "name": "Trade C2"
+    },
+    {
+      "id": "z3",
+      "name": "Trade A0"
+    },
+    {
+      "id": "z4",
+      "name": "Trade Z3"
+    }
+  ],
+  "items": [
+    {
+      "id": "item-1793121655311",
+      "name": "Katana",
+      "trader": "Armeiro",
+      "category": "Arma Corpo a Corpo",
+      "fame": 0,
+      "rarity": "Muito Raro",
+      "spawnCode": "N/A",
+      "notes": "Melhor arma de combate corpo a corpo",
+      "lootChance": 18,
+      "lootAvgQty": 2,
+      "lootSlots": 3,
+      "lootSource": "Bunkers & Militar",
+      "image": "data:image/webp;base64,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",
+      "prices": {
+        "z1": {
+          "buy": 10000,
+          "sell": 2500
+        },
+        "z2": {
+          "buy": 0,
+          "sell": 0
+        },
+        "z3": {
+          "buy": 0,
+          "sell": 0
+        },
+        "z4": {
+          "buy": 0,
+          "sell": 0
+        }
+      }
+    },
+    {
+      "id": "item-2",
+      "name": "MK18",
+      "trader": "Armeiro",
+      "category": "Armas de Fogo",
+      "fame": 0,
+      "rarity": "Muito Raro",
+      "spawnCode": "N/A",
+      "notes": "Calibre 5.56x45mm NATO",
+      "lootChance": 8,
+      "lootAvgQty": 1,
+      "lootSlots": 6,
+      "lootSource": "Bunkers & Militar",
+      "image": "data:image/webp;base64,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",
+      "prices": {
+        "z1": {
+          "buy": 30000,
+          "sell": 0
+        },
+        "z2": {
+          "buy": 0,
+          "sell": 0
+        },
+        "z3": {
+          "buy": 0,
+          "sell": 0
+        },
+        "z4": {
+          "buy": 0,
+          "sell": 0
+        }
+      }
+    },
+    {
+      "id": "item-12",
+      "name": "Laika",
+      "trader": "Mecânico",
+      "category": "Veículos & Peças",
+      "fame": 0,
+      "rarity": "Incomum",
+      "spawnCode": "N/A",
+      "notes": "Boa alternativa em comparação a Ranger, segundo melhor carro do jogo.",
+      "lootChance": 12,
+      "lootAvgQty": 1,
+      "lootSlots": 20,
+      "lootSource": "Mapa Geral",
+      "image": "data:image/webp;base64,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",
+      "prices": {
+        "z1": {
+          "buy": 65000,
+          "sell": 0
+        },
+        "z2": {
+          "buy": 0,
+          "sell": 0
+        },
+        "z3": {
+          "buy": 0,
+          "sell": 0
+        },
+        "z4": {
+          "buy": 0,
+          "sell": 0
+        }
+      }
+    }
+  ],
+  "mapData": {
+    "activeCategories": [
+      "outposts",
+      "bunkers",
+      "military",
+      "police",
+      "gas",
+      "cities",
+      "industrial"
+    ],
+    "activeRouteId": "route-b2-b4",
+    "showAllRoutes": true,
+    "customPins": [
+      {
+        "id": "pin-default-1",
+        "name": "Infiltração Hangares Aeroporto Central (B2)",
+        "x": 576.8,
+        "y": 425.3,
+        "visible": true,
+        "iconType": "loot",
+        "color": "#10b981",
+        "routeId": "route-b2-b4",
+        "instructions": "Entre agachado pelo sul da pista principal do Airport B2 para evitar os Mechs. Foque nos hangares militares e armários verdes."
+      },
+      {
+        "id": "pin-default-2",
+        "name": "Venda Segura & Abastecimento (B4 Outpost)",
+        "x": 31.5,
+        "y": 553.4,
+        "visible": true,
+        "iconType": "extract",
+        "color": "#06b6d4",
+        "routeId": "route-b2-b4",
+        "instructions": "Venda armas e miras no Armeiro e peças no Mecânico da Safezone B4. Abasteça no Posto de Preko (B4) na chegada."
+      },
+      {
+        "id": "pin-default-3",
+        "name": "Zona Radioativa & Urânio - Usina de Krsko (C0)",
+        "x": 875.3,
+        "y": 264.4,
+        "visible": true,
+        "iconType": "danger",
+        "color": "#f43f5e",
+        "routeId": "",
+        "instructions": "Obrigatório traje Hazmat! Excelente para farmar Contêineres de Urânio Empobrecido, Grafite e equipamentos médicos em Krsko."
+      }
+    ],
+    "customRoutes": [
+      {
+        "id": "route-b2-b4",
+        "name": "Rota Militar Oficial: Aeroporto B2 → Boot Camp B3 → Venda B4 Outpost",
+        "color": "#10b981",
+        "defaultStyle": "road",
+        "visible": true,
+        "instructions": "1. Inicie no Aeroporto Central B2 e saqueie os hangares.\n2. Siga para oeste passando pelo Posto e Delegacia de Spickovina (B2).\n3. Faça parada tática no Boot Camp B3 e na Delegacia de Mirkovci (B3).\n4. Passe pela Delegacia/Posto de Preko (B4) e venda todo o loot no B4 Outpost.",
+        "points": [
+          {
+            "x": 576.8,
+            "y": 425.3,
+            "style": "road",
+            "label": "Início: Aeroporto B2",
+            "isCurveSubpoint": false
+          },
+          {
+            "x": 569.5,
+            "y": 420.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 559.4,
+            "y": 421.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 557.8,
+            "y": 419.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 552.3,
+            "y": 418.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 548.4,
+            "y": 414.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 548.4,
+            "y": 410.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 546.1,
+            "y": 408.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 540.6,
+            "y": 409.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 535.2,
+            "y": 406.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 530.5,
+            "y": 406.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 526.6,
+            "y": 407.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 523.4,
+            "y": 404.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 521.9,
+            "y": 404.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 514.8,
+            "y": 411.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 514.8,
+            "y": 413.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 511.7,
+            "y": 416.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 510.9,
+            "y": 420.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 507,
+            "y": 424.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 505.5,
+            "y": 428.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 502.3,
+            "y": 430.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 501.6,
+            "y": 437.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 495.3,
+            "y": 443.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 493.8,
+            "y": 443.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 484.4,
+            "y": 450.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": ""
+          },
+          {
+            "x": 479.7,
+            "y": 450,
+            "style": "road",
+            "isCurveSubpoint": false,
+            "clickGroupId": "seg-1793164978567-2808",
+            "label": "Posto Spickovina B2"
+          },
+          {
+            "x": 477.3,
+            "y": 453.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-5627",
+            "label": ""
+          },
+          {
+            "x": 470.3,
+            "y": 452.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-5627",
+            "label": ""
+          },
+          {
+            "x": 468,
+            "y": 450.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-5627",
+            "label": ""
+          },
+          {
+            "x": 460.2,
+            "y": 452.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-5627",
+            "label": ""
+          },
+          {
+            "x": 457,
+            "y": 455.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-5627",
+            "label": ""
+          },
+          {
+            "x": 455.5,
+            "y": 460.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-5627",
+            "label": ""
+          },
+          {
+            "x": 453.1,
+            "y": 460.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-5627",
+            "label": ""
+          },
+          {
+            "x": 449.2,
+            "y": 464.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-5627",
+            "label": ""
+          },
+          {
+            "x": 443.8,
+            "y": 464.1,
+            "style": "road",
+            "isCurveSubpoint": false,
+            "clickGroupId": "seg-1793164978572-5627",
+            "label": "Delegacia Spickovina B2"
+          },
+          {
+            "x": 435.9,
+            "y": 462.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 422.7,
+            "y": 462.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 414.8,
+            "y": 467.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 413.3,
+            "y": 466.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 409.4,
+            "y": 467.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 403.9,
+            "y": 471.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 397.7,
+            "y": 473.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 393.8,
+            "y": 473.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 379.7,
+            "y": 478.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 377.3,
+            "y": 475.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 375.8,
+            "y": 475.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 373.4,
+            "y": 472.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 371.9,
+            "y": 472.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 365.6,
+            "y": 465.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 356.3,
+            "y": 467.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 352.3,
+            "y": 464.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 349.2,
+            "y": 459.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 346.1,
+            "y": 457.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 343,
+            "y": 457.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 341.4,
+            "y": 456.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 328.1,
+            "y": 440.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 325,
+            "y": 440.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 322.7,
+            "y": 438.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 318,
+            "y": 436.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 311.7,
+            "y": 430.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 309.4,
+            "y": 430.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 306.3,
+            "y": 427.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 303.1,
+            "y": 431.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 301.6,
+            "y": 438.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 300,
+            "y": 439.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 300,
+            "y": 443,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 295.3,
+            "y": 446.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 274.2,
+            "y": 446.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 271.1,
+            "y": 444.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 266.4,
+            "y": 444.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 262.5,
+            "y": 446.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 260.2,
+            "y": 446.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 257.8,
+            "y": 444.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 257,
+            "y": 440.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 251.6,
+            "y": 435.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 249.2,
+            "y": 430.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 243,
+            "y": 430.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 239.8,
+            "y": 427.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": ""
+          },
+          {
+            "x": 238.3,
+            "y": 427.3,
+            "style": "road",
+            "isCurveSubpoint": false,
+            "clickGroupId": "seg-1793164978572-8506",
+            "label": "Parada: Boot Camp B3"
+          },
+          {
+            "x": 239.8,
+            "y": 427.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 243,
+            "y": 430.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 250,
+            "y": 431.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 250.8,
+            "y": 434.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 257,
+            "y": 440.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 258.6,
+            "y": 448.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 250,
+            "y": 453.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 242.2,
+            "y": 456.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 231.3,
+            "y": 461.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 216.4,
+            "y": 473.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 216.4,
+            "y": 478.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 219.5,
+            "y": 480.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 218.8,
+            "y": 486.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 216.4,
+            "y": 490.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 218,
+            "y": 496.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 220.3,
+            "y": 497.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 228.9,
+            "y": 498.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 229.7,
+            "y": 502.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 228.1,
+            "y": 504.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 228.9,
+            "y": 509.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 224.2,
+            "y": 511.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 218,
+            "y": 518,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 218,
+            "y": 520.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": ""
+          },
+          {
+            "x": 215.6,
+            "y": 524.2,
+            "style": "road",
+            "isCurveSubpoint": false,
+            "clickGroupId": "seg-1793164978583-2565",
+            "label": "Delegacia Mirkovci B3"
+          },
+          {
+            "x": 210.2,
+            "y": 531.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 204.7,
+            "y": 535.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 203.1,
+            "y": 535.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 197.7,
+            "y": 541.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 196.1,
+            "y": 541.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 189.8,
+            "y": 534.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 185.9,
+            "y": 534.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 182,
+            "y": 530.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 182,
+            "y": 528.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 178.1,
+            "y": 525.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 178.9,
+            "y": 521.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 177.3,
+            "y": 519.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 168.8,
+            "y": 515.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 165.6,
+            "y": 515.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 161.7,
+            "y": 512.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 153.1,
+            "y": 510.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 146.9,
+            "y": 517.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 145.3,
+            "y": 517.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 143.8,
+            "y": 515.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 138.3,
+            "y": 515.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 135.9,
+            "y": 518,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 134.4,
+            "y": 518,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 131.3,
+            "y": 515.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 125.8,
+            "y": 516.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 121.9,
+            "y": 514.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 119.5,
+            "y": 514.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 117.2,
+            "y": 516.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 105.5,
+            "y": 516.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 102.3,
+            "y": 519.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 99.2,
+            "y": 520.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 95.3,
+            "y": 524.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 93,
+            "y": 523.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 87.5,
+            "y": 525.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": ""
+          },
+          {
+            "x": 81.3,
+            "y": 532,
+            "style": "road",
+            "isCurveSubpoint": false,
+            "clickGroupId": "seg-1793164978584-1976",
+            "label": "Delegacia Preko B4"
+          },
+          {
+            "x": 77.3,
+            "y": 534.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 74.2,
+            "y": 534.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 71.9,
+            "y": 532,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 68,
+            "y": 532,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 64.1,
+            "y": 535.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 60.9,
+            "y": 535.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 58.6,
+            "y": 533.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 50,
+            "y": 534.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 46.1,
+            "y": 531.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 41.4,
+            "y": 536.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 39.8,
+            "y": 536.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 38.3,
+            "y": 533.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 35.2,
+            "y": 532,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 28.9,
+            "y": 539.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 28.1,
+            "y": 545.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 26.6,
+            "y": 547.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 26.6,
+            "y": 549.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": ""
+          },
+          {
+            "x": 31.3,
+            "y": 553.1,
+            "style": "road",
+            "isCurveSubpoint": false,
+            "clickGroupId": "seg-1793164978586-3832",
+            "label": "Venda: B4 Outpost"
+          }
+        ],
+        "_roadAStarUpgradedV4": true
+      },
+      {
+        "id": "route-d4-c2",
+        "name": "Rota Norte: Samobor D4 → Represa C2 → Venda C2 Outpost",
+        "color": "#f59e0b",
+        "defaultStyle": "road",
+        "visible": true,
+        "instructions": "Rota de alto rendimento no norte: saqueie a metrópole e Delegacia de Samobor (D4), abasteça no Posto de Samobor (D3), passe pelo Bunker Secreto C3 e pela Represa C2 (Dam), finalizando na Safezone C2 Outpost.",
+        "points": [
+          {
+            "x": 202.5,
+            "y": 171.4,
+            "style": "road",
+            "label": "Início: Samobor D4",
+            "isCurveSubpoint": false
+          },
+          {
+            "x": 208.6,
+            "y": 176.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-791",
+            "label": ""
+          },
+          {
+            "x": 210.2,
+            "y": 181.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-791",
+            "label": ""
+          },
+          {
+            "x": 217.2,
+            "y": 188.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-791",
+            "label": ""
+          },
+          {
+            "x": 219.5,
+            "y": 187.5,
+            "style": "road",
+            "isCurveSubpoint": false,
+            "clickGroupId": "seg-1793164978587-791",
+            "label": "Posto Samobor D3"
+          },
+          {
+            "x": 221.1,
+            "y": 190.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 221.1,
+            "y": 194.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 219.5,
+            "y": 196.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 218.8,
+            "y": 199.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 219.5,
+            "y": 205.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 221.1,
+            "y": 207.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 221.1,
+            "y": 211.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 223.4,
+            "y": 218.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 230.5,
+            "y": 223.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 232.8,
+            "y": 223.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 236.7,
+            "y": 225.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 244.5,
+            "y": 232.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 249.2,
+            "y": 232,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 255.5,
+            "y": 236.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 260.2,
+            "y": 235.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 268.8,
+            "y": 243,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 271.1,
+            "y": 243,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 275.8,
+            "y": 246.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 279.7,
+            "y": 246.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 289.1,
+            "y": 242.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 293,
+            "y": 242.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 300.8,
+            "y": 233.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 300.8,
+            "y": 232,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": ""
+          },
+          {
+            "x": 279.7,
+            "y": 212.5,
+            "style": "road",
+            "isCurveSubpoint": false,
+            "clickGroupId": "seg-1793164978587-2784",
+            "label": "Bunker Secreto C3"
+          },
+          {
+            "x": 301.6,
+            "y": 232.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 303.9,
+            "y": 232.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 305.5,
+            "y": 231.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 315.6,
+            "y": 231.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 327.3,
+            "y": 237.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 336.7,
+            "y": 237.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 338.3,
+            "y": 235.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 345.3,
+            "y": 234.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 349.2,
+            "y": 238.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 360.2,
+            "y": 239.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 363.3,
+            "y": 236.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 371.9,
+            "y": 234.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 402.3,
+            "y": 233.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 403.9,
+            "y": 232,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 412.5,
+            "y": 232,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 414.1,
+            "y": 233.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 421.1,
+            "y": 232.8,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 422.7,
+            "y": 234.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": ""
+          },
+          {
+            "x": 422.7,
+            "y": 238.3,
+            "style": "road",
+            "isCurveSubpoint": false,
+            "clickGroupId": "seg-1793164978790-9305",
+            "label": "Represa C2 (Dam)"
+          },
+          {
+            "x": 423.4,
+            "y": 246.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 432,
+            "y": 252.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 432,
+            "y": 257,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 438.3,
+            "y": 262.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 440.6,
+            "y": 263.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 452.3,
+            "y": 262.5,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 455.5,
+            "y": 259.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 461.7,
+            "y": 259.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 463.3,
+            "y": 260.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 467.2,
+            "y": 258.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 477.3,
+            "y": 260.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 479.7,
+            "y": 259.4,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 482.8,
+            "y": 256.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 482.8,
+            "y": 253.9,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 485.9,
+            "y": 250,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 485.9,
+            "y": 247.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 488.3,
+            "y": 245.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 488.3,
+            "y": 243,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 494.5,
+            "y": 240.6,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 499.2,
+            "y": 235.2,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 500,
+            "y": 228.1,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 503.1,
+            "y": 222.7,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 503.1,
+            "y": 220.3,
+            "style": "road",
+            "isCurveSubpoint": true,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": ""
+          },
+          {
+            "x": 506.3,
+            "y": 216.4,
+            "style": "road",
+            "isCurveSubpoint": false,
+            "clickGroupId": "seg-1793164978791-6800",
+            "label": "Venda: C2 Outpost"
+          }
+        ],
+        "_roadAStarUpgradedV4": true
+      }
+    ],
+    "_calibratedScumMapExactV3": true
+  },
+  "_cloudTimestamp": 1793204873624,
+  "githubRepoConfig": {
+    "owner": "maephprismaticr117",
+    "repo": "SADA-Project-Compendium",
+    "branch": "main"
+  }
+}
