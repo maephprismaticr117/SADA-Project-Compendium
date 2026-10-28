@@ -192,6 +192,17 @@
         "color": "#f43f5e",
         "routeId": "",
         "instructions": "Obrigatório traje Hazmat! Excelente para farmar Contêineres de Urânio Empobrecido, Grafite e equipamentos médicos em Krsko."
+      },
+      {
+        "id": "pin-1793210174953",
+        "name": "Base da SADA Project",
+        "x": 179.6,
+        "y": 463.7,
+        "visible": true,
+        "iconType": "stash",
+        "color": "#facc15",
+        "routeId": "",
+        "instructions": ""
       }
     ],
     "customRoutes": [
@@ -2565,7 +2576,7 @@
     ],
     "_calibratedScumMapExactV3": true
   },
-  "_cloudTimestamp": 1793209176674,
+  "_cloudTimestamp": 1793210176055,
   "githubRepoConfig": {
     "owner": "maephprismaticr117",
     "repo": "SADA-Project-Compendium",
