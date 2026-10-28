@@ -184,7 +184,7 @@
       },
       {
         "id": "pin-1793218549268",
-        "name": "Base PVP [Clã e Jogador desconhecido]",
+        "name": "Base do Necromantco [Clã desconhecido]",
         "x": 203.4,
         "y": 515.4,
         "visible": true,
@@ -208,7 +208,7 @@
     "customRoutes": [],
     "_calibratedScumMapExactV3": true
   },
-  "_cloudTimestamp": 1793218651863,
+  "_cloudTimestamp": 1793218705682,
   "githubRepoConfig": {
     "owner": "maephprismaticr117",
     "repo": "SADA-Project-Compendium",
@@ -284,7 +284,7 @@
       },
       {
         "id": "pin-1793218549268",
-        "name": "Base PVP [Clã e Jogador desconhecido]",
+        "name": "Base do Necromantco [Clã desconhecido]",
         "x": 203.4,
         "y": 515.4,
         "visible": true,
