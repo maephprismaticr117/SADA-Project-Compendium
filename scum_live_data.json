@@ -159,34 +159,11 @@
     "activeCategories": [],
     "activeRouteId": "",
     "showAllRoutes": true,
-    "customPins": [
-      {
-        "id": "pin-default-2",
-        "name": "Venda Segura & Abastecimento (B4 Outpost)",
-        "x": 31.5,
-        "y": 553.4,
-        "visible": true,
-        "iconType": "extract",
-        "color": "#06b6d4",
-        "routeId": "route-b2-b4",
-        "instructions": "Venda armas e miras no Armeiro e peças no Mecânico da Safezone B4. Abasteça no Posto de Preko (B4) na chegada."
-      },
-      {
-        "id": "pin-default-3",
-        "name": "Zona Radioativa & Urânio - Usina de Krsko (C0)",
-        "x": 875.3,
-        "y": 264.4,
-        "visible": true,
-        "iconType": "danger",
-        "color": "#f43f5e",
-        "routeId": "",
-        "instructions": "Obrigatório traje Hazmat! Excelente para farmar Contêineres de Urânio Empobrecido, Grafite e equipamentos médicos em Krsko."
-      }
-    ],
+    "customPins": [],
     "customRoutes": [],
     "_calibratedScumMapExactV3": true
   },
-  "_cloudTimestamp": 1793210229652,
+  "_cloudTimestamp": 1793210232569,
   "githubRepoConfig": {
     "owner": "maephprismaticr117",
     "repo": "SADA-Project-Compendium",
