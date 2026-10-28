@@ -46,48 +46,57 @@
   </script>
 
   <style>
-    /* Fundo com grade tática estilo Telemetria BCU / Server Genesis */
+    /* Fundo Atmosférico Premium estilo Terminal Tático BCU */
     body {
-      background-color: #07090c;
+      background-color: #06080b;
       background-image:
-        radial-gradient(circle at 15% 0%, rgba(245, 158, 11, 0.08), transparent 40%),
-        radial-gradient(circle at 85% 10%, rgba(6, 182, 212, 0.07), transparent 40%),
-        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+        radial-gradient(circle at 12% 0%, rgba(245, 158, 11, 0.09), transparent 42%),
+        radial-gradient(circle at 88% 8%, rgba(6, 182, 212, 0.08), transparent 42%),
+        radial-gradient(circle at 50% 100%, rgba(16, 185, 129, 0.05), transparent 50%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.016) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.016) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 36px 36px, 36px 36px;
       color: #e2e8f0;
+      overflow-x: hidden;
     }
 
-    /* Painel com cantos técnicos e borda sutil */
+    /* Painel Glassmórfico Premium com "Juice" e Profundidade */
     .telemetry-panel {
-      background: linear-gradient(180deg, rgba(22, 29, 38, 0.88) 0%, rgba(12, 16, 21, 0.94) 100%);
+      background: linear-gradient(165deg, rgba(20, 27, 36, 0.88) 0%, rgba(10, 14, 19, 0.95) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 14px 34px -12px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.06);
       position: relative;
+      transition: border-color 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1), transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .telemetry-panel::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, #f59e0b 0%, rgba(6, 182, 212, 0.5) 50%, transparent 100%);
-      opacity: 0.75;
-      pointer-events: none;
+    .juice-card {
+      transition: all 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .juice-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(245, 158, 11, 0.35);
+      box-shadow: 0 18px 36px -12px rgba(0, 0, 0, 0.85), 0 0 22px -6px rgba(245, 158, 11, 0.18);
     }
 
-    /* Estilo de linha da tabela de registro */
+    button, select, input {
+      transition: all 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    button:active:not(:disabled) {
+      transform: scale(0.97);
+    }
+
+    /* Linha da tabela com hover reativo suave */
     .reg-row {
-      transition: all 0.15s ease;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: background-color 0.16s ease, transform 0.16s ease;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.045);
     }
     .reg-row:hover {
-      background-color: rgba(245, 158, 11, 0.05);
+      background: linear-gradient(90deg, rgba(245, 158, 11, 0.07) 0%, rgba(6, 182, 212, 0.04) 100%);
     }
 
-    /* Destaque visual quando o Modo Edição do Admin está ativo */
+    /* Modo Edição Admin */
     .edit-mode-active .editable-field {
       cursor: pointer;
       border-bottom: 1px dashed rgba(245, 158, 11, 0.55);
@@ -95,93 +104,122 @@
     }
     .edit-mode-active .editable-field:hover {
       color: #fbbf24;
-      background-color: rgba(245, 158, 11, 0.12);
+      background-color: rgba(245, 158, 11, 0.14);
       padding-left: 4px;
       padding-right: 4px;
       border-radius: 4px;
     }
 
-    /* Botão de aba ativa */
+    /* Botões de Filtro (Pills) com Glow */
     .tab-btn.active {
-      background-color: rgba(245, 158, 11, 0.16);
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.22) 0%, rgba(245, 158, 11, 0.08) 100%);
       border-color: #f59e0b;
       color: #fbbf24;
-      box-shadow: inset 0 0 12px rgba(245, 158, 11, 0.15);
+      box-shadow: 0 4px 14px -3px rgba(245, 158, 11, 0.3), inset 0 0 10px rgba(245, 158, 11, 0.12);
     }
 
     .zone-btn.active {
-      background-color: rgba(6, 182, 212, 0.16);
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.24) 0%, rgba(6, 182, 212, 0.08) 100%);
       border-color: #06b6d4;
       color: #22d3ee;
+      box-shadow: 0 4px 14px -3px rgba(6, 182, 212, 0.3), inset 0 0 10px rgba(6, 182, 212, 0.12);
     }
 
     /* Moldura da miniatura do item */
     .item-thumb-box {
-      background: radial-gradient(circle at center, rgba(34, 44, 56, 0.9) 0%, rgba(12, 16, 21, 0.95) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: radial-gradient(circle at center, rgba(34, 44, 56, 0.92) 0%, rgba(10, 14, 19, 0.98) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.11);
       position: relative;
       overflow: hidden;
+      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.22s ease;
+    }
+    .item-thumb-box:hover {
+      transform: scale(1.04);
+      border-color: rgba(245, 158, 11, 0.5);
     }
     .item-thumb-box:hover .thumb-overlay {
       opacity: 1;
     }
 
-    /* Abas Principais Premium no Cabeçalho */
+    /* Abas Principais no Topo — Design Compacto, Reativo e Juicy */
     .header-main-tab {
       position: relative;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
       background: rgba(12, 16, 21, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .header-main-tab:hover {
-      border-color: rgba(245, 158, 11, 0.45);
+      border-color: rgba(255, 255, 255, 0.24);
       background: rgba(22, 29, 38, 0.95);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
     .header-main-tab.active-amber {
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.22) 0%, rgba(12, 16, 21, 0.95) 100%);
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.24) 0%, rgba(12, 16, 21, 0.96) 100%);
       border-color: #f59e0b;
       color: #fbbf24;
-      box-shadow: 0 8px 20px -6px rgba(245, 158, 11, 0.3), inset 0 0 15px rgba(245, 158, 11, 0.12);
+      box-shadow: 0 10px 24px -8px rgba(245, 158, 11, 0.4), inset 0 1px 0 rgba(251, 191, 36, 0.25);
     }
     .header-main-tab.active-cyan {
-      background: linear-gradient(135deg, rgba(6, 182, 212, 0.22) 0%, rgba(12, 16, 21, 0.95) 100%);
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.24) 0%, rgba(12, 16, 21, 0.96) 100%);
       border-color: #06b6d4;
       color: #22d3ee;
-      box-shadow: 0 8px 20px -6px rgba(6, 182, 212, 0.3), inset 0 0 15px rgba(6, 182, 212, 0.12);
+      box-shadow: 0 10px 24px -8px rgba(6, 182, 212, 0.4), inset 0 1px 0 rgba(34, 211, 238, 0.25);
     }
     .header-main-tab.active-emerald {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.24) 0%, rgba(12, 16, 21, 0.95) 100%);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(12, 16, 21, 0.96) 100%);
       border-color: #10b981;
       color: #34d399;
-      box-shadow: 0 8px 20px -6px rgba(16, 185, 129, 0.35), inset 0 0 15px rgba(16, 185, 129, 0.14);
+      box-shadow: 0 10px 24px -8px rgba(16, 185, 129, 0.42), inset 0 1px 0 rgba(52, 211, 153, 0.25);
     }
 
-    /* Canvas do Mapa Tático */
+    /* Transição suave de entrada ao trocar de aba */
+    .tab-view-enter {
+      animation: tabFadeSlideIn 0.24s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    @keyframes tabFadeSlideIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Nós do Gráfico da Bolsa de Valores */
+    .scatter-node {
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), filter 0.2s ease;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+    .scatter-node:hover {
+      transform: scale(1.18);
+      filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.65));
+    }
+
+    /* Canvas do Mapa Tático acelerado por GPU */
     #scumMapViewport {
       user-select: none;
       -webkit-user-select: none;
       touch-action: none;
-      background: #061019;
+      background: #07131e;
+      contain: strict;
+    }
+    #scumMapCanvas {
+      will-change: transform;
     }
 
-    /* Scrollbar customizada */
+    /* Scrollbar customizada fina */
     ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
     }
     ::-webkit-scrollbar-track {
       background: #07090c;
     }
     ::-webkit-scrollbar-thumb {
       background: #222c38;
-      border-radius: 4px;
+      border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb:hover {
       background: #f59e0b;
     }
 
-    /* Configuração para Impressão / Salvar em PDF Profissional */
     @media print {
       body {
         background: #07090c !important;
@@ -343,74 +381,59 @@
   </div>
 
   <!-- CONTEÚDO PRINCIPAL -->
-  <main id="mainAppContainer" class="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8 print-full-width">
+  <main id="mainAppContainer" class="max-w-7xl mx-auto px-4 sm:px-6 py-5 space-y-5 print-full-width">
 
-    <!-- CABEÇALHO DE TELEMETRIA E IDENTIDADE DO SERVIDOR -->
-    <header class="telemetry-panel rounded-lg p-6 sm:p-8 space-y-6">
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-        <div class="space-y-2">
-          <div class="flex flex-wrap items-center gap-2.5 font-mono text-xs uppercase tracking-widest">
+    <!-- CABEÇALHO COMPACTO PREMIUM + NAVEGAÇÃO PRINCIPAL EM 4 MÓDULOS -->
+    <header class="telemetry-panel rounded-xl p-4 sm:p-5 space-y-4">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+        <div class="space-y-1">
+          <div class="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-widest">
             <span id="headerTelemetryCode" onclick="quickEditHeader('telemetryCode')" class="editable-field text-tactical-amber font-semibold">
               LEITURA DE ECONOMIA · REG ECO-01
             </span>
             <span class="text-slate-600">//</span>
-            <span id="headerServerTag" onclick="quickEditHeader('serverTag')" class="editable-field text-tactical-cyan">
+            <span id="headerServerTag" onclick="quickEditHeader('serverTag')" class="editable-field text-tactical-cyanLight font-semibold">
               REDE DE OUTPOSTS SCUM
             </span>
+            <span class="text-slate-600 hidden sm:inline">·</span>
+            <span id="headerUpdatedDate" onclick="quickEditHeader('updatedDate')" class="editable-field text-slate-400 hidden sm:inline">OUTUBRO 2026 · PATCH 1.0+</span>
           </div>
 
-          <h1 id="headerTitle" onclick="quickEditHeader('title')" class="editable-field font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase tracking-wide text-white">
-            CATÁLOGO TÁTICO DE TRADES & PREÇOS
+          <h1 id="headerTitle" onclick="quickEditHeader('title')" class="editable-field font-display text-2xl sm:text-3xl font-bold uppercase tracking-wide text-white leading-tight">
+            CATÁLOGO TÁTICO DE TRADES &amp; MAPA OFICIAL SCUM
           </h1>
 
-          <p id="headerSubtitle" onclick="quickEditHeader('subtitle')" class="editable-field text-sm sm:text-base text-slate-300 max-w-3xl">
+          <p id="headerSubtitle" onclick="quickEditHeader('subtitle')" class="editable-field text-xs sm:text-sm text-slate-400 max-w-3xl">
             Monitoramento completo de valores de compra, venda e exigência de fama (FP) em cada Outpost e loja do servidor.
           </p>
         </div>
 
-        <!-- Metadados laterais do cabeçalho -->
-        <div class="flex sm:flex-row lg:flex-col justify-between items-start lg:items-end gap-2 border-t lg:border-t-0 pt-4 lg:pt-0 border-white/10 font-mono text-xs">
-          <div class="text-slate-400">
-            STATUS DA REDE: <span class="text-emerald-400 font-semibold">ONLINE // OPERACIONAL</span>
-          </div>
-          <div class="text-slate-400">
-            ATUALIZAÇÃO: <span id="headerUpdatedDate" onclick="quickEditHeader('updatedDate')" class="editable-field text-white font-semibold">OUTUBRO 2026 · PATCH 1.0+</span>
-          </div>
-          <div id="headerInteractionHint" class="text-[11px] text-slate-500 no-print">
-            Modo Visitante: Clique em qualquer item para ampliar os detalhes
+        <!-- Status compacto à direita -->
+        <div class="flex items-center gap-3 font-mono text-xs shrink-0 no-print">
+          <div id="headerInteractionHint" class="px-3 py-1.5 rounded-lg bg-carbon-950/80 border border-white/10 text-[11px] text-slate-400">
+            Clique em qualquer item para inspecionar detalhes
           </div>
         </div>
       </div>
 
-      <!-- NAVEGAÇÃO PRINCIPAL DE ABAS NO CABEÇALHO (DESIGN PREMIUM E LEGÍVEL) -->
-      <div class="pt-5 border-t border-white/10 no-print">
-        <div class="flex items-center justify-between mb-2.5">
-          <span class="font-mono text-[11px] uppercase tracking-widest text-tactical-amber font-bold flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-tactical-amber"></span>
-            MÓDULOS DE OPERAÇÃO DO SISTEMA · NAVEGAÇÃO PRINCIPAL
-          </span>
-          <span class="font-mono text-[11px] text-slate-400 hidden sm:inline">
-            Selecione o módulo abaixo para alternar a visualização
-          </span>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          <!-- Aba 1: Lista #01 -->
+      <!-- NAVEGAÇÃO PRINCIPAL DE MÓDULOS (4 ABAS COM SEPARAÇÃO LIMPA DE CONTEXTO) -->
+      <div class="pt-3 border-t border-white/10 no-print">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5">
+          <!-- Aba 1: Catálogo em Tabela -->
           <button
             id="headerTabTableBtn"
             onclick="setViewMode('table')"
-            class="header-main-tab active-amber rounded-lg p-3.5 text-left flex items-center gap-3.5 group"
+            class="header-main-tab active-amber rounded-xl p-3 text-left flex items-center gap-3 group"
           >
-            <div class="w-11 h-11 rounded-md bg-tactical-amber/15 border border-tactical-amber/40 flex flex-col items-center justify-center text-tactical-amber shrink-0 font-mono font-bold relative">
+            <div class="w-10 h-10 rounded-lg bg-tactical-amber/15 border border-tactical-amber/40 flex items-center justify-center text-tactical-amber shrink-0 font-mono font-bold group-hover:scale-105 transition-transform">
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2"/>
                 <path d="M3 9h18M3 15h18M9 9v12"/>
               </svg>
-              <span class="text-[9px] leading-none mt-0.5 opacity-80">01</span>
             </div>
             <div class="min-w-0">
-              <div class="font-mono text-[10px] uppercase tracking-wider text-slate-400 group-hover:text-slate-200">Módulo 01 · Tabela</div>
-              <div class="font-display text-base sm:text-lg font-bold uppercase tracking-wide text-white truncate">Catálogo de Preços</div>
+              <div class="font-mono text-[10px] uppercase tracking-wider text-slate-400">01 · Tabela</div>
+              <div class="font-display text-sm sm:text-base font-bold uppercase tracking-wide text-white truncate">Catálogo de Preços</div>
             </div>
           </button>
 
@@ -418,20 +441,19 @@
           <button
             id="headerTabGridBtn"
             onclick="setViewMode('grid')"
-            class="header-main-tab rounded-lg p-3.5 text-left flex items-center gap-3.5 group"
+            class="header-main-tab rounded-xl p-3 text-left flex items-center gap-3 group"
           >
-            <div class="w-11 h-11 rounded-md bg-tactical-cyan/15 border border-tactical-cyan/40 flex flex-col items-center justify-center text-tactical-cyanLight shrink-0 font-mono font-bold relative">
+            <div class="w-10 h-10 rounded-lg bg-tactical-cyan/15 border border-tactical-cyan/40 flex items-center justify-center text-tactical-cyanLight shrink-0 font-mono font-bold group-hover:scale-105 transition-transform">
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="7" height="7" rx="1.5"/>
                 <rect x="14" y="3" width="7" height="7" rx="1.5"/>
                 <rect x="3" y="14" width="7" height="7" rx="1.5"/>
                 <rect x="14" y="14" width="7" height="7" rx="1.5"/>
               </svg>
-              <span class="text-[9px] leading-none mt-0.5 opacity-80">02</span>
             </div>
             <div class="min-w-0">
-              <div class="font-mono text-[10px] uppercase tracking-wider text-slate-400 group-hover:text-slate-200">Módulo 02 · Cards</div>
-              <div class="font-display text-base sm:text-lg font-bold uppercase tracking-wide text-white truncate">Vitrine Visual</div>
+              <div class="font-mono text-[10px] uppercase tracking-wider text-slate-400">02 · Cards</div>
+              <div class="font-display text-sm sm:text-base font-bold uppercase tracking-wide text-white truncate">Vitrine Visual</div>
             </div>
           </button>
 
@@ -439,19 +461,18 @@
           <button
             id="headerTabStockBtn"
             onclick="setViewMode('stock')"
-            class="header-main-tab rounded-lg p-3.5 text-left flex items-center gap-3.5 group"
+            class="header-main-tab rounded-xl p-3 text-left flex items-center gap-3 group"
           >
-            <div class="w-11 h-11 rounded-md bg-emerald-500/15 border border-emerald-500/40 flex flex-col items-center justify-center text-emerald-400 shrink-0 font-mono font-bold relative">
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0 font-mono font-bold group-hover:scale-105 transition-transform">
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 3v18h18"/>
                 <path d="M7 15l4-4 3 3 6-7"/>
                 <path d="M16 7h4v4"/>
               </svg>
-              <span class="text-[9px] leading-none mt-0.5 opacity-80">03</span>
             </div>
             <div class="min-w-0">
-              <div class="font-mono text-[10px] uppercase tracking-wider text-emerald-400/90">Módulo 03 · Farm &amp; Loot</div>
-              <div class="font-display text-base sm:text-lg font-bold uppercase tracking-wide text-white truncate">Bolsa de Valores</div>
+              <div class="font-mono text-[10px] uppercase tracking-wider text-emerald-400/90">03 · Farm &amp; Loot</div>
+              <div class="font-display text-sm sm:text-base font-bold uppercase tracking-wide text-white truncate">Bolsa de Valores</div>
             </div>
           </button>
 
@@ -459,218 +480,151 @@
           <button
             id="headerTabMapBtn"
             onclick="setViewMode('map')"
-            class="header-main-tab rounded-lg p-3.5 text-left flex items-center gap-3.5 group"
+            class="header-main-tab rounded-xl p-3 text-left flex items-center gap-3 group"
           >
-            <div class="w-11 h-11 rounded-md bg-tactical-cyan/15 border border-tactical-cyan/40 flex flex-col items-center justify-center text-tactical-cyanLight shrink-0 font-mono font-bold relative">
+            <div class="w-10 h-10 rounded-lg bg-tactical-cyan/15 border border-tactical-cyan/40 flex items-center justify-center text-tactical-cyanLight shrink-0 font-mono font-bold group-hover:scale-105 transition-transform">
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
                 <line x1="9" y1="3" x2="9" y2="18"/>
                 <line x1="15" y1="6" x2="15" y2="21"/>
               </svg>
-              <span class="text-[9px] leading-none mt-0.5 opacity-80">04</span>
             </div>
             <div class="min-w-0">
-              <div class="font-mono text-[10px] uppercase tracking-wider text-tactical-cyanLight">Módulo 04 · Satélite Oficial</div>
-              <div class="font-display text-base sm:text-lg font-bold uppercase tracking-wide text-white truncate">Mapa &amp; Rotas SCUM</div>
+              <div class="font-mono text-[10px] uppercase tracking-wider text-tactical-cyanLight">04 · Satélite 20K</div>
+              <div class="font-display text-sm sm:text-base font-bold uppercase tracking-wide text-white truncate">Mapa &amp; Rotas SCUM</div>
             </div>
           </button>
         </div>
       </div>
 
-      <!-- BLOCO INFORMAÇÕES GERAIS · REG SRV-TRD (5 KPI CARDS) -->
-      <div class="pt-4 border-t border-white/10 space-y-3">
-        <div class="flex items-center justify-between text-xs font-mono uppercase tracking-wider text-slate-400">
-          <span>INFORMAÇÕES GERAIS · REG SRV-TRD</span>
-          <span id="activeZoneLabelBanner" class="text-tactical-cyan">VISÃO: COMPARATIVO 4 TRADES</span>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-          <!-- KPI 1 -->
-          <div class="bg-carbon-900/90 border border-white/10 rounded-md p-3.5">
-            <div class="font-mono text-[11px] uppercase text-slate-400">Itens Catalogados</div>
-            <div id="kpiTotalItems" class="font-display text-2xl sm:text-3xl font-bold text-white mt-1">0</div>
-            <div class="font-mono text-[10px] text-tactical-amber mt-0.5">Registros ativos no filtro</div>
+      <!-- RESUMO DE INDICADORES DAS TRADES (EXCLUSIVO DAS ABAS 01 E 02 — OCULTO NA BOLSA E NO MAPA) -->
+      <div id="catalogOnlyKpiBar" class="pt-3 border-t border-white/10">
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+          <div class="bg-carbon-950/75 border border-white/10 rounded-lg px-3.5 py-2.5 flex items-center justify-between">
+            <div>
+              <div class="font-mono text-[10px] uppercase text-slate-400">Itens no Filtro</div>
+              <div id="kpiTotalItems" class="font-display text-xl sm:text-2xl font-bold text-white leading-tight">0</div>
+            </div>
+            <span class="text-tactical-amber/60 font-mono text-xs">📦</span>
           </div>
 
-          <!-- KPI 2 -->
-          <div class="bg-carbon-900/90 border border-white/10 rounded-md p-3.5">
-            <div class="font-mono text-[11px] uppercase text-slate-400">Lojas / NPCs Ativos</div>
-            <div id="kpiActiveTraders" class="font-display text-2xl sm:text-3xl font-bold text-tactical-cyanLight mt-1">7</div>
-            <div class="font-mono text-[10px] text-slate-400 mt-0.5">Categorias de comércio</div>
+          <div class="bg-carbon-950/75 border border-white/10 rounded-lg px-3.5 py-2.5 flex items-center justify-between">
+            <div>
+              <div class="font-mono text-[10px] uppercase text-slate-400">Lojas Ativas</div>
+              <div id="kpiActiveTraders" class="font-display text-xl sm:text-2xl font-bold text-tactical-cyanLight leading-tight">7</div>
+            </div>
+            <span class="text-tactical-cyan/60 font-mono text-xs">🏪</span>
           </div>
 
-          <!-- KPI 3 -->
-          <div class="bg-carbon-900/90 border border-white/10 rounded-md p-3.5">
-            <div class="font-mono text-[11px] uppercase text-slate-400">Média de Compra</div>
-            <div id="kpiAvgBuy" class="font-display text-2xl sm:text-3xl font-bold text-rose-400 mt-1">$ 0</div>
-            <div class="font-mono text-[10px] text-slate-400 mt-0.5">Custo médio nas Trades</div>
+          <div class="bg-carbon-950/75 border border-white/10 rounded-lg px-3.5 py-2.5 flex items-center justify-between">
+            <div>
+              <div class="font-mono text-[10px] uppercase text-slate-400">Média Compra</div>
+              <div id="kpiAvgBuy" class="font-display text-xl sm:text-2xl font-bold text-rose-400 leading-tight">$ 0</div>
+            </div>
+            <span class="text-rose-400/60 font-mono text-xs">▼</span>
           </div>
 
-          <!-- KPI 4 -->
-          <div class="bg-carbon-900/90 border border-white/10 rounded-md p-3.5">
-            <div class="font-mono text-[11px] uppercase text-slate-400">Média de Venda</div>
-            <div id="kpiAvgSell" class="font-display text-2xl sm:text-3xl font-bold text-emerald-400 mt-1">$ 0</div>
-            <div class="font-mono text-[10px] text-slate-400 mt-0.5">Pagamento médio ao jogador</div>
+          <div class="bg-carbon-950/75 border border-white/10 rounded-lg px-3.5 py-2.5 flex items-center justify-between">
+            <div>
+              <div class="font-mono text-[10px] uppercase text-slate-400">Média Venda</div>
+              <div id="kpiAvgSell" class="font-display text-xl sm:text-2xl font-bold text-emerald-400 leading-tight">$ 0</div>
+            </div>
+            <span class="text-emerald-400/60 font-mono text-xs">▲</span>
           </div>
 
-          <!-- KPI 5 -->
-          <div class="bg-carbon-900/90 border border-white/10 rounded-md p-3.5 col-span-2 sm:col-span-1">
-            <div class="font-mono text-[11px] uppercase text-slate-400">Retorno Médio (Loot)</div>
-            <div id="kpiAvgReturn" class="font-display text-2xl sm:text-3xl font-bold text-tactical-amberLight mt-1">0%</div>
-            <div class="font-mono text-[10px] text-slate-400 mt-0.5">Relação Venda / Compra</div>
+          <div class="bg-carbon-950/75 border border-white/10 rounded-lg px-3.5 py-2.5 flex items-center justify-between col-span-2 sm:col-span-1">
+            <div>
+              <div class="font-mono text-[10px] uppercase text-slate-400">Retorno Médio</div>
+              <div id="kpiAvgReturn" class="font-display text-xl sm:text-2xl font-bold text-tactical-amberLight leading-tight">0%</div>
+            </div>
+            <span id="activeZoneLabelBanner" class="text-[9px] font-mono text-tactical-cyan uppercase text-right max-w-[75px] truncate">4 TRADES</span>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- PAINEL DE NAVEGAÇÃO DE TRADES (OUTPOSTS), LOJAS (NPCs) E FILTROS -->
-    <section id="registro" class="telemetry-panel rounded-lg p-5 sm:p-6 space-y-5 no-print">
-      <!-- Linha 1: Seleção de Outpost / Zona de Trade -->
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-4">
-        <div>
-          <div class="font-mono text-xs uppercase tracking-wider text-tactical-cyan font-semibold">
-            SELETOR DE OUTPOST · ZONA DE TRADE
+    <!-- BARRA DE FILTROS EXCLUSIVA DO CATÁLOGO E VITRINE (ABAS 01 E 02) -->
+    <section id="registro" class="telemetry-panel rounded-xl p-4 sm:p-5 space-y-3.5 no-print">
+      <!-- Linha 1: Outposts + Lojas lado a lado sem poluição -->
+      <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-3 border-b border-white/10 pb-3.5">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="font-mono text-[11px] uppercase tracking-wider text-tactical-cyan font-bold mr-1">Outpost:</span>
+          <div id="zoneSelectorContainer" class="flex flex-wrap items-center gap-1.5">
+            <!-- Renderizado via JS -->
           </div>
-          <p class="text-xs text-slate-400 mt-0.5">
-            Compare todas as 4 Trades lado a lado ou filtre a tabela para exibir apenas 1 Outpost específico.
-          </p>
         </div>
 
-        <div id="zoneSelectorContainer" class="flex flex-wrap items-center gap-2">
-          <!-- Renderizado via JS -->
+        <!-- Busca + Categoria + Ordenação -->
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 flex-1 max-w-2xl">
+          <div class="sm:col-span-6 relative">
+            <input
+              type="text"
+              id="searchInput"
+              oninput="renderCatalog()"
+              placeholder="Buscar item, categoria ou código..."
+              class="w-full pl-8 pr-3 py-1.5 rounded-lg bg-carbon-950 border border-white/15 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-tactical-amber font-mono"
+            />
+            <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+
+          <div class="sm:col-span-3">
+            <select
+              id="categoryFilterSelect"
+              onchange="renderCatalog()"
+              class="w-full px-2.5 py-1.5 rounded-lg bg-carbon-950 border border-white/15 text-xs font-mono text-slate-200 focus:outline-none focus:border-tactical-amber"
+            >
+              <option value="ALL">Categorias</option>
+            </select>
+          </div>
+
+          <div class="sm:col-span-3">
+            <select
+              id="sortSelect"
+              onchange="renderCatalog()"
+              class="w-full px-2.5 py-1.5 rounded-lg bg-carbon-950 border border-white/15 text-xs font-mono text-slate-200 focus:outline-none focus:border-tactical-amber"
+            >
+              <option value="name_asc">Ordem: A-Z</option>
+              <option value="buy_asc">Menor Compra ($)</option>
+              <option value="buy_desc">Maior Compra ($)</option>
+              <option value="sell_desc">Maior Venda ($)</option>
+              <option value="return_desc">Maior % Retorno</option>
+              <option value="fame_asc">Menor Fama (FP)</option>
+            </select>
+          </div>
         </div>
       </div>
 
-      <!-- Linha 2: Abas de Lojas / NPCs (Estilo Ranking Server Genesis) -->
-      <div class="space-y-2">
-        <div class="font-mono text-xs uppercase tracking-wider text-slate-400">
-          FILTRAR POR LOJA / NPC MERCADOR
-        </div>
-        <div id="traderTabsContainer" class="flex flex-wrap items-center gap-2">
-          <!-- Renderizado via JS -->
-        </div>
-      </div>
-
-      <!-- Linha 3: Busca Rápida, Filtro de Categoria, Ordenação e Alternador Lista vs Vitrine -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 pt-2">
-        <!-- Campo de Busca -->
-        <div class="lg:col-span-5 relative">
-          <input
-            type="text"
-            id="searchInput"
-            oninput="renderCatalog()"
-            placeholder="Buscar item por nome, categoria ou código #SpawnItem..."
-            class="w-full pl-9 pr-4 py-2 rounded bg-carbon-900 border border-white/15 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-tactical-amber font-mono"
-          />
-          <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-        </div>
-
-        <!-- Filtro de Subcategoria -->
-        <div class="lg:col-span-3">
-          <select
-            id="categoryFilterSelect"
-            onchange="renderCatalog()"
-            class="w-full px-3 py-2 rounded bg-carbon-900 border border-white/15 text-xs font-mono text-slate-200 focus:outline-none focus:border-tactical-amber"
-          >
-            <option value="ALL">Todas as Categorias</option>
-          </select>
-        </div>
-
-        <!-- Ordenação -->
-        <div class="lg:col-span-2">
-          <select
-            id="sortSelect"
-            onchange="renderCatalog()"
-            class="w-full px-3 py-2 rounded bg-carbon-900 border border-white/15 text-xs font-mono text-slate-200 focus:outline-none focus:border-tactical-amber"
-          >
-            <option value="name_asc">Ordem: Nome (A-Z)</option>
-            <option value="buy_asc">Menor Compra ($)</option>
-            <option value="buy_desc">Maior Compra ($)</option>
-            <option value="sell_desc">Maior Venda ($)</option>
-            <option value="return_desc">Maior % Retorno</option>
-            <option value="fame_asc">Menor Fama (FP)</option>
-          </select>
-        </div>
-
-        <!-- Alternador Minimalista de Visualização (Sincronizado com o Topo) -->
-        <div class="lg:col-span-2 flex items-center gap-1 bg-carbon-900 p-1 rounded border border-white/15">
-          <button
-            id="viewTableBtn"
-            onclick="setViewMode('table')"
-            class="tab-btn active flex-1 py-1.5 px-1 rounded text-[10px] font-mono font-semibold uppercase text-center transition-all"
-            title="Aba 01: Catálogo de Preços"
-          >
-            Lista
-          </button>
-          <button
-            id="viewGridBtn"
-            onclick="setViewMode('grid')"
-            class="tab-btn flex-1 py-1.5 px-1 rounded text-[10px] font-mono font-semibold uppercase text-center text-slate-400 hover:text-white transition-all"
-            title="Aba 02: Vitrine de Cards"
-          >
-            Cards
-          </button>
-          <button
-            id="viewStockBtn"
-            onclick="setViewMode('stock')"
-            class="tab-btn flex-1 py-1.5 px-1 rounded text-[10px] font-mono font-semibold uppercase text-center text-emerald-400 hover:text-white transition-all"
-            title="Aba 03: Bolsa de Valores & Loot"
-          >
-            Bolsa
-          </button>
-          <button
-            id="viewMapBtn"
-            onclick="setViewMode('map')"
-            class="tab-btn flex-1 py-1.5 px-1 rounded text-[10px] font-mono font-semibold uppercase text-center text-tactical-cyanLight hover:text-white transition-all"
-            title="Aba 04: Mapa Tático & Rotas"
-          >
-            Mapa
-          </button>
-        </div>
+      <!-- Linha 2: Abas de Mercadores (NPCs) -->
+      <div id="traderTabsContainer" class="flex flex-wrap items-center gap-1.5">
+        <!-- Renderizado via JS -->
       </div>
     </section>
 
-    <!-- VISUALIZAÇÃO 1: TABELA DE TELEMETRIA (ESTILO SERVER GENESIS #REGISTRO) -->
-    <section id="tableViewContainer" class="space-y-4">
-      <!-- TÍTULO GRANDE DA ABA 01 -->
-      <div class="telemetry-panel rounded-lg p-6 border-l-4 border-tactical-amber flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-tactical-amber/15 border border-tactical-amber/40 text-tactical-amber font-mono text-xs font-bold uppercase">
-            ABA 01 // CATÁLOGO OFICIAL DE TRADES
-          </div>
-          <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-wide text-white mt-2">
-            TABELA GERAL DE PREÇOS &amp; COTAÇÕES POR OUTPOST
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1">
-            Consulte e compare todos os valores de compra, venda e exigência de fama (FP) praticados em cada loja do servidor.
-          </p>
-        </div>
-        <div class="font-mono text-xs space-y-1 bg-carbon-900/90 px-4 py-3 rounded border border-white/10 shrink-0">
-          <div class="text-rose-400 font-semibold">■ COMPRA: O que você paga na Trade</div>
-          <div class="text-emerald-400 font-semibold">■ VENDA: O que a Trade paga a você</div>
-        </div>
-      </div>
-
-      <div class="telemetry-panel rounded-lg overflow-hidden">
-        <div class="px-5 py-4 border-b border-white/10 flex flex-wrap items-center justify-between gap-2 bg-carbon-900/60">
+    <!-- ===================================================================== -->
+    <!-- ABA 01: TABELA DE PREÇOS & COTAÇÕES (LIMPA E DIRETA)                  -->
+    <!-- ===================================================================== -->
+    <section id="tableViewContainer" class="tab-view-enter">
+      <div class="telemetry-panel rounded-xl overflow-hidden">
+        <div class="px-5 py-3.5 border-b border-white/10 flex flex-wrap items-center justify-between gap-2 bg-carbon-950/60">
           <div class="flex items-center gap-2.5">
-            <span class="px-2 py-0.5 rounded bg-tactical-amber/20 border border-tactical-amber/40 text-tactical-amber font-mono text-xs font-bold">
-              LISTA #01
+            <span class="px-2 py-0.5 rounded bg-tactical-amber/20 border border-tactical-amber/40 text-tactical-amber font-mono text-[11px] font-bold">
+              TABELA COMPARATIVA
             </span>
-            <h3 id="tableSectionTitle" class="font-display text-lg sm:text-xl font-bold uppercase tracking-wide text-white">
-              REGISTRO GERAL DE ITENS E COTAÇÕES NAS TRADES
+            <h3 id="tableSectionTitle" class="font-display text-base sm:text-lg font-bold uppercase tracking-wide text-white">
+              COTAÇÕES DE COMPRA &amp; VENDA POR OUTPOST
             </h3>
           </div>
-          <div class="font-mono text-xs text-slate-400">
-            Clique em qualquer item para inspecionar os detalhes
+          <div class="flex items-center gap-4 font-mono text-[11px]">
+            <span class="text-rose-400 font-semibold">● Compra: Pago na Loja</span>
+            <span class="text-emerald-400 font-semibold">● Venda: Recebido pelo Player</span>
           </div>
         </div>
 
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse">
-            <thead id="catalogTableHead" class="bg-carbon-950/90 border-b border-white/15 font-mono text-[11px] uppercase tracking-wider text-slate-400">
+            <thead id="catalogTableHead" class="bg-carbon-950/90 border-b border-white/10 font-mono text-[11px] uppercase tracking-wider text-slate-400">
               <!-- Renderizado dinamicamente via JS -->
             </thead>
             <tbody id="catalogTableBody" class="divide-y divide-white/5 text-sm">
@@ -681,391 +635,270 @@
       </div>
     </section>
 
-    <!-- VISUALIZAÇÃO 2: VITRINE DE CARDS (ESTILO CATÁLOGO PREMIUM / PDF) -->
-    <section id="gridViewContainer" class="hidden space-y-4">
-      <!-- TÍTULO GRANDE DA ABA 02 -->
-      <div class="telemetry-panel rounded-lg p-6 border-l-4 border-tactical-cyan flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-tactical-cyan/15 border border-tactical-cyan/40 text-tactical-cyanLight font-mono text-xs font-bold uppercase">
-            ABA 02 // MOSTRUÁRIO VISUAL DE ITENS
-          </div>
-          <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-wide text-white mt-2">
-            VITRINE VISUAL DE EQUIPAMENTOS &amp; MERCADORES
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1">
-            Visualização em cards táticos com miniaturas ampliadas, ideal para consulta rápida, prints ou exportação em PDF.
-          </p>
-        </div>
-        <div class="font-mono text-xs text-tactical-cyanLight bg-carbon-900/90 px-4 py-3 rounded border border-tactical-cyan/30 shrink-0">
-          Dica: Use "Gerar PDF / Imprimir" no topo para salvar esta vitrine
-        </div>
-      </div>
-
+    <!-- ===================================================================== -->
+    <!-- ABA 02: VITRINE VISUAL EM CARDS (PREMIUM & REATIVA)                   -->
+    <!-- ===================================================================== -->
+    <section id="gridViewContainer" class="hidden tab-view-enter">
       <div id="catalogGridBody" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         <!-- Cards renderizados via JS -->
       </div>
     </section>
 
-    <!-- VISUALIZAÇÃO 3: BOLSA DE VALORES & RENTABILIDADE DE LOOT (STOCK EXCHANGE / PROFIT ANALYTICS) -->
-    <section id="stockViewContainer" class="hidden space-y-6">
+    <!-- ===================================================================== -->
+    <!-- ABA 03: BOLSA DE VALORES & INTELIGÊNCIA DE FARM (SEM POLUIÇÃO VISUAL) -->
+    <!-- ===================================================================== -->
+    <section id="stockViewContainer" class="hidden space-y-5 tab-view-enter">
 
-      <!-- TÍTULO GRANDE DA ABA 03 -->
-      <div class="telemetry-panel rounded-lg p-6 border-l-4 border-emerald-400 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-        <div>
-          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 font-mono text-xs font-bold uppercase">
-            ABA 03 // B3-SCUM · INTELIGÊNCIA DE FARM &amp; VENDA DE LOOT
-          </div>
-          <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-wide text-white mt-2">
-            BOLSA DE VALORES &amp; RENTABILIDADE DE LOOT NO MAPA
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-3xl">
-            Análise pura de retorno de coleta: calcula quais itens encontrados pelo mapa geram mais dinheiro ao serem looteados em quantidade e vendidos nas Trades (100% baseado no valor de venda, volume e chance de spawn, sem considerar preço de compra).
-          </p>
-        </div>
-        <div class="font-mono text-xs bg-carbon-900/95 p-3.5 rounded-lg border border-emerald-500/30 shrink-0 space-y-1">
-          <div class="text-emerald-400 font-bold uppercase">Fórmula de Profit Puro (Loot):</div>
-          <div class="text-slate-300"><code>Profit Run = Venda ($) × Qtd. Run × (Chance % ÷ 100)</code></div>
-          <div class="text-tactical-cyanLight text-[11px]"><code>Densidade = Venda Unitária ($) ÷ Slots Mochila</code></div>
-        </div>
-      </div>
-
-      <!-- FITA DE COTAÇÕES DA BOLSA (TICKER TAPE) -->
-      <div class="telemetry-panel rounded-lg overflow-hidden border border-emerald-500/30">
-        <div class="bg-carbon-950 px-4 py-2 border-b border-white/10 flex flex-wrap items-center justify-between gap-2">
-          <div class="flex items-center gap-2 font-mono text-xs">
-            <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-bold">
-              PREGÃO AO VIVO
+      <!-- BARRA INTEGRADA DE FILTROS DA BOLSA + TICKER TAPE COMPACTO -->
+      <div class="telemetry-panel rounded-xl overflow-hidden border border-emerald-500/25">
+        <div class="p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b border-white/10 bg-carbon-950/70">
+          <div class="flex items-center gap-2.5">
+            <span class="px-2.5 py-1 rounded-md bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-mono text-xs font-bold">
+              B3-SCUM // LOOT PROFIT
             </span>
-            <span class="text-slate-400">ÍNDICE DE LIQUIDEZ &amp; EFICIÊNCIA DE FARM NO MAPA</span>
+            <div>
+              <h2 class="font-display text-lg sm:text-xl font-bold uppercase text-white leading-none">
+                TERMINAL DE RENTABILIDADE DE LOOT &amp; FARM
+              </h2>
+              <p class="font-mono text-[11px] text-slate-400 mt-0.5">
+                Cálculo 100% focado no <strong class="text-emerald-400">Valor de Venda</strong>, chance de spawn e espaço na mochila
+              </p>
+            </div>
           </div>
-          <div class="font-mono text-[11px] text-slate-400">
-            Cálculo exclusivo sobre <strong class="text-emerald-400">Valor de Venda</strong> nas Trades
+
+          <!-- Controles Exclusivos da Bolsa -->
+          <div class="flex flex-wrap items-center gap-2 no-print">
+            <div class="relative">
+              <input
+                type="text"
+                id="stockSearchInput"
+                oninput="document.getElementById('searchInput').value = this.value; stockCurrentPage = 1; renderStockExchange();"
+                placeholder="Filtrar ativo na Bolsa..."
+                class="w-44 sm:w-52 pl-8 pr-3 py-1.5 rounded-lg bg-carbon-900 border border-white/15 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400"
+              />
+              <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+
+            <select id="stockSourceFilter" onchange="stockCurrentPage = 1; renderStockExchange();" class="px-3 py-1.5 rounded-lg bg-carbon-900 border border-white/15 text-xs font-mono text-slate-200 focus:outline-none focus:border-emerald-400">
+              <option value="ALL">Fonte: Todos os Locais</option>
+            </select>
+
+            <select id="stockSortSelect" onchange="stockCurrentPage = 1; renderStockExchange();" class="px-3 py-1.5 rounded-lg bg-carbon-900 border border-white/15 text-xs font-mono text-emerald-300 focus:outline-none focus:border-emerald-400">
+              <option value="score_desc">Ordem: Maior Score BCU</option>
+              <option value="run_profit_desc">Maior Profit p/ Run ($)</option>
+              <option value="slot_value_desc">Maior Valor p/ Slot ($)</option>
+              <option value="sell_desc">Maior Venda Unitária ($)</option>
+              <option value="chance_desc">Maior Chance de Loot (%)</option>
+            </select>
+
+            <label class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-carbon-900 border border-white/15 text-xs font-mono text-slate-300 cursor-pointer hover:border-emerald-500/40">
+              <input type="checkbox" id="stockOnlySellableCheck" onchange="stockCurrentPage = 1; renderStockExchange();" class="rounded bg-carbon-950 border-white/20 text-emerald-400" />
+              <span>Só c/ Venda &gt; $0</span>
+            </label>
           </div>
         </div>
-        <div id="stockTickerTape" class="px-4 py-3 bg-carbon-900/90 flex items-center gap-3 overflow-x-auto font-mono text-xs">
+
+        <!-- Ticker Tape horizontal enxuto -->
+        <div id="stockTickerTape" class="px-4 py-2.5 bg-carbon-900/75 flex items-center gap-2.5 overflow-x-auto font-mono text-xs">
           <!-- Renderizado via JS -->
         </div>
       </div>
 
-      <!-- KPIs DA BOLSA DE LOOT (5 CARDS DE ALTA PERFORMANCE) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-        <div class="telemetry-panel rounded-lg p-4 border-l-2 border-emerald-400">
+      <!-- 4 KPIs ESSENCIAIS DA BOLSA DE LOOT -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div class="telemetry-panel juice-card rounded-xl p-4 border-l-2 border-emerald-400">
           <div class="font-mono text-[10px] uppercase text-emerald-400 font-bold tracking-wider">★ Top #1 Loot Mais Rentável</div>
           <div id="stockKpiBestItem" class="font-display text-xl font-bold text-white mt-1 truncate">-</div>
           <div id="stockKpiBestItemSub" class="font-mono text-[11px] text-slate-400 mt-0.5">Profit Run: $ 0</div>
         </div>
 
-        <div class="telemetry-panel rounded-lg p-4">
+        <div class="telemetry-panel juice-card rounded-xl p-4 border-l-2 border-tactical-amber">
           <div class="font-mono text-[10px] uppercase text-tactical-amber font-bold tracking-wider">Maior Venda Unitária</div>
           <div id="stockKpiMaxUnit" class="font-display text-xl font-bold text-tactical-amberLight mt-1 truncate">$ 0</div>
           <div id="stockKpiMaxUnitSub" class="font-mono text-[11px] text-slate-400 mt-0.5">Melhor pagamento direto</div>
         </div>
 
-        <div class="telemetry-panel rounded-lg p-4">
+        <div class="telemetry-panel juice-card rounded-xl p-4 border-l-2 border-tactical-cyan">
           <div class="font-mono text-[10px] uppercase text-tactical-cyanLight font-bold tracking-wider">Melhor Densidade ($ / Slot)</div>
           <div id="stockKpiBestSlot" class="font-display text-xl font-bold text-tactical-cyanLight mt-1 truncate">$ 0 / slot</div>
           <div id="stockKpiBestSlotSub" class="font-mono text-[11px] text-slate-400 mt-0.5">Lucro por espaço na mochila</div>
         </div>
 
-        <div class="telemetry-panel rounded-lg p-4">
-          <div class="font-mono text-[10px] uppercase text-purple-300 font-bold tracking-wider">Chance Média de Loot</div>
-          <div id="stockKpiAvgChance" class="font-display text-xl font-bold text-purple-300 mt-1">0%</div>
-          <div class="font-mono text-[11px] text-slate-400 mt-0.5">Disponibilidade média pelo mapa</div>
-        </div>
-
-        <div class="telemetry-panel rounded-lg p-4 sm:col-span-2 lg:col-span-1">
-          <div class="font-mono text-[10px] uppercase text-rose-300 font-bold tracking-wider">Potencial Run (Top 5 Loots)</div>
-          <div id="stockKpiRunPotential" class="font-display text-xl font-bold text-emerald-400 mt-1">$ 0</div>
-          <div class="font-mono text-[11px] text-slate-400 mt-0.5">Faturamento estimado p/ expedição</div>
+        <div class="telemetry-panel juice-card rounded-xl p-4 border-l-2 border-purple-400">
+          <div class="font-mono text-[10px] uppercase text-purple-300 font-bold tracking-wider">Potencial Expedição (Top 5)</div>
+          <div class="flex items-baseline justify-between mt-1">
+            <div id="stockKpiRunPotential" class="font-display text-xl font-bold text-emerald-400">$ 0</div>
+            <span class="font-mono text-[11px] text-purple-300">Chance média: <strong id="stockKpiAvgChance">0%</strong></span>
+          </div>
+          <div class="font-mono text-[11px] text-slate-400 mt-0.5">Faturamento estimado por saída</div>
         </div>
       </div>
 
-      <!-- FILTROS E CONTROLES DA BOLSA DE VALORES -->
-      <div class="telemetry-panel rounded-lg p-4 sm:p-5 space-y-4 no-print">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      <!-- GRÁFICO PRINCIPAL DA BOLSA: PROPORCIONAL, REATIVO E SEM SOBREPOSIÇÃO -->
+      <div class="telemetry-panel rounded-xl p-5 space-y-4">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b border-white/10 pb-3.5">
           <div>
-            <h3 class="font-display text-lg font-bold uppercase text-white flex items-center gap-2">
-              <span class="text-emerald-400">📈</span>
-              TERMINAL DE FILTRAGEM DE LOOT &amp; SIMULADOR DE FARM
-            </h3>
-            <p class="text-xs text-slate-400">
-              Filtre por local/fonte digitada pelo Admin e ordene pelo lucro puro na venda.
-            </p>
-          </div>
-
-          <div class="flex flex-wrap items-center gap-2">
-            <!-- Filtro Fonte de Loot Dinâmico -->
-            <select id="stockSourceFilter" onchange=" stockCurrentPage = 1; renderStockExchange(); " class="px-3 py-2 rounded bg-carbon-900 border border-white/15 text-xs font-mono text-slate-200 focus:outline-none focus:border-emerald-400">
-              <option value="ALL">Fonte de Loot: Todos os Locais Cadastrados</option>
-            </select>
-
-            <!-- Ordenação da Bolsa (Sem Valor de Compra) -->
-            <select id="stockSortSelect" onchange=" stockCurrentPage = 1; renderStockExchange(); " class="px-3 py-2 rounded bg-carbon-900 border border-white/15 text-xs font-mono text-emerald-300 focus:outline-none focus:border-emerald-400">
-              <option value="score_desc">Ordenar: Maior Score da Bolsa (Mais Rentável)</option>
-              <option value="run_profit_desc">Maior Lucro em Quantidade (Profit p/ Run $)</option>
-              <option value="slot_value_desc">Maior Valor por Espaço ($ / Slot na Mochila)</option>
-              <option value="sell_desc">Maior Preço de Venda Unitário ($)</option>
-              <option value="chance_desc">Maior Chance de Achar no Mapa (%)</option>
-            </select>
-
-            <!-- Checkbox Apenas Vendáveis -->
-            <label class="inline-flex items-center gap-2 px-3 py-2 rounded bg-carbon-900 border border-white/15 text-xs font-mono text-slate-300 cursor-pointer">
-              <input type="checkbox" id="stockOnlySellableCheck" onchange=" stockCurrentPage = 1; renderStockExchange(); " class="rounded bg-carbon-950 border-white/20 text-emerald-400" />
-              <span>Apenas c/ Venda &gt; $0</span>
-            </label>
-          </div>
-        </div>
-      </div>
-
-      <!-- GRÁFICO PRINCIPAL DA BOLSA: MATRIZ DE QUADRANTES PREMIUM, REATIVA E DE ALTA LEGIBILIDADE -->
-      <div class="telemetry-panel rounded-lg p-5 sm:p-6 space-y-5">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-white/10 pb-4">
-          <div>
-            <span class="font-mono text-xs uppercase tracking-widest text-tactical-cyan font-bold">
-              MATRIZ DE INTELIGÊNCIA BCU · ANÁLISE REATIVA DE OPORTUNIDADE
-            </span>
-            <h4 class="font-display text-xl sm:text-2xl font-bold uppercase text-white mt-0.5">
-              MAPA DE OPORTUNIDADE DE LOOT: CHANCE DE SPAWN (%) × VALOR DE VENDA ($)
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="font-mono text-[11px] uppercase tracking-widest text-tactical-cyanLight font-bold">
+                MATRIZ REATIVA DE OPORTUNIDADE · SPAWN (%) × VENDA ($)
+              </span>
+            </div>
+            <h4 class="font-display text-lg sm:text-xl font-bold uppercase text-white mt-0.5">
+              MAPA DE EFICIÊNCIA DE LOOT &amp; RETORNO FINANCEIRO
             </h4>
-            <p class="text-xs text-slate-400 mt-0.5">
-              Passe o mouse ou clique sobre qualquer ativo no gráfico para inspecionar a telemetria completa de lucro no painel lateral.
-            </p>
           </div>
 
-          <!-- Filtros Rápidos de Quadrante da Matriz -->
+          <!-- Filtros Rápidos de Quadrante -->
           <div class="flex flex-wrap items-center gap-1.5 font-mono text-[11px]">
-            <button type="button" onclick="setScatterQuadrantFilter('ALL')" id="quadBtnALL" class="px-2.5 py-1.5 rounded border border-tactical-cyan bg-tactical-cyan/20 text-tactical-cyanLight font-bold uppercase transition-all">
+            <button type="button" onclick="setScatterQuadrantFilter('ALL')" id="quadBtnALL" class="px-3 py-1.5 rounded-lg border border-tactical-cyan bg-tactical-cyan/20 text-white font-bold uppercase transition-all">
               Todos
             </button>
-            <button type="button" onclick="setScatterQuadrantFilter('GOLD')" id="quadBtnGOLD" class="px-2.5 py-1.5 rounded border border-white/10 bg-carbon-900 text-emerald-400 hover:border-emerald-400 uppercase transition-all">
-              ● Quadrante Ouro
+            <button type="button" onclick="setScatterQuadrantFilter('GOLD')" id="quadBtnGOLD" class="px-3 py-1.5 rounded-lg border border-white/10 bg-carbon-900 text-emerald-400 hover:border-emerald-400 uppercase transition-all">
+              ★ Ouro (Fácil + Caro)
             </button>
-            <button type="button" onclick="setScatterQuadrantFilter('JACKPOT')" id="quadBtnJACKPOT" class="px-2.5 py-1.5 rounded border border-white/10 bg-carbon-900 text-tactical-amberLight hover:border-tactical-amber uppercase transition-all">
-              ● Jackpot Elite
+            <button type="button" onclick="setScatterQuadrantFilter('JACKPOT')" id="quadBtnJACKPOT" class="px-3 py-1.5 rounded-lg border border-white/10 bg-carbon-900 text-tactical-amberLight hover:border-tactical-amber uppercase transition-all">
+              ◆ Jackpot (Raro + Caro)
             </button>
-            <button type="button" onclick="setScatterQuadrantFilter('VOLUME')" id="quadBtnVOLUME" class="px-2.5 py-1.5 rounded border border-white/10 bg-carbon-900 text-tactical-cyanLight hover:border-tactical-cyan uppercase transition-all">
-              ● Farm de Volume
+            <button type="button" onclick="setScatterQuadrantFilter('VOLUME')" id="quadBtnVOLUME" class="px-3 py-1.5 rounded-lg border border-white/10 bg-carbon-900 text-tactical-cyanLight hover:border-tactical-cyan uppercase transition-all">
+              ▲ Volume (Comum)
             </button>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          <!-- Canvas SVG Interativo de Alta Resolução (8 Colunas) -->
-          <div class="lg:col-span-8 flex flex-col justify-between bg-carbon-950/95 rounded-lg border border-white/10 p-3 relative overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+          <!-- Gráfico SVG Proporcional com Margem Interna Segura (8 Colunas) -->
+          <div class="lg:col-span-8 flex flex-col justify-between bg-carbon-950/90 rounded-xl border border-white/10 p-3 relative overflow-hidden">
             <div id="stockScatterChartContainer" class="w-full">
               <!-- SVG Premium Renderizado via JS -->
             </div>
           </div>
 
-          <!-- Painel Reativo de Inspeção do Ponto Selecionado / Hover (4 Colunas) -->
-          <div class="lg:col-span-4 flex flex-col justify-between bg-carbon-900/90 rounded-lg border border-white/10 p-4 space-y-4">
-            <div id="scatterInspectorCard" class="space-y-4">
-              <!-- Preenchido dinamicamente ao passar o mouse ou clicar em um item do gráfico -->
+          <!-- Card Inspetor Reativo Lateral (4 Colunas) -->
+          <div class="lg:col-span-4 flex flex-col justify-between bg-carbon-900/85 rounded-xl border border-white/10 p-4 space-y-4">
+            <div id="scatterInspectorCard" class="space-y-3.5">
+              <!-- Preenchido dinamicamente ao passar o mouse ou clicar -->
             </div>
 
-            <div class="space-y-2 pt-3 border-t border-white/10 font-mono text-[11px]">
-              <div class="text-slate-400 uppercase font-bold text-[10px] tracking-wider">Legenda Tática de Quadrantes:</div>
-              <div class="p-2 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 flex items-center justify-between">
-                <span><strong>● QUADRANTE OURO</strong> (Chance ≥ 40% e Alto Valor)</span>
-                <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 font-bold">META #1</span>
+            <!-- Resumo Compacto de Fontes de Loot dentro do próprio Painel -->
+            <div class="pt-3 border-t border-white/10 space-y-2">
+              <div class="font-mono text-[10px] uppercase tracking-wider text-slate-400 font-bold">
+                Rendimento por Local / Fonte de Loot:
               </div>
-              <div class="p-2 rounded bg-tactical-amber/10 border border-tactical-amber/30 text-tactical-amberLight flex items-center justify-between">
-                <span><strong>● JACKPOT ELITE</strong> (Raro, mas paga muito alto)</span>
-                <span class="text-[10px] px-1.5 py-0.5 rounded bg-tactical-amber/20 font-bold">ALTO VALOR</span>
-              </div>
-              <div class="p-2 rounded bg-tactical-cyan/10 border border-tactical-cyan/30 text-tactical-cyanLight flex items-center justify-between">
-                <span><strong>● FARM DE VOLUME</strong> (Comum, ganho na qtd.)</span>
-                <span class="text-[10px] px-1.5 py-0.5 rounded bg-tactical-cyan/20 font-bold">GIRO RÁPIDO</span>
-              </div>
-              <div class="p-2 rounded bg-rose-500/10 border border-rose-500/30 text-rose-300 flex items-center justify-between">
-                <span><strong>● BAIXA LIQUIDEZ</strong> (Baixo retorno ou $0)</span>
-                <span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/20 font-bold">EVITAR</span>
+              <div id="stockSourceAnalyticsContainer" class="space-y-1.5 max-h-40 overflow-y-auto pr-1">
+                <!-- Renderizado via JS -->
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- GRÁFICO MACROECONOMIA: EFICIÊNCIA POR FONTE DE LOOT & DENSIDADE DE MOCHILA ($/SLOT) -->
-      <div class="telemetry-panel rounded-lg p-5 space-y-4">
-        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
+      <!-- TABELA RANKING TOP 50 DA BOLSA -->
+      <div class="telemetry-panel rounded-xl overflow-hidden">
+        <div class="px-5 py-3.5 border-b border-white/10 flex flex-wrap items-center justify-between gap-3 bg-carbon-950/60">
           <div>
-            <span class="font-mono text-[10px] uppercase tracking-widest text-tactical-amber font-bold">MACROECONOMIA DO MAPA · RENDIMENTO POR LOCAL</span>
-            <h4 class="font-display text-lg font-bold uppercase text-white">
-              RENDIMENTO ACUMULADO POR FONTE DE LOOT &amp; DESTAQUES DE EXPEDIÇÃO
-            </h4>
-          </div>
-          <span class="font-mono text-xs text-slate-400">
-            Mostra quais locais cadastrados geram mais dinheiro por rota de farm
-          </span>
-        </div>
-
-        <div id="stockSourceAnalyticsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-          <!-- Cards estatísticos por fonte renderizados via JS -->
-        </div>
-      </div>
-
-      <!-- TABELA COMPLETA DE COTAÇÕES DA BOLSA DE LOOT (TOP 50 COM PAGINAÇÃO 1-25 E 26-50) -->
-      <div class="telemetry-panel rounded-lg overflow-hidden">
-        <div class="px-5 py-4 border-b border-white/10 flex flex-wrap items-center justify-between gap-3 bg-carbon-900/60">
-          <div class="space-y-0.5">
-            <div class="flex items-center gap-2.5">
-              <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-mono text-xs font-bold">
-                LISTA #02 · TOP 50 LOOTS
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-mono text-[11px] font-bold">
+                RANKING TOP 50
               </span>
-              <h2 class="font-display text-lg sm:text-xl font-bold uppercase tracking-wide text-white">
-                RANKING DE RENTABILIDADE, CHANCE DE LOOT E LUCRO EM QUANTIDADE
+              <h2 class="font-display text-base sm:text-lg font-bold uppercase tracking-wide text-white">
+                CLASSIFICAÇÃO DE ATIVOS POR LUCRO NA VENDA
               </h2>
             </div>
-            <div id="stockTableAdminHint" class="font-mono text-xs text-slate-400">
-              Exibindo os 50 ativos mais lucrativos (25 itens por página) · Cálculo 100% baseado no valor de venda
+            <div id="stockTableAdminHint" class="font-mono text-[11px] text-slate-400 mt-0.5">
+              Ordenado por rentabilidade de coleta · Clique em qualquer linha para abrir a ficha completa
             </div>
           </div>
 
-          <!-- Controles de Paginação (Topo da Tabela) -->
-          <div id="stockPaginationTop" class="flex items-center gap-2 font-mono text-xs">
-            <!-- Renderizado via JS -->
-          </div>
+          <div id="stockPaginationTop" class="flex items-center gap-2 font-mono text-xs"></div>
         </div>
 
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse">
-            <thead class="bg-carbon-950/90 border-b border-white/15 font-mono text-[11px] uppercase tracking-wider text-slate-400">
+            <thead class="bg-carbon-950/90 border-b border-white/10 font-mono text-[11px] uppercase tracking-wider text-slate-400">
               <tr>
-                <th class="py-3.5 px-3 w-16">Rank</th>
-                <th class="py-3.5 px-3">Ativo / Item &amp; Local</th>
-                <th class="py-3.5 px-3 text-center">Melhor Trade p/ Venda</th>
-                <th class="py-3.5 px-3 text-right text-emerald-400">Maior Venda Unit. ($)</th>
-                <th class="py-3.5 px-3 text-center">Chance de Loot (%)</th>
-                <th class="py-3.5 px-3 text-center">Volume Run &amp; Slots</th>
-                <th class="py-3.5 px-3 text-right">Lucro p/ Slot</th>
-                <th class="py-3.5 px-3 text-right text-emerald-400">Profit Estimado (Run)</th>
-                <th class="py-3.5 px-4 text-center">Rating Bolsa BCU</th>
+                <th class="py-3 px-3 w-14">Rank</th>
+                <th class="py-3 px-3">Ativo &amp; Fonte no Mapa</th>
+                <th class="py-3 px-3 text-center">Melhor Trade</th>
+                <th class="py-3 px-3 text-right text-emerald-400">Venda Unit. ($)</th>
+                <th class="py-3 px-3 text-center">Chance (%)</th>
+                <th class="py-3 px-3 text-center">Qtd / Espaço</th>
+                <th class="py-3 px-3 text-right">$ / Slot</th>
+                <th class="py-3 px-3 text-right text-emerald-400">Profit Run</th>
+                <th class="py-3 px-4 text-center">Rating BCU</th>
               </tr>
             </thead>
-            <tbody id="stockExchangeTableBody" class="divide-y divide-white/5 text-sm">
-              <!-- Renderizado via JS -->
-            </tbody>
+            <tbody id="stockExchangeTableBody" class="divide-y divide-white/5 text-sm"></tbody>
           </table>
         </div>
 
-        <!-- Rodapé com Paginação (Página 1 [1-25] e Página 2 [26-50]) -->
-        <div class="px-5 py-3.5 bg-carbon-950/90 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
-          <div id="stockPaginationInfo" class="text-slate-400">
-            Mostrando itens 1–25 de 50
-          </div>
-          <div id="stockPaginationBottom" class="flex items-center gap-2">
-            <!-- Renderizado via JS -->
-          </div>
+        <div class="px-5 py-3 bg-carbon-950/90 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+          <div id="stockPaginationInfo" class="text-slate-400">Mostrando itens 1–25</div>
+          <div id="stockPaginationBottom" class="flex items-center gap-2"></div>
         </div>
       </div>
 
     </section>
 
     <!-- ===================================================================== -->
-    <!-- VISUALIZAÇÃO 4: MAPA TÁTICO INTERATIVO SCUM & PLANEJADOR DE ROTAS     -->
+    <!-- ABA 04: MAPA TÁTICO INTERATIVO 20K (LAYOUT INTUITIVO & 60 FPS)        -->
     <!-- ===================================================================== -->
-    <section id="mapViewContainer" class="hidden space-y-5 no-print">
+    <section id="mapViewContainer" class="hidden space-y-3 no-print tab-view-enter">
 
-      <!-- TÍTULO GRANDE DA ABA 04 -->
-      <div class="telemetry-panel rounded-lg p-6 border-l-4 border-tactical-cyan flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-        <div>
-          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-tactical-cyan/15 border border-tactical-cyan/40 text-tactical-cyanLight font-mono text-xs font-bold uppercase">
-            ABA 04 // SISTEMA CARTOGRÁFICO SATÉLITE BCU · ZOOM 25X &amp; ROTAS
-          </div>
-          <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-wide text-white mt-2">
-            MAPA TÁTICO INTERATIVO SCUM &amp; PLANEJADOR DE ROTAS
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-3xl">
-            Explore todos os setores (`D4` a `Z0`), filtre delegacias, bunkers, postos e outposts, crie Pins personalizados e trace rotas modulares com setas direcionais por estradas principais, estradas de terra ou atalhos pela floresta.
-          </p>
-        </div>
+      <!-- WORKSPACE DO MAPA EM TELA AMPLA (BARRA DE COMANDO UNIFICADA + SIDEBAR EM ABAS + VIEWPORT 60FPS) -->
+      <div class="telemetry-panel rounded-xl overflow-hidden border border-white/15 shadow-2xl">
 
-        <!-- Botões de Portabilidade de Pins e Rotas (Exportar / Importar / Salvar no HTML) -->
-        <div class="flex flex-wrap items-center gap-2 shrink-0">
-          <button
-            type="button"
-            onclick="exportMapConfigJSON()"
-            class="px-3.5 py-2 rounded bg-tactical-cyan/15 border border-tactical-cyan/50 text-tactical-cyanLight hover:bg-tactical-cyan hover:text-black font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5"
-            title="Baixar arquivo .JSON com todos os seus Pins e Rotas personalizadas"
-          >
-            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            <span>Exportar Pins &amp; Rotas</span>
-          </button>
-          <button
-            type="button"
-            onclick="triggerImportMapConfigJSON()"
-            class="px-3.5 py-2 rounded bg-tactical-amber/15 border border-tactical-amber/50 text-tactical-amberLight hover:bg-tactical-amber hover:text-black font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5"
-            title="Carregar arquivo .JSON de Pins e Rotas de outro PC"
-          >
-            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            <span>Importar Pins &amp; Rotas</span>
-          </button>
-          <button
-            type="button"
-            onclick="saveMapInsideHTMLDownload()"
-            class="px-3.5 py-2 rounded bg-emerald-500/15 border border-emerald-500/50 text-emerald-300 hover:bg-emerald-500 hover:text-black font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5"
-            title="Baixar uma cópia do site HTML com seus Pins e Rotas gravados permanentemente dentro do código"
-          >
-            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-            <span>Salvar Mapa no HTML</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- CONTAINER PRINCIPAL DO MAPA (SIDEBAR RETRÁTIL À ESQUERDA + VIEWPORT DO MAPA À DIREITA) -->
-      <div class="telemetry-panel rounded-lg overflow-hidden border border-white/15">
-
-        <!-- BARRA SUPERIOR DE FERRAMENTAS TÁTICAS DO MAPA -->
-        <div class="bg-carbon-950 px-4 py-3 border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
-          <!-- Botão Retrátil do Filtro Lateral + Modos de Ferramenta -->
-          <div class="flex flex-wrap items-center gap-2">
+        <!-- BARRA DE COMANDO UNIFICADA DO MAPA -->
+        <div class="bg-carbon-950 px-3.5 py-2.5 border-b border-white/10 flex flex-wrap items-center justify-between gap-2.5">
+          <!-- Esquerda: Botão Painel Lateral + 3 Modos Claros -->
+          <div class="flex flex-wrap items-center gap-1.5">
             <button
               type="button"
               onclick="toggleMapSidebar()"
               id="toggleMapSidebarBtn"
-              class="px-3 py-1.5 rounded bg-carbon-800 border border-tactical-cyan/40 text-tactical-cyanLight hover:bg-tactical-cyan hover:text-black font-mono text-xs font-bold uppercase transition-all flex items-center gap-1.5"
+              class="px-3 py-1.5 rounded-lg bg-carbon-800 border border-white/15 text-slate-200 hover:border-tactical-cyan hover:text-tactical-cyanLight font-mono text-xs font-bold uppercase transition-all flex items-center gap-1.5"
+              title="Mostrar ou recolher o painel lateral do mapa"
             >
-              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
-              <span>Filtros &amp; Rotas</span>
+              <svg class="w-4 h-4 shrink-0 text-tactical-cyanLight" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+              <span>Painel Lateral</span>
             </button>
 
             <div class="h-5 w-[1px] bg-white/10 mx-1 hidden sm:block"></div>
 
-            <!-- Modos de Interação no Mapa -->
+            <!-- 3 Modos de Ferramenta -->
             <button
               type="button"
               id="mapToolPanBtn"
               onclick="setMapToolMode('pan')"
-              class="px-3 py-1.5 rounded border border-tactical-amber bg-tactical-amber text-black font-mono text-xs font-bold uppercase transition-all inline-flex items-center gap-1.5"
+              class="px-3 py-1.5 rounded-lg border border-tactical-amber bg-tactical-amber text-black font-mono text-xs font-bold uppercase transition-all inline-flex items-center gap-1.5 shadow"
             >
-              <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="3" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="3" y1="12" x2="7" y2="12"/><line x1="17" y1="12" x2="21" y2="12"/><circle cx="12" cy="12" r="2"/></svg>
-              <span>Explorar / Zoom</span>
+              <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><line x1="12" y1="3" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="3" y1="12" x2="7" y2="12"/><line x1="17" y1="12" x2="21" y2="12"/></svg>
+              <span>1. Explorar</span>
             </button>
             <button
               type="button"
               id="mapToolPinBtn"
               onclick="setMapToolMode('add_pin')"
-              class="px-3 py-1.5 rounded border border-white/15 bg-carbon-900 text-slate-200 hover:border-tactical-cyan font-mono text-xs font-semibold uppercase transition-all inline-flex items-center gap-1.5"
+              class="px-3 py-1.5 rounded-lg border border-white/15 bg-carbon-900 text-slate-200 hover:border-tactical-cyan font-mono text-xs font-semibold uppercase transition-all inline-flex items-center gap-1.5"
             >
               <svg class="w-3.5 h-3.5 shrink-0 text-tactical-cyanLight" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-12a7 7 0 1 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
-              <span>+ Colocar Pin no Mapa</span>
+              <span>2. + Criar Pin</span>
             </button>
             <button
               type="button"
               id="mapToolRouteBtn"
               onclick="setMapToolMode('draw_route')"
-              class="px-3 py-1.5 rounded border border-white/15 bg-carbon-900 text-emerald-300 hover:border-emerald-400 font-mono text-xs font-semibold uppercase transition-all inline-flex items-center gap-1.5"
+              class="px-3 py-1.5 rounded-lg border border-white/15 bg-carbon-900 text-emerald-300 hover:border-emerald-400 font-mono text-xs font-semibold uppercase transition-all inline-flex items-center gap-1.5"
             >
               <svg class="w-3.5 h-3.5 shrink-0 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="5" r="2.5"/><path d="M7.5 19h4.5a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h7.5"/></svg>
-              <span>Traçar Caminho / Rota</span>
+              <span>3. Traçar Rota</span>
             </button>
           </div>
 
-          <!-- Seletor Modular de Tipo de Caminho (Visível/Ativo ao Traçar Rota) -->
-          <div id="routeDrawingToolbar" class="flex flex-wrap items-center gap-2 bg-carbon-900 px-3 py-1.5 rounded border border-emerald-500/40">
-            <span class="font-mono text-[10px] uppercase text-emerald-400 font-bold">Modo de Traçado:</span>
-            <div class="inline-flex rounded overflow-hidden border border-white/15 font-mono text-xs">
+          <!-- Centro: Barra Contextual de Traçado de Rota (2 Opções: Estrada ou Linha Reta) -->
+          <div id="routeDrawingToolbar" class="flex flex-wrap items-center gap-2 bg-carbon-900/95 px-2.5 py-1 rounded-lg border border-emerald-500/35">
+            <span class="font-mono text-[10px] uppercase text-emerald-400 font-bold">Traçado:</span>
+            <div class="inline-flex rounded-md overflow-hidden border border-white/15 font-mono text-xs">
               <button type="button" id="routeStyleBtnRoad" onclick="updateActiveSegmentStyle('road')" class="px-2.5 py-1 bg-emerald-500 text-black font-bold uppercase transition-all">
                 🛣️ Estrada
               </button>
@@ -1074,63 +907,70 @@
               </button>
             </div>
             <select id="routeSegmentStyleSelect" onchange="updateActiveSegmentStyle(this.value)" class="hidden">
-              <option value="road" selected>Estrada (Principais, Secundárias &amp; Caminhos)</option>
-              <option value="direct">Linha Reta (Traçado Direto)</option>
+              <option value="road" selected>Estrada</option>
+              <option value="direct">Linha Reta</option>
             </select>
             <button type="button" onclick="undoLastRoutePoint()" class="px-2 py-1 rounded bg-carbon-800 hover:bg-rose-500/20 text-rose-300 border border-white/10 font-mono text-[11px]" title="Desfazer último clique da rota">
-              ↶ Desfazer Clique
+              ↶ Desfazer
             </button>
           </div>
 
-          <!-- Controles de Zoom e Camada -->
-          <div class="flex items-center gap-1.5 font-mono text-xs">
-            <select id="mapThemeSelect" onchange="setMapTheme(this.value)" class="px-2.5 py-1.5 rounded bg-carbon-900 border border-white/15 text-xs text-slate-200 focus:outline-none">
-              <option value="satellite">Mapa Oficial SCUM 20K (Satélite Regular · scum-map.com)</option>
-              <option value="topo">Mapa Oficial SCUM 20K (Topográfico Tático · scum-map.com)</option>
-              <option value="highcontrast">Mapa Oficial SCUM 20K (Alto Contraste &amp; Estradas)</option>
+          <!-- Direita: Estilo do Mapa + Portabilidade Compacta -->
+          <div class="flex flex-wrap items-center gap-1.5 font-mono text-xs">
+            <select id="mapThemeSelect" onchange="setMapTheme(this.value)" class="px-2.5 py-1.5 rounded-lg bg-carbon-900 border border-white/15 text-xs text-slate-200 focus:outline-none focus:border-tactical-cyan">
+              <option value="satellite">Satélite Oficial 20K</option>
+              <option value="topo">Topográfico Tático</option>
+              <option value="highcontrast">Alto Contraste &amp; Vias</option>
             </select>
-            <button type="button" onclick="zoomMapBy(1.35)" class="px-2.5 py-1.5 rounded bg-carbon-800 hover:bg-tactical-amber hover:text-black text-white border border-white/15 font-bold" title="Ampliar Zoom">+</button>
-            <span id="mapZoomReadout" class="px-2 py-1 rounded bg-carbon-900 border border-white/10 text-tactical-amber font-bold min-w-[54px] text-center">1.0x</span>
-            <button type="button" onclick="zoomMapBy(0.74)" class="px-2.5 py-1.5 rounded bg-carbon-800 hover:bg-tactical-amber hover:text-black text-white border border-white/15 font-bold" title="Reduzir Zoom">−</button>
-            <button type="button" onclick="resetMapView()" class="px-2.5 py-1.5 rounded bg-carbon-800 hover:bg-white/10 text-slate-300 border border-white/15 text-[11px]" title="Centralizar Mapa Completo">Reset</button>
+
+            <button type="button" onclick="exportMapConfigJSON()" class="px-2.5 py-1.5 rounded-lg bg-carbon-900 hover:bg-tactical-cyan hover:text-black text-tactical-cyanLight border border-white/15 text-[11px] font-bold uppercase" title="Exportar Pins e Rotas (.JSON)">
+              Exportar
+            </button>
+            <button type="button" onclick="triggerImportMapConfigJSON()" class="px-2.5 py-1.5 rounded-lg bg-carbon-900 hover:bg-tactical-amber hover:text-black text-tactical-amberLight border border-white/15 text-[11px] font-bold uppercase" title="Importar Pins e Rotas (.JSON)">
+              Importar
+            </button>
+            <button type="button" onclick="saveMapInsideHTMLDownload()" class="px-2.5 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500 hover:text-black text-emerald-300 border border-emerald-500/40 text-[11px] font-bold uppercase" title="Baixar HTML com Mapa, Pins e Rotas gravados">
+              Salvar HTML
+            </button>
           </div>
         </div>
 
-        <!-- CORPO DIVIDIDO: SIDEBAR ESQUERDA EXPANSÍVEL/RETRÁTIL + CANVAS INTERATIVO -->
+        <!-- CORPO DIVIDIDO: SIDEBAR ORGANIZADA EM 3 ABAS + VIEWPORT DO MAPA -->
         <div class="relative flex flex-col lg:flex-row h-[760px] bg-carbon-950">
 
-          <!-- PAINEL LATERAL ESQUERDO EXPANSÍVEL E RETRÁTIL (ESTILO SCUM-MAP) -->
-          <aside id="mapLeftSidebar" class="w-full lg:w-80 xl:w-96 bg-carbon-900/95 border-b lg:border-b-0 lg:border-r border-white/15 flex flex-col h-full shrink-0 z-20 transition-all duration-200 overflow-hidden">
-            <!-- Cabeçalho de Busca e Seleção Global de Filtros -->
-            <div class="p-3.5 border-b border-white/10 space-y-2.5 bg-carbon-950/80">
-              <div class="flex items-center justify-between">
-                <span class="font-display text-sm font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
-                  <span class="text-tactical-amber">▼</span> FILTROS, LOCAIS &amp; ROTAS
-                </span>
-                <span id="mapVisiblePoiCountBadge" class="font-mono text-[11px] px-2 py-0.5 rounded bg-tactical-cyan/15 text-tactical-cyanLight border border-tactical-cyan/30">
-                  0 ativos
-                </span>
+          <!-- PAINEL LATERAL ESQUERDO INTUITIVO COM 3 SUB-ABAS (LOCAIS | ROTAS | PINS) -->
+          <aside id="mapLeftSidebar" class="w-full lg:w-80 xl:w-96 bg-carbon-900/95 border-b lg:border-b-0 lg:border-r border-white/10 flex flex-col h-full shrink-0 z-20 transition-all duration-200 overflow-hidden">
+            <!-- Sub-Abas de Navegação do Mapa -->
+            <div class="p-3 border-b border-white/10 space-y-2.5 bg-carbon-950/90">
+              <div class="grid grid-cols-3 gap-1 p-1 rounded-lg bg-carbon-900 border border-white/10 font-mono text-[11px]">
+                <button type="button" id="mapSubTabPoisBtn" onclick="setMapSidebarTab('pois')" class="py-1.5 px-2 rounded-md bg-tactical-amber text-black font-bold uppercase transition-all text-center">
+                  📍 Locais
+                </button>
+                <button type="button" id="mapSubTabRoutesBtn" onclick="setMapSidebarTab('routes')" class="py-1.5 px-2 rounded-md text-slate-300 hover:text-white uppercase transition-all text-center">
+                  🛣️ Rotas
+                </button>
+                <button type="button" id="mapSubTabPinsBtn" onclick="setMapSidebarTab('pins')" class="py-1.5 px-2 rounded-md text-slate-300 hover:text-white uppercase transition-all text-center">
+                  📌 Pins
+                </button>
               </div>
 
-              <input
-                type="text"
-                id="mapSidebarSearchInput"
-                oninput="renderMapSidebarFilters(); drawTacticalMap();"
-                placeholder="Buscar cidade, bunker, pin ou rota..."
-                class="w-full px-3 py-1.5 rounded bg-carbon-900 border border-white/15 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-tactical-amber"
-              />
-
-              <div class="grid grid-cols-2 gap-2 font-mono text-[11px]">
-                <button type="button" onclick="toggleAllMapCategories(true)" class="py-1.5 px-2 rounded bg-carbon-800 hover:bg-tactical-cyan hover:text-black text-slate-200 border border-white/10 font-bold uppercase transition-colors">
-                  Selecionar Tudo
-                </button>
-                <button type="button" onclick="toggleAllMapCategories(false)" class="py-1.5 px-2 rounded bg-carbon-800 hover:bg-rose-500 hover:text-white text-slate-300 border border-white/10 font-bold uppercase transition-colors">
-                  Ocultar Tudo
-                </button>
+              <!-- Busca Rápida Unificada no Painel Lateral -->
+              <div class="relative">
+                <input
+                  type="text"
+                  id="mapSidebarSearchInput"
+                  oninput="invalidatePoiCache(); renderMapSidebarFilters(); scheduleMapRender();"
+                  placeholder="Buscar cidade, bunker, posto, pin..."
+                  class="w-full pl-8 pr-16 py-1.5 rounded-lg bg-carbon-900 border border-white/15 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-tactical-amber"
+                />
+                <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke-width="2"/></svg>
+                <span id="mapVisiblePoiCountBadge" class="absolute right-2 top-1.5 font-mono text-[10px] px-1.5 py-0.5 rounded bg-tactical-cyan/15 text-tactical-cyanLight">
+                  229
+                </span>
               </div>
             </div>
 
-            <!-- Lista Rolável de Seções (1. Rotas Personalizadas, 2. Pins do Usuário, 3. Locais Oficiais do SCUM) -->
+            <!-- Conteúdo da Sub-Aba Selecionada -->
             <div id="mapSidebarScrollContent" class="flex-1 overflow-y-auto p-3 space-y-3 font-mono text-xs">
               <!-- Renderizado dinamicamente via JS -->
             </div>
@@ -1140,34 +980,38 @@
           <div id="scumMapViewport" class="relative flex-1 h-full overflow-hidden cursor-grab">
             <canvas id="scumMapCanvas" class="w-full h-full block"></canvas>
 
-            <!-- Barra Flutuante de Alternância Rápida de Rotas no Topo do Mapa -->
+            <!-- Topo do Mapa: Barra Enxuta de Rotas Ativas + Banner de Modo -->
             <div class="absolute top-3 left-3 right-3 pointer-events-none flex flex-wrap items-start justify-between gap-2 z-10">
-              <div id="mapQuickRouteBar" class="pointer-events-auto flex flex-wrap items-center gap-1.5 bg-carbon-950/90 backdrop-blur-md px-3 py-2 rounded-lg border border-white/15 shadow-xl max-w-2xl">
-                <!-- Preenchido via JS com botões rápidos para alternar entre as rotas ou ocultá-las -->
+              <div id="mapQuickRouteBar" class="pointer-events-auto flex flex-wrap items-center gap-1.5 bg-carbon-950/90 backdrop-blur-md px-2.5 py-1.5 rounded-xl border border-white/15 shadow-xl max-w-xl">
+                <!-- Preenchido via JS -->
               </div>
 
-              <!-- Status do Modo Atual -->
-              <div id="mapModeStatusBanner" class="pointer-events-auto bg-carbon-950/90 backdrop-blur-md px-3 py-2 rounded-lg border border-tactical-amber/40 font-mono text-xs text-tactical-amberLight shadow-xl">
-                Modo Explorar: Arraste para mover · Roda do mouse para Super Zoom (até 25x)
+              <div id="mapModeStatusBanner" class="pointer-events-auto bg-carbon-950/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-tactical-amber/40 font-mono text-[11px] text-tactical-amberLight shadow-xl">
+                Arraste p/ mover · Roda do mouse p/ Super Zoom 20K
               </div>
             </div>
 
-            <!-- Card Flutuante de Instruções da Rota Ativa / Pin Selecionado (Canto Inferior Direito) -->
-            <div id="mapActiveBriefingCard" class="hidden absolute bottom-12 right-4 w-80 sm:w-96 max-h-[60%] overflow-y-auto bg-carbon-950/95 backdrop-blur-md rounded-lg border border-emerald-500/40 shadow-2xl p-4 space-y-3 z-10">
-              <!-- Renderizado via JS quando uma rota ou pin está em foco -->
+            <!-- Controles Flutuantes de Zoom no Canto Superior Direito (Abaixo do Status) -->
+            <div class="absolute top-14 right-3 z-10 flex flex-col items-center gap-1 bg-carbon-950/90 backdrop-blur-md p-1.5 rounded-xl border border-white/15 shadow-xl font-mono text-xs">
+              <button type="button" onclick="zoomMapBy(1.35)" class="w-8 h-8 rounded-lg bg-carbon-800 hover:bg-tactical-amber hover:text-black text-white font-bold flex items-center justify-center" title="Ampliar Zoom (+)">+</button>
+              <span id="mapZoomReadout" class="py-1 text-[10px] text-tactical-amber font-bold text-center">1.0x</span>
+              <button type="button" onclick="zoomMapBy(0.74)" class="w-8 h-8 rounded-lg bg-carbon-800 hover:bg-tactical-amber hover:text-black text-white font-bold flex items-center justify-center" title="Reduzir Zoom (−)">−</button>
+              <button type="button" onclick="resetMapView()" class="w-8 h-7 rounded-lg bg-carbon-900 hover:bg-white/10 text-slate-300 text-[10px] flex items-center justify-center border-t border-white/10" title="Resetar Visão">1:1</button>
             </div>
 
-            <!-- HUD Inferior de Coordenadas SCUM, Setor e Escala -->
+            <!-- Card Flutuante de Instruções da Rota Ativa / Pin / Local (Canto Inferior Direito) -->
+            <div id="mapActiveBriefingCard" class="hidden absolute bottom-12 right-3 w-80 sm:w-96 max-h-[62%] overflow-y-auto bg-carbon-950/95 backdrop-blur-md rounded-xl border border-emerald-500/40 shadow-2xl p-4 space-y-3 z-10">
+              <!-- Renderizado via JS -->
+            </div>
+
+            <!-- HUD Inferior Compacto de Coordenadas SCUM e Resolução -->
             <div class="absolute bottom-3 left-3 right-3 pointer-events-none flex flex-wrap items-center justify-between gap-2 z-10 font-mono text-[11px]">
-              <div class="pointer-events-auto bg-carbon-950/90 px-3 py-1.5 rounded border border-white/15 text-slate-300 flex items-center gap-3">
-                <span>SETOR: <strong id="mapHudSector" class="text-tactical-amber">B2</strong></span>
-                <span>·</span>
-                <span>SCUM: <strong id="mapHudCoords" class="text-tactical-cyanLight">X: -104496, Y: 51536</strong></span>
-                <span>·</span>
-                <span>RES: <strong id="mapHudResolution" class="text-emerald-400">2560×2560 (2.5K)</strong></span>
-              </div>
-              <div class="pointer-events-auto bg-carbon-950/90 px-3 py-1.5 rounded border border-white/15 text-slate-400">
-                Dica: Clique em qualquer Pin ou Ponto de Rota para abrir suas instruções
+              <div class="pointer-events-auto bg-carbon-950/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/15 text-slate-300 flex items-center gap-2.5 shadow-lg">
+                <span>SETOR <strong id="mapHudSector" class="text-tactical-amber">B2</strong></span>
+                <span class="text-white/20">|</span>
+                <span>COORD <strong id="mapHudCoords" class="text-tactical-cyanLight">X: 0, Y: 0</strong></span>
+                <span class="text-white/20 hidden sm:inline">|</span>
+                <span class="hidden sm:inline">MALHA <strong id="mapHudResolution" class="text-emerald-400">2560×2560 (2.5K)</strong></span>
               </div>
             </div>
           </div>
@@ -3713,10 +3557,16 @@
       const container = document.getElementById('stockScatterChartContainer');
       if (!container) return;
 
+      //Sincroniza campo de busca da Bolsa se existir
+      const stockSearchEl = document.getElementById('stockSearchInput');
+      const mainSearchEl = document.getElementById('searchInput');
+      if (stockSearchEl && mainSearchEl && document.activeElement !== stockSearchEl) {
+        stockSearchEl.value = mainSearchEl.value || '';
+      }
+
       const maxSellRaw = Math.max(1000, ...entries.map(e => e.bestSell));
       const maxSell = Math.ceil(maxSellRaw / 500) * 500;
 
-      // Filtra por quadrante se o usuário selecionou um botão de quadrante
       const plotEntries = entries.filter(e => {
         if (currentScatterQuadrantFilter === 'ALL') return true;
         return getEntryQuadrant(e, maxSell) === currentScatterQuadrantFilter;
@@ -3726,43 +3576,61 @@
         selectedScatterItemId = plotEntries[0]?.item.id || entries[0]?.item.id || null;
       }
 
-      const width = 780;
-      const height = 400;
-      const padLeft = 78;
-      const padRight = 38;
-      const padTop = 34;
+      const width = 820;
+      const height = 430;
+      const padLeft = 82;
+      const padRight = 36;
+      const padTop = 32;
       const padBottom = 48;
       const plotW = width - padLeft - padRight;
       const plotH = height - padTop - padBottom;
 
-      const midX = padLeft + plotW * 0.40; // Divisor em 40% de chance
-      const midY = padTop + plotH * 0.55;  // Divisor em 45% do valor máx
+      // Margem interna segura (Safe Zone) para que nenhum círculo ou etiqueta toque nas bordas ou nos títulos dos quadrantes
+      const innerPadX = 52;
+      const innerPadY = 42;
+      const safeW = plotW - innerPadX * 2;
+      const safeH = plotH - innerPadY * 2;
 
-      // Grade horizontal e vertical de alta precisão
+      const mapChanceToX = (chance) => padLeft + innerPadX + (Math.min(100, Math.max(0, chance)) / 100) * safeW;
+      const mapSellToY = (sell) => padTop + innerPadY + safeH - (Math.min(maxSell, Math.max(0, sell)) / maxSell) * safeH;
+
+      const midX = mapChanceToX(40);
+      const midY = mapSellToY(maxSell * 0.45);
+
+      // Grade de fundo com coordenadas proporcionais na Safe Zone
       let gridLinesSvg = '';
       for (let pct = 0; pct <= 100; pct += 20) {
-        const gx = padLeft + (pct / 100) * plotW;
+        const gx = mapChanceToX(pct);
         gridLinesSvg += `
-          <line x1="${gx.toFixed(1)}" y1="${padTop}" x2="${gx.toFixed(1)}" y2="${padTop + plotH}" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
-          <text x="${gx.toFixed(1)}" y="${height - 16}" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600">${pct}%</text>
+          <line x1="${gx.toFixed(1)}" y1="${padTop}" x2="${gx.toFixed(1)}" y2="${padTop + plotH}" stroke="rgba(255,255,255,0.045)" stroke-width="1" />
+          <text x="${gx.toFixed(1)}" y="${padTop + plotH + 20}" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600">${pct}%</text>
         `;
       }
       for (let step = 0; step <= 4; step++) {
         const ratio = step / 4;
-        const gy = padTop + plotH - ratio * plotH;
         const val = Math.round(maxSell * ratio);
+        const gy = mapSellToY(val);
         const valFormatted = val >= 1000 ? `$ ${(val / 1000).toFixed(val % 1000 === 0 ? 0 : 1)}k` : `$ ${val}`;
         gridLinesSvg += `
-          <line x1="${padLeft}" y1="${gy.toFixed(1)}" x2="${padLeft + plotW}" y2="${gy.toFixed(1)}" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
-          <text x="${padLeft - 10}" y="${(gy + 4).toFixed(1)}" text-anchor="end" fill="#cbd5e1" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600">${valFormatted}</text>
+          <line x1="${padLeft}" y1="${gy.toFixed(1)}" x2="${padLeft + plotW}" y2="${gy.toFixed(1)}" stroke="rgba(255,255,255,0.045)" stroke-width="1" />
+          <text x="${padLeft - 12}" y="${(gy + 4).toFixed(1)}" text-anchor="end" fill="#cbd5e1" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600">${valFormatted}</text>
         `;
       }
 
-      // Algoritmo anticolisão para posicionar as etiquetas de texto sem sobrepor
+      // Posicionamento anticolisão com Pílula Glassmórfica para cada ativo
       const placedLabels = [];
-      const pointsSvg = plotEntries.map((e, idx) => {
-        const cx = padLeft + (Math.min(100, Math.max(0, e.lootChance)) / 100) * plotW;
-        const cy = padTop + plotH - (Math.min(maxSell, Math.max(0, e.bestSell)) / maxSell) * plotH;
+      let selectedGuideLinesSvg = '';
+
+      // Desenha o item selecionado por último (no topo do SVG)
+      const orderedPlotEntries = [...plotEntries].sort((a, b) => {
+        if (a.item.id === selectedScatterItemId) return 1;
+        if (b.item.id === selectedScatterItemId) return -1;
+        return a.bestSell - b.bestSell;
+      });
+
+      const pointsSvg = orderedPlotEntries.map((e) => {
+        const cx = mapChanceToX(e.lootChance);
+        const cy = mapSellToY(e.bestSell);
         const quad = getEntryQuadrant(e, maxSell);
 
         let fill = '#f43f5e';
@@ -3771,52 +3639,83 @@
         else if (quad === 'VOLUME') fill = '#06b6d4';
 
         const isSelected = e.item.id === selectedScatterItemId;
-        const radius = isSelected ? 11 : Math.max(7, Math.min(10, 6 + Math.round(e.lootAvgQty)));
+        const radius = isSelected ? 10.5 : Math.max(6.5, Math.min(9.5, 5.5 + Math.sqrt(e.lootAvgQty) * 1.5));
 
-        // Calcula deslocamento vertical/horizontal inteligente para o rótulo não colidir
-        let labelX = cx;
-        let labelY = cy - radius - 8;
-        let anchor = 'middle';
-        if (cx > padLeft + plotW - 75) anchor = 'end';
-        else if (cx < padLeft + 75) anchor = 'start';
-
-        for (let attempt = 0; attempt < 5; attempt++) {
-          const collision = placedLabels.some(pl => Math.abs(pl.x - labelX) < 78 && Math.abs(pl.y - labelY) < 18);
-          if (!collision) break;
-          labelY = (attempt % 2 === 0) ? (cy + radius + 15 + attempt * 5) : (cy - radius - 14 - attempt * 5);
+        if (isSelected) {
+          selectedGuideLinesSvg = `
+            <line x1="${padLeft}" y1="${cy.toFixed(1)}" x2="${cx.toFixed(1)}" y2="${cy.toFixed(1)}" stroke="${fill}" stroke-opacity="0.55" stroke-dasharray="4 4" stroke-width="1.4" />
+            <line x1="${cx.toFixed(1)}" y1="${cy.toFixed(1)}" x2="${cx.toFixed(1)}" y2="${padTop + plotH}" stroke="${fill}" stroke-opacity="0.55" stroke-dasharray="4 4" stroke-width="1.4" />
+          `;
         }
-        labelY = Math.max(padTop + 12, Math.min(padTop + plotH - 6, labelY));
-        placedLabels.push({ x: labelX, y: labelY });
 
-        const displayName = (e.item.name || '').length > 18 ? e.item.name.substring(0, 17) + '…' : e.item.name;
-        const priceTag = e.bestSell > 0 ? `$${e.bestSell >= 1000 ? (e.bestSell / 1000).toFixed(1) + 'k' : e.bestSell}` : '$0';
+        const displayName = (e.item.name || '').length > 16 ? e.item.name.substring(0, 15) + '…' : e.item.name;
+        const priceTag = e.bestSell > 0 ? `$${e.bestSell >= 1000 ? (e.bestSell / 1000).toFixed(1) + 'k' : e.bestSell}` : 'Sem Venda';
+        const labelText = `${displayName} · ${priceTag}`;
+        const pillW = Math.max(88, labelText.length * 6.7 + 16);
+        const pillH = 21;
+
+        // Candidatos de posição para a pílula (acima, abaixo, direita, esquerda)
+        const candidates = [
+          { x: cx, y: cy - radius - 16 },
+          { x: cx, y: cy + radius + 16 },
+          { x: cx + pillW / 2 + radius + 8, y: cy },
+          { x: cx - pillW / 2 - radius - 8, y: cy },
+          { x: cx, y: cy - radius - 34 },
+          { x: cx, y: cy + radius + 34 }
+        ];
+
+        let chosen = candidates[0];
+        for (const cand of candidates) {
+          const clampedX = Math.max(padLeft + pillW / 2 + 6, Math.min(padLeft + plotW - pillW / 2 - 6, cand.x));
+          const clampedY = Math.max(padTop + 34, Math.min(padTop + plotH - 28, cand.y));
+          const collides = placedLabels.some(pl => Math.abs(pl.x - clampedX) < (pl.w + pillW) * 0.48 && Math.abs(pl.y - clampedY) < 22);
+          if (!collides) {
+            chosen = { x: clampedX, y: clampedY };
+            break;
+          }
+        }
+        chosen.x = Math.max(padLeft + pillW / 2 + 6, Math.min(padLeft + plotW - pillW / 2 - 6, chosen.x));
+        chosen.y = Math.max(padTop + 32, Math.min(padTop + plotH - 28, chosen.y));
+        placedLabels.push({ x: chosen.x, y: chosen.y, w: pillW });
 
         return `
           <g
-            class="cursor-pointer transition-all"
+            class="cursor-pointer scatter-node"
             onmouseenter="selectScatterPoint('${e.item.id}')"
             onclick="openInspectModal('${e.item.id}')"
           >
             ${isSelected ? `
-              <circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${radius + 9}" fill="none" stroke="${fill}" stroke-width="1.8" stroke-dasharray="3 3" />
-              <circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${radius + 5}" fill="${fill}" fill-opacity="0.28" />
+              <circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${radius + 9}" fill="none" stroke="${fill}" stroke-width="1.6" stroke-dasharray="4 3" />
+              <circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${radius + 4.5}" fill="${fill}" fill-opacity="0.26" />
             ` : `
-              <circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${radius + 4}" fill="${fill}" fill-opacity="0.16" />
+              <circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${radius + 3.5}" fill="${fill}" fill-opacity="0.15" />
             `}
-            <circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${radius}" fill="${fill}" stroke="${isSelected ? '#ffffff' : '#0c1015'}" stroke-width="${isSelected ? '2.5' : '1.5'}" />
-            <g transform="translate(${labelX.toFixed(1)}, ${labelY.toFixed(1)})">
+            <circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${radius}" fill="${fill}" stroke="${isSelected ? '#ffffff' : '#090d12'}" stroke-width="${isSelected ? '2.4' : '1.6'}" />
+
+            <!-- Linha conectora sutil até a pílula -->
+            <line x1="${cx.toFixed(1)}" y1="${cy.toFixed(1)}" x2="${chosen.x.toFixed(1)}" y2="${chosen.y.toFixed(1)}" stroke="${fill}" stroke-opacity="0.45" stroke-width="1" />
+
+            <!-- Pílula Escura de Alta Legibilidade -->
+            <g transform="translate(${chosen.x.toFixed(1)}, ${chosen.y.toFixed(1)})">
+              <rect
+                x="${(-pillW / 2).toFixed(1)}"
+                y="${(-pillH / 2).toFixed(1)}"
+                width="${pillW.toFixed(1)}"
+                height="${pillH}"
+                rx="5"
+                fill="rgba(7, 9, 12, 0.92)"
+                stroke="${isSelected ? fill : 'rgba(255,255,255,0.16)'}"
+                stroke-width="${isSelected ? '1.6' : '1'}"
+              />
               <text
                 x="0"
-                y="0"
-                text-anchor="${anchor}"
+                y="4"
+                text-anchor="middle"
                 fill="${isSelected ? '#ffffff' : '#e2e8f0'}"
-                stroke="#07090c"
-                stroke-width="3.5"
-                paint-order="stroke"
-                font-family="Chakra Petch, sans-serif"
-                font-size="${isSelected ? '13' : '11.5'}"
+                font-family="JetBrains Mono, monospace"
+                font-size="10.5"
                 font-weight="700"
-              >${displayName} (${priceTag})</text>
+              >${labelText}</text>
             </g>
           </g>
         `;
@@ -3824,31 +3723,59 @@
 
       container.innerHTML = `
         <svg viewBox="0 0 ${width} ${height}" class="w-full h-auto select-none">
-          <!-- Quadrantes Táticos de Fundo -->
-          <rect x="${midX}" y="${padTop}" width="${padLeft + plotW - midX}" height="${midY - padTop}" fill="#10b981" fill-opacity="0.07" />
-          <rect x="${padLeft}" y="${padTop}" width="${midX - padLeft}" height="${midY - padTop}" fill="#f59e0b" fill-opacity="0.06" />
-          <rect x="${midX}" y="${midY}" width="${padLeft + plotW - midX}" height="${padTop + plotH - midY}" fill="#06b6d4" fill-opacity="0.06" />
-          <rect x="${padLeft}" y="${midY}" width="${midX - padLeft}" height="${padTop + plotH - midY}" fill="#f43f5e" fill-opacity="0.04" />
+          <defs>
+            <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#10b981" stop-opacity="0.11"/>
+              <stop offset="100%" stop-color="#10b981" stop-opacity="0.02"/>
+            </linearGradient>
+            <linearGradient id="jackpotGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.10"/>
+              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.02"/>
+            </linearGradient>
+            <linearGradient id="volGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.09"/>
+              <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.02"/>
+            </linearGradient>
+            <linearGradient id="lowGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.06"/>
+              <stop offset="100%" stop-color="#f43f5e" stop-opacity="0.01"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Fundo dos 4 Quadrantes com Gradientes Suaves -->
+          <rect x="${midX.toFixed(1)}" y="${padTop}" width="${(padLeft + plotW - midX).toFixed(1)}" height="${(midY - padTop).toFixed(1)}" fill="url(#goldGrad)" />
+          <rect x="${padLeft}" y="${padTop}" width="${(midX - padLeft).toFixed(1)}" height="${(midY - padTop).toFixed(1)}" fill="url(#jackpotGrad)" />
+          <rect x="${midX.toFixed(1)}" y="${midY.toFixed(1)}" width="${(padLeft + plotW - midX).toFixed(1)}" height="${(padTop + plotH - midY).toFixed(1)}" fill="url(#volGrad)" />
+          <rect x="${padLeft}" y="${midY.toFixed(1)}" width="${(midX - padLeft).toFixed(1)}" height="${(padTop + plotH - midY).toFixed(1)}" fill="url(#lowGrad)" />
 
           ${gridLinesSvg}
 
-          <!-- Divisores de Quadrante -->
-          <line x1="${midX}" y1="${padTop}" x2="${midX}" y2="${padTop + plotH}" stroke="#38bdf8" stroke-opacity="0.4" stroke-dasharray="6 4" stroke-width="1.5" />
-          <line x1="${padLeft}" y1="${midY}" x2="${padLeft + plotW}" y2="${midY}" stroke="#38bdf8" stroke-opacity="0.4" stroke-dasharray="6 4" stroke-width="1.5" />
+          <!-- Divisores Táticos dos Quadrantes -->
+          <line x1="${midX.toFixed(1)}" y1="${padTop}" x2="${midX.toFixed(1)}" y2="${padTop + plotH}" stroke="#38bdf8" stroke-opacity="0.32" stroke-dasharray="5 5" stroke-width="1.3" />
+          <line x1="${padLeft}" y1="${midY.toFixed(1)}" x2="${padLeft + plotW}" y2="${midY.toFixed(1)}" stroke="#38bdf8" stroke-opacity="0.32" stroke-dasharray="5 5" stroke-width="1.3" />
 
-          <!-- Eixos Principais -->
-          <line x1="${padLeft}" y1="${padTop}" x2="${padLeft}" y2="${padTop + plotH}" stroke="#64748b" stroke-width="1.8" />
-          <line x1="${padLeft}" y1="${padTop + plotH}" x2="${padLeft + plotW}" y2="${padTop + plotH}" stroke="#64748b" stroke-width="1.8" />
+          <!-- Moldura Externa da Área de Plotagem -->
+          <rect x="${padLeft}" y="${padTop}" width="${plotW}" height="${plotH}" rx="8" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.4" />
 
-          <!-- Rótulos dos Quadrantes nos Cantos -->
-          <text x="${padLeft + plotW - 10}" y="${padTop + 18}" text-anchor="end" fill="#34d399" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" letter-spacing="1">★ QUADRANTE OURO (ALTO VALOR + FÁCIL)</text>
-          <text x="${padLeft + 10}" y="${padTop + 18}" text-anchor="start" fill="#fbbf24" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" letter-spacing="1">◆ JACKPOT ELITE (ALTO VALOR / RARO)</text>
-          <text x="${padLeft + plotW - 10}" y="${padTop + plotH - 10}" text-anchor="end" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" letter-spacing="1">▲ FARM DE VOLUME (ALTA CHANCE)</text>
-          <text x="${padLeft + 10}" y="${padTop + plotH - 10}" text-anchor="start" fill="#fb7185" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" letter-spacing="1">▼ BAIXA LIQUIDEZ</text>
+          <!-- Badges Discretos nos 4 Cantos (Fora da Safe Zone dos Dados) -->
+          <g opacity="0.82">
+            <rect x="${padLeft + 8}" y="${padTop + 6}" width="178" height="18" rx="4" fill="rgba(7,9,12,0.75)" />
+            <text x="${padLeft + 14}" y="${padTop + 18}" text-anchor="start" fill="#fbbf24" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="700" letter-spacing="0.6">◆ JACKPOT ELITE (RARO/CARO)</text>
+
+            <rect x="${padLeft + plotW - 196}" y="${padTop + 6}" width="188" height="18" rx="4" fill="rgba(7,9,12,0.75)" />
+            <text x="${padLeft + plotW - 14}" y="${padTop + 18}" text-anchor="end" fill="#34d399" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="700" letter-spacing="0.6">★ QUADRANTE OURO (META #1)</text>
+
+            <rect x="${padLeft + 8}" y="${padTop + plotH - 23}" width="150" height="18" rx="4" fill="rgba(7,9,12,0.75)" />
+            <text x="${padLeft + 14}" y="${padTop + plotH - 11}" text-anchor="start" fill="#fb7185" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="700" letter-spacing="0.6">▼ BAIXA LIQUIDEZ ($0)</text>
+
+            <rect x="${padLeft + plotW - 186}" y="${padTop + plotH - 23}" width="178" height="18" rx="4" fill="rgba(7,9,12,0.75)" />
+            <text x="${padLeft + plotW - 14}" y="${padTop + plotH - 11}" text-anchor="end" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="700" letter-spacing="0.6">▲ FARM DE VOLUME (COMUM)</text>
+          </g>
 
           <!-- Título do Eixo X -->
-          <text x="${padLeft + plotW / 2}" y="${height - 3}" text-anchor="middle" fill="#64748b" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700">EIXO HORIZONTAL: PROBABILIDADE DE ENCONTRAR NO MAPA (%)</text>
+          <text x="${padLeft + plotW / 2}" y="${height - 6}" text-anchor="middle" fill="#64748b" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" letter-spacing="0.8">CHANCE DE ENCONTRAR O ITEM NO MAPA (%)</text>
 
+          ${selectedGuideLinesSvg}
           ${pointsSvg}
         </svg>
       `;
@@ -3858,6 +3785,7 @@
     }
 
     function selectScatterPoint(itemId) {
+      if (selectedScatterItemId === itemId) return;
       selectedScatterItemId = itemId;
       renderStockExchange();
     }
@@ -3945,28 +3873,24 @@
         }
       });
 
-      const sources = Object.keys(grouped);
+      const sources = Object.keys(grouped).sort((a, b) => grouped[b].totalRunProfit - grouped[a].totalRunProfit);
       if (sources.length === 0) {
-        container.innerHTML = `<div class="col-span-full text-center font-mono text-xs text-slate-500 py-4">Sem dados de fontes de loot.</div>`;
+        container.innerHTML = `<div class="text-center font-mono text-xs text-slate-500 py-2">Sem dados de fontes de loot.</div>`;
         return;
       }
 
       container.innerHTML = sources.map(src => {
         const g = grouped[src];
         const avgChance = Math.round(g.totalChance / g.count);
-        const bestName = g.bestItem ? g.bestItem.item.name : '-';
         return `
-          <div class="p-3.5 rounded bg-carbon-900/90 border border-white/10 space-y-2">
-            <div class="flex items-center justify-between font-mono text-xs">
-              <span class="text-tactical-amber font-bold uppercase truncate" title="${src}">📍 ${src}</span>
-              <span class="px-1.5 py-0.5 rounded bg-white/5 text-[10px] text-slate-300 shrink-0">${g.count} itens</span>
+          <div onclick="document.getElementById('stockSourceFilter').value='${src.replace(/'/g, '')}'; renderStockExchange();" class="px-3 py-2 rounded-lg bg-carbon-950/90 hover:bg-carbon-800 border border-white/10 flex items-center justify-between gap-2 cursor-pointer transition-colors">
+            <div class="min-w-0">
+              <div class="font-mono text-xs text-tactical-amber font-bold truncate">📍 ${src}</div>
+              <div class="font-mono text-[10px] text-slate-400">${g.count} ativo(s) · Chance média ${avgChance}%</div>
             </div>
-            <div class="font-display text-xl font-bold text-emerald-400">
-              ${formatCurrency(g.totalRunProfit)} <span class="text-[11px] font-mono font-normal text-slate-400">/ run estimada</span>
-            </div>
-            <div class="text-[11px] font-mono text-slate-400 flex items-center justify-between pt-1 border-t border-white/5">
-              <span>Chance Média: <strong class="text-white">${avgChance}%</strong></span>
-              <span class="truncate max-w-[130px]" title="${bestName}">Top: <strong class="text-tactical-cyanLight">${bestName}</strong></span>
+            <div class="text-right font-mono shrink-0">
+              <div class="text-xs font-bold text-emerald-400">${formatCurrency(g.totalRunProfit)}</div>
+              <div class="text-[9px] text-slate-500">p/ run</div>
             </div>
           </div>
         `;
@@ -4153,53 +4077,51 @@
       const stockContainer = document.getElementById('stockViewContainer');
       const mapContainer = document.getElementById('mapViewContainer');
       const filterSection = document.getElementById('registro');
-
-      const btnTable = document.getElementById('viewTableBtn');
-      const btnGrid = document.getElementById('viewGridBtn');
-      const btnStock = document.getElementById('viewStockBtn');
-      const btnMap = document.getElementById('viewMapBtn');
+      const catalogKpis = document.getElementById('catalogOnlyKpiBar');
 
       const hdrTable = document.getElementById('headerTabTableBtn');
       const hdrGrid = document.getElementById('headerTabGridBtn');
       const hdrStock = document.getElementById('headerTabStockBtn');
       const hdrMap = document.getElementById('headerTabMapBtn');
 
-      tableContainer.classList.add('hidden');
-      gridContainer.classList.add('hidden');
+      if (tableContainer) tableContainer.classList.add('hidden');
+      if (gridContainer) gridContainer.classList.add('hidden');
       if (stockContainer) stockContainer.classList.add('hidden');
       if (mapContainer) mapContainer.classList.add('hidden');
 
-      [btnTable, btnGrid, btnStock, btnMap].forEach(b => { if (b) b.classList.remove('active'); });
       [hdrTable, hdrGrid, hdrStock, hdrMap].forEach(h => {
         if (h) h.classList.remove('active-amber', 'active-cyan', 'active-emerald');
       });
 
       if (mode === 'grid') {
         if (filterSection) filterSection.classList.remove('hidden');
-        gridContainer.classList.remove('hidden');
-        if (btnGrid) btnGrid.classList.add('active');
+        if (catalogKpis) catalogKpis.classList.remove('hidden');
+        if (gridContainer) gridContainer.classList.remove('hidden');
         if (hdrGrid) hdrGrid.classList.add('active-cyan');
       } else if (mode === 'stock') {
-        if (filterSection) filterSection.classList.remove('hidden');
+        // Na Bolsa de Valores, oculta os filtros de Compra e os KPIs das Trades para zero poluição visual
+        if (filterSection) filterSection.classList.add('hidden');
+        if (catalogKpis) catalogKpis.classList.add('hidden');
         if (stockContainer) stockContainer.classList.remove('hidden');
-        if (btnStock) btnStock.classList.add('active');
         if (hdrStock) hdrStock.classList.add('active-emerald');
         renderStockExchange();
       } else if (mode === 'map') {
+        // No Mapa Tático, oculta os filtros e KPIs de catálogo para foco total na navegação cartográfica
         if (filterSection) filterSection.classList.add('hidden');
+        if (catalogKpis) catalogKpis.classList.add('hidden');
         if (mapContainer) mapContainer.classList.remove('hidden');
-        if (btnMap) btnMap.classList.add('active');
         if (hdrMap) hdrMap.classList.add('active-cyan');
         setTimeout(() => {
           resizeTacticalMapCanvas();
+          invalidatePoiCache();
           renderMapSidebarFilters();
           renderQuickRouteBar();
-          drawTacticalMap();
-        }, 40);
+          scheduleMapRender();
+        }, 25);
       } else {
         if (filterSection) filterSection.classList.remove('hidden');
-        tableContainer.classList.remove('hidden');
-        if (btnTable) btnTable.classList.add('active');
+        if (catalogKpis) catalogKpis.classList.remove('hidden');
+        if (tableContainer) tableContainer.classList.remove('hidden');
         if (hdrTable) hdrTable.classList.add('active-amber');
       }
     }
@@ -8391,6 +8313,48 @@
       return rows[rIdx] + cols[cIdx];
     }
 
+    let mapRenderRafId = null;
+    let mapInteractionQualityTimer = null;
+    let mapIsInteractingFast = false;
+    let cachedVisiblePois = null;
+    let currentMapSidebarTab = 'pois'; // 'pois' | 'routes' | 'pins'
+
+    function invalidatePoiCache() {
+      cachedVisiblePois = null;
+    }
+
+    function scheduleMapRender() {
+      if (currentViewMode !== 'map') return;
+      if (mapRenderRafId !== null) return;
+      mapRenderRafId = requestAnimationFrame(() => {
+        mapRenderRafId = null;
+        drawTacticalMap();
+      });
+    }
+
+    function markMapFastInteraction() {
+      mapIsInteractingFast = true;
+      if (mapInteractionQualityTimer) clearTimeout(mapInteractionQualityTimer);
+      mapInteractionQualityTimer = setTimeout(() => {
+        mapIsInteractingFast = false;
+        scheduleMapRender();
+      }, 110);
+    }
+
+    function setMapSidebarTab(tab) {
+      currentMapSidebarTab = tab || 'pois';
+      const btnPois = document.getElementById('mapSubTabPoisBtn');
+      const btnRoutes = document.getElementById('mapSubTabRoutesBtn');
+      const btnPins = document.getElementById('mapSubTabPinsBtn');
+
+      const inactiveClass = 'py-1.5 px-2 rounded-md text-slate-300 hover:text-white uppercase transition-all text-center';
+      if (btnPois) btnPois.className = currentMapSidebarTab === 'pois' ? 'py-1.5 px-2 rounded-md bg-tactical-amber text-black font-bold uppercase transition-all text-center shadow' : inactiveClass;
+      if (btnRoutes) btnRoutes.className = currentMapSidebarTab === 'routes' ? 'py-1.5 px-2 rounded-md bg-emerald-500 text-black font-bold uppercase transition-all text-center shadow' : inactiveClass;
+      if (btnPins) btnPins.className = currentMapSidebarTab === 'pins' ? 'py-1.5 px-2 rounded-md bg-tactical-cyan text-black font-bold uppercase transition-all text-center shadow' : inactiveClass;
+
+      renderMapSidebarFilters();
+    }
+
     function initTacticalMapCanvas() {
       const viewport = document.getElementById('scumMapViewport');
       const canvas = document.getElementById('scumMapCanvas');
@@ -8399,7 +8363,7 @@
       window.addEventListener('resize', () => {
         if (currentViewMode === 'map') {
           resizeTacticalMapCanvas();
-          drawTacticalMap();
+          scheduleMapRender();
         }
       });
 
@@ -8409,10 +8373,31 @@
         mapState.hasMovedDuringDrag = false;
         mapState.dragStartX = e.clientX - mapState.panX;
         mapState.dragStartY = e.clientY - mapState.panY;
+        if (viewport) viewport.style.cursor = 'grabbing';
       });
 
+      let lastHoverCheckTime = 0;
       window.addEventListener('mousemove', (e) => {
         if (currentViewMode !== 'map') return;
+
+        if (mapState.isDragging) {
+          const dx = (e.clientX - mapState.dragStartX) - mapState.panX;
+          const dy = (e.clientY - mapState.dragStartY) - mapState.panY;
+          if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
+            mapState.hasMovedDuringDrag = true;
+          }
+          mapState.panX = e.clientX - mapState.dragStartX;
+          mapState.panY = e.clientY - mapState.dragStartY;
+          markMapFastInteraction();
+          scheduleMapRender();
+          return;
+        }
+
+        // Throttle hover hit-testing para ~60fps (16ms) sem travar a CPU
+        const now = performance.now();
+        if (now - lastHoverCheckTime < 16) return;
+        lastHoverCheckTime = now;
+
         const rect = canvas.getBoundingClientRect();
         const mouseX = e.clientX - rect.left;
         const mouseY = e.clientY - rect.top;
@@ -8425,27 +8410,17 @@
           if (secEl) secEl.textContent = getSectorFromCoords(world.x, world.y);
           if (coordEl) coordEl.textContent = `X: ${ig.inX}, Y: ${ig.inY}`;
 
-          // Hover inteligente para exibir nome de qualquer POI ou Pin sob o cursor
-          if (!mapState.isDragging) {
-            updateMapHoverState(mouseX, mouseY, canvas);
-          }
+          updateMapHoverState(mouseX, mouseY, canvas);
         }
-
-        if (mapState.isDragging) {
-          const dx = (e.clientX - mapState.dragStartX) - mapState.panX;
-          const dy = (e.clientY - mapState.dragStartY) - mapState.panY;
-          if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
-            mapState.hasMovedDuringDrag = true;
-          }
-          mapState.panX = e.clientX - mapState.dragStartX;
-          mapState.panY = e.clientY - mapState.dragStartY;
-          drawTacticalMap();
-        }
-      });
+      }, { passive: true });
 
       window.addEventListener('mouseup', () => {
         if (!mapState.isDragging) return;
         mapState.isDragging = false;
+        if (viewport) {
+          viewport.style.cursor = (mapState.toolMode === 'pan') ? 'grab' : 'crosshair';
+        }
+        scheduleMapRender();
       });
 
       canvas.addEventListener('click', (e) => {
@@ -8465,9 +8440,11 @@
         const mouseY = e.clientY - rect.top;
 
         const factor = e.deltaY < 0 ? 1.24 : 0.80;
+        markMapFastInteraction();
         zoomMapAtPoint(factor, mouseX, mouseY, canvas);
       }, { passive: false });
 
+      invalidatePoiCache();
       renderMapSidebarFilters();
       renderQuickRouteBar();
     }
@@ -8512,7 +8489,8 @@
       if (!foundPin) {
         let bestPoiDist = hitRadius;
         const visiblePois = getVisibleNativePois();
-        for (const poi of visiblePois) {
+        for (let i = 0; i < visiblePois.length; i++) {
+          const poi = visiblePois[i];
           const sp = worldToScreen(poi.x, poi.y, canvas);
           const d = Math.hypot(sp.x - sx, sp.y - sy);
           if (d <= bestPoiDist) {
@@ -8525,7 +8503,7 @@
       if (mapState.hoveredPin !== foundPin || mapState.hoveredPoi !== foundPoi) {
         mapState.hoveredPin = foundPin;
         mapState.hoveredPoi = foundPoi;
-        drawTacticalMap();
+        scheduleMapRender();
       }
     }
 
@@ -8535,7 +8513,7 @@
       if (!viewport || !canvas) return;
       const w = viewport.clientWidth || 800;
       const h = viewport.clientHeight || 700;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2.0);
       canvas.width = Math.round(w * dpr);
       canvas.height = Math.round(h * dpr);
       canvas.style.width = w + 'px';
@@ -8586,7 +8564,7 @@
       mapState.panY = centerY - targetScreenY;
 
       updateZoomReadout();
-      drawTacticalMap();
+      scheduleMapRender();
     }
 
     function zoomMapBy(factor) {
@@ -8602,7 +8580,7 @@
       mapState.panX = 0;
       mapState.panY = 0;
       updateZoomReadout();
-      drawTacticalMap();
+      scheduleMapRender();
     }
 
     function updateZoomReadout() {
@@ -8612,7 +8590,7 @@
 
     function setMapTheme(theme) {
       mapState.theme = theme || 'satellite';
-      drawTacticalMap();
+      scheduleMapRender();
     }
 
     function toggleMapSidebar() {
@@ -8626,8 +8604,8 @@
       }
       setTimeout(() => {
         resizeTacticalMapCanvas();
-        drawTacticalMap();
-      }, 30);
+        scheduleMapRender();
+      }, 25);
     }
 
     function setMapToolMode(mode) {
@@ -8638,28 +8616,30 @@
       const banner = document.getElementById('mapModeStatusBanner');
       const viewport = document.getElementById('scumMapViewport');
 
-      const baseClass = 'px-3 py-1.5 rounded border border-white/15 bg-carbon-900 text-slate-200 hover:border-tactical-cyan font-mono text-xs font-semibold uppercase transition-all inline-flex items-center gap-1.5';
+      const baseClass = 'px-3 py-1.5 rounded-lg border border-white/15 bg-carbon-900 text-slate-200 hover:border-tactical-cyan font-mono text-xs font-semibold uppercase transition-all inline-flex items-center gap-1.5';
       if (panBtn) panBtn.className = baseClass;
       if (pinBtn) pinBtn.className = baseClass;
       if (routeBtn) routeBtn.className = baseClass;
 
       if (mode === 'add_pin') {
-        if (pinBtn) pinBtn.className = 'px-3 py-1.5 rounded border border-tactical-cyan bg-tactical-cyan text-black font-mono text-xs font-bold uppercase transition-all shadow inline-flex items-center gap-1.5';
-        if (banner) banner.textContent = 'Modo Pin: Clique em qualquer ponto do Mapa Oficial 20K para inserir um Pin Tático';
+        if (pinBtn) pinBtn.className = 'px-3 py-1.5 rounded-lg border border-tactical-cyan bg-tactical-cyan text-black font-mono text-xs font-bold uppercase transition-all shadow inline-flex items-center gap-1.5';
+        if (banner) banner.textContent = 'Modo Pin: Clique em qualquer ponto do mapa para inserir um Pin';
         if (viewport) viewport.style.cursor = 'crosshair';
+        setMapSidebarTab('pins');
       } else if (mode === 'draw_route') {
-        if (routeBtn) routeBtn.className = 'px-3 py-1.5 rounded border border-emerald-400 bg-emerald-500 text-black font-mono text-xs font-bold uppercase transition-all shadow inline-flex items-center gap-1.5';
+        if (routeBtn) routeBtn.className = 'px-3 py-1.5 rounded-lg border border-emerald-400 bg-emerald-500 text-black font-mono text-xs font-bold uppercase transition-all shadow inline-flex items-center gap-1.5';
         const activeRoute = getActiveRouteObject();
         if (!activeRoute) {
           openMapRouteModal();
         } else {
-          const modeLabel = (mapState.activeSegmentStyle === 'direct') ? 'Linha Reta' : 'Estrada (segue estradas principais e secundárias)';
-          if (banner) banner.textContent = `Traçando "${activeRoute.name}" [${modeLabel}]: Clique nos pontos do mapa`;
+          const modeLabel = (mapState.activeSegmentStyle === 'direct') ? 'Linha Reta' : 'Estrada';
+          if (banner) banner.textContent = `Traçando "${activeRoute.name}" [${modeLabel}]: Clique nas estradas/pontos`;
         }
         if (viewport) viewport.style.cursor = 'crosshair';
+        setMapSidebarTab('routes');
       } else {
-        if (panBtn) panBtn.className = 'px-3 py-1.5 rounded border border-tactical-amber bg-tactical-amber text-black font-mono text-xs font-bold uppercase transition-all shadow inline-flex items-center gap-1.5';
-        if (banner) banner.textContent = 'Mapa Oficial SCUM 20K (scum-map.com): Arraste p/ mover · Roda do mouse p/ Zoom 20.480px';
+        if (panBtn) panBtn.className = 'px-3 py-1.5 rounded-lg border border-tactical-amber bg-tactical-amber text-black font-mono text-xs font-bold uppercase transition-all shadow inline-flex items-center gap-1.5';
+        if (banner) banner.textContent = 'Arraste p/ mover · Roda do mouse p/ Super Zoom 20K';
         if (viewport) viewport.style.cursor = 'grab';
       }
     }
@@ -8867,9 +8847,10 @@
     }
 
     function getVisibleNativePois() {
+      if (cachedVisiblePois) return cachedVisiblePois;
       const activeCats = new Set(appData.mapData.activeCategories || []);
       const q = (document.getElementById('mapSidebarSearchInput')?.value || '').trim().toLowerCase();
-      return SCUM_NATIVE_POIS.filter(p => {
+      cachedVisiblePois = SCUM_NATIVE_POIS.filter(p => {
         if (!activeCats.has(p.category)) return false;
         if (q) {
           const hay = `${p.name} ${p.sector} ${p.desc || ''} ${p.sub || ''}`.toLowerCase();
@@ -8877,35 +8858,35 @@
         }
         return true;
       });
+      return cachedVisiblePois;
     }
 
     // =========================================================================
-    // MOTOR DE RENDERIZAÇÃO MULTI-ZOOM 20K + CAMADA TOPO ABSOLUTA P/ HOVER
+    // MOTOR DE RENDERIZAÇÃO MULTI-ZOOM 20K (60 FPS + FRUSTUM CULLING + TOP HOVER)
     // =========================================================================
     function drawTacticalMap() {
       const canvas = document.getElementById('scumMapCanvas');
       if (!canvas) return;
       if (!canvas._logicalWidth) resizeTacticalMapCanvas();
 
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext('2d', { alpha: false });
       const dpr = canvas._dpr || 1;
       const cw = canvas._logicalWidth || canvas.width;
       const ch = canvas._logicalHeight || canvas.height;
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.clearRect(0, 0, cw, ch);
-
-      const t = getMapBaseTransform(canvas);
 
       // Fundo Oceano Adriático do Mapa Oficial
-      ctx.fillStyle = '#0c1c2c';
+      ctx.fillStyle = '#07131e';
       ctx.fillRect(0, 0, cw, ch);
+
+      const t = getMapBaseTransform(canvas);
 
       ctx.save();
       ctx.translate(t.offsetX, t.offsetY);
       ctx.scale(t.scale, t.scale);
 
-      // 1. Pirâmide Multi-Zoom de Tiles Oficiais do scum-map.com (até 20.480 x 20.480 px!)
+      // 1. Pirâmide Multi-Zoom de Tiles com Frustum Culling de Alta Performance
       drawOfficialScumMapLayer(ctx, canvas, t);
 
       // 2. Se estiver no modo Alto Contraste, reforça a malha rodoviária principal
@@ -8937,10 +8918,10 @@
     function drawOfficialScumMapLayer(ctx, canvas, t) {
       ctx.save();
       ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
+      ctx.imageSmoothingQuality = mapIsInteractingFast ? 'medium' : 'high';
 
       if (mapState.theme === 'highcontrast') {
-        ctx.filter = 'contrast(1.25) saturate(1.22)';
+        ctx.filter = 'contrast(1.22) saturate(1.18)';
       } else {
         ctx.filter = 'none';
       }
@@ -8967,6 +8948,13 @@
         resEl.textContent = resText;
       }
 
+      // Janela visível no espaço do mundo (0..1000) para Frustum Culling
+      const minWX = Math.max(0, (0 - t.offsetX) / t.scale);
+      const minWY = Math.max(0, (0 - t.offsetY) / t.scale);
+      const maxWX = Math.min(1000, (t.cw - t.offsetX) / t.scale);
+      const maxWY = Math.min(1000, (t.ch - t.offsetY) / t.scale);
+
+      // Camada Base Z=2
       const baseZ2 = scumTileCache['regular_2_0_0'];
       if (baseZ2 && baseZ2.status === 'loaded') {
         ctx.drawImage(baseZ2.img, 0, 0, 1000, 1000);
@@ -8975,48 +8963,55 @@
         ctx.fillRect(0, 0, 1000, 1000);
       }
 
-      for (let tx = 0; tx < 2; tx++) {
-        for (let ty = 0; ty < 2; ty++) {
+      // Camada Z=3 (2560x2560 embutida) — desenha apenas os quadrantes visíveis na tela!
+      const z3StartX = Math.max(0, Math.floor(minWX / 500));
+      const z3EndX = Math.min(1, Math.floor(maxWX / 500));
+      const z3StartY = Math.max(0, Math.floor(minWY / 500));
+      const z3EndY = Math.min(1, Math.floor(maxWY / 500));
+
+      for (let tx = z3StartX; tx <= z3EndX; tx++) {
+        for (let ty = z3StartY; ty <= z3EndY; ty++) {
           const z3Entry = style === 'tactical'
             ? getOrLoadScumTile('tactical', 3, tx, ty)
             : scumTileCache[`regular_3_${tx}_${ty}`];
           const fallbackZ3 = scumTileCache[`regular_3_${tx}_${ty}`];
           const activeEntry = (z3Entry && z3Entry.status === 'loaded') ? z3Entry : fallbackZ3;
           if (activeEntry && activeEntry.status === 'loaded') {
-            ctx.drawImage(activeEntry.img, tx * 500, ty * 500, 500.4, 500.4);
+            ctx.drawImage(activeEntry.img, tx * 500, ty * 500, 500.3, 500.3);
           }
         }
       }
 
+      // Camadas Ultra-HD (Z=4..6): desenha diretamente o nível alvo visível (com fallback ao nível anterior apenas se ainda carregando)
       if (targetZ >= 4) {
-        const minWX = Math.max(0, (0 - t.offsetX) / t.scale);
-        const minWY = Math.max(0, (0 - t.offsetY) / t.scale);
-        const maxWX = Math.min(1000, (t.cw - t.offsetX) / t.scale);
-        const maxWY = Math.min(1000, (t.ch - t.offsetY) / t.scale);
+        const nTiles = Math.pow(2, targetZ - 2);
+        const tileWorldSize = 1000 / nTiles;
+        const startX = Math.max(0, Math.floor(minWX / tileWorldSize));
+        const endX = Math.min(nTiles - 1, Math.floor(maxWX / tileWorldSize));
+        const startY = Math.max(0, Math.floor(minWY / tileWorldSize));
+        const endY = Math.min(nTiles - 1, Math.floor(maxWY / tileWorldSize));
+        const overlap = 0.25 / t.scale;
 
-        for (let z = 4; z <= targetZ; z++) {
-          const nTiles = Math.pow(2, z - 2);
-          const tileWorldSize = 1000 / nTiles;
-          const startX = Math.max(0, Math.floor(minWX / tileWorldSize));
-          const endX = Math.min(nTiles - 1, Math.floor(maxWX / tileWorldSize));
-          const startY = Math.max(0, Math.floor(minWY / tileWorldSize));
-          const endY = Math.min(nTiles - 1, Math.floor(maxWY / tileWorldSize));
-
-          for (let tx = startX; tx <= endX; tx++) {
-            for (let ty = startY; ty <= endY; ty++) {
-              const cacheKey = `${style}_${z}_${tx}_${ty}`;
-              const entry = (z === targetZ)
-                ? getOrLoadScumTile(style, z, tx, ty)
-                : scumTileCache[cacheKey];
-
-              if (entry && entry.status === 'loaded') {
-                ctx.drawImage(
-                  entry.img,
-                  tx * tileWorldSize,
-                  ty * tileWorldSize,
-                  tileWorldSize + (0.25 / t.scale),
-                  tileWorldSize + (0.25 / t.scale)
-                );
+        for (let tx = startX; tx <= endX; tx++) {
+          for (let ty = startY; ty <= endY; ty++) {
+            const entry = getOrLoadScumTile(style, targetZ, tx, ty);
+            if (entry && entry.status === 'loaded') {
+              ctx.drawImage(
+                entry.img,
+                tx * tileWorldSize,
+                ty * tileWorldSize,
+                tileWorldSize + overlap,
+                tileWorldSize + overlap
+              );
+            } else if (targetZ >= 5) {
+              // Fallback rápido para o tile pai já em cache enquanto o tile 10K/20K baixa
+              const pZ = targetZ - 1;
+              const pTx = tx >> 1;
+              const pTy = ty >> 1;
+              const pEntry = scumTileCache[`${style}_${pZ}_${pTx}_${pTy}`];
+              if (pEntry && pEntry.status === 'loaded') {
+                const pSize = 1000 / Math.pow(2, pZ - 2);
+                ctx.drawImage(pEntry.img, pTx * pSize, pTy * pSize, pSize + overlap, pSize + overlap);
               }
             }
           }
@@ -9675,12 +9670,10 @@
       const bar = document.getElementById('mapQuickRouteBar');
       if (!bar) return;
       const routes = appData.mapData.customRoutes || [];
-      const pins = appData.mapData.customPins || [];
 
       const newRouteBtn = `
-        <button type="button" onclick="openMapRouteModal()" class="px-2.5 py-1 rounded bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 hover:bg-emerald-500 hover:text-black font-mono text-[11px] font-bold uppercase transition-all inline-flex items-center gap-1">
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          <span>Nova Rota</span>
+        <button type="button" onclick="openMapRouteModal()" class="px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 hover:bg-emerald-500 hover:text-black font-mono text-[11px] font-bold uppercase transition-all inline-flex items-center gap-1">
+          <span>+ Rota</span>
         </button>
       `;
 
@@ -9688,33 +9681,18 @@
         const isActive = r.id === appData.mapData.activeRouteId;
         const isVis = r.visible !== false;
         return `
-          <div class="inline-flex items-center rounded border ${isActive ? 'border-emerald-400 bg-emerald-500/15' : 'border-white/15 bg-carbon-900'} overflow-hidden font-mono text-[11px]">
-            <button type="button" onclick="toggleRouteVisibility('${r.id}')" class="px-2 py-1 ${isVis ? 'text-emerald-400' : 'text-slate-500'}" title="${isVis ? 'Rota Visível (Clique p/ Ocultar)' : 'Rota Oculta (Clique p/ Mostrar)'}">
+          <div class="inline-flex items-center rounded-lg border ${isActive ? 'border-emerald-400 bg-emerald-500/15' : 'border-white/15 bg-carbon-900'} overflow-hidden font-mono text-[11px]">
+            <button type="button" onclick="toggleRouteVisibility('${r.id}')" class="px-1.5 py-1 ${isVis ? 'text-emerald-400' : 'text-slate-500'}" title="${isVis ? 'Ocultar Rota' : 'Mostrar Rota'}">
               ${getVisibilityEyeSvg(isVis)}
             </button>
-            <button type="button" onclick="selectActiveRoute('${r.id}')" class="px-2 py-1 text-left truncate max-w-[145px] ${isActive ? 'text-white font-bold' : 'text-slate-300 hover:text-white'}">
+            <button type="button" onclick="selectActiveRoute('${r.id}')" class="px-2 py-1 text-left truncate max-w-[140px] ${isActive ? 'text-white font-bold' : 'text-slate-300 hover:text-white'}">
               ${r.name}
             </button>
           </div>
         `;
       }).join('');
 
-      const pinPills = pins.map(p => {
-        const isVis = p.visible !== false;
-        return `
-          <div class="inline-flex items-center rounded border ${isVis ? 'border-tactical-cyan/40 bg-carbon-900' : 'border-white/10 bg-carbon-950 opacity-65'} overflow-hidden font-mono text-[11px]">
-            <button type="button" onclick="togglePinVisibility('${p.id}')" class="px-1.5 py-1 ${isVis ? 'text-tactical-cyanLight' : 'text-slate-500'}" title="${isVis ? 'Pin Visível (Clique p/ Ocultar)' : 'Pin Oculto (Clique p/ Mostrar)'}">
-              ${getVisibilityEyeSvg(isVis)}
-            </button>
-            <button type="button" onclick="focusMapOnCoords(${p.x}, ${p.y}, 3.5); showBriefingForPin('${p.id}');" class="px-2 py-1 text-left truncate max-w-[125px] ${isVis ? 'text-slate-200 hover:text-white' : 'text-slate-500 line-through'} inline-flex items-center gap-1">
-              ${getPinTypeSvgIcon(p.iconType || 'loot', p.color || '#06b6d4', 'w-3 h-3 shrink-0')}
-              <span class="truncate">${p.name}</span>
-            </button>
-          </div>
-        `;
-      }).join('');
-
-      bar.innerHTML = newRouteBtn + routePills + (pinPills ? `<span class="text-white/20 px-0.5">|</span>` + pinPills : '');
+      bar.innerHTML = newRouteBtn + routePills;
     }
 
     function renderMapSidebarFilters() {
@@ -9724,7 +9702,7 @@
 
       const visiblePois = getVisibleNativePois();
       if (countBadge) {
-        countBadge.textContent = `${visiblePois.length} locais ativos`;
+        countBadge.textContent = `${visiblePois.length}`;
       }
 
       const routes = appData.mapData.customRoutes || [];
@@ -9732,77 +9710,136 @@
       const activeCats = new Set(appData.mapData.activeCategories || []);
       const visiblePinsCount = pins.filter(p => p.visible !== false).length;
 
-      // 1. Bloco de Rotas Personalizadas
-      const routesHtml = `
-        <div class="p-3 rounded-lg bg-carbon-950/90 border border-emerald-500/30 space-y-2.5">
-          <div class="flex items-center justify-between">
-            <span class="font-bold text-emerald-400 uppercase text-[11px] inline-flex items-center gap-1.5">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="5" r="2.5"/><path d="M7.5 19h4.5a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h7.5"/></svg>
-              <span>1. Rotas Táticas (${routes.length})</span>
-            </span>
-            <button type="button" onclick="openMapRouteModal()" class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500 hover:text-black text-[10px] font-bold uppercase">
-              + Criar Rota
-            </button>
-          </div>
-          <div class="space-y-1.5">
-            ${routes.map(r => {
-              const isAct = r.id === appData.mapData.activeRouteId;
-              const isVis = r.visible !== false;
-              return `
-                <div class="p-2 rounded bg-carbon-900 border ${isAct ? 'border-emerald-400' : 'border-white/10'} ${isVis ? '' : 'opacity-65'} space-y-1.5">
-                  <div class="flex items-center justify-between gap-1.5">
-                    <button type="button" onclick="selectActiveRoute('${r.id}')" class="text-left font-bold text-white hover:text-emerald-300 truncate flex-1 inline-flex items-center gap-1.5">
-                      <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background:${r.color || '#10b981'}"></span>
-                      <span class="truncate ${isVis ? '' : 'line-through text-slate-400'}">${r.name}</span>
-                    </button>
-                    <span class="text-[10px] text-slate-400">${(r.points || []).length} pts</span>
-                  </div>
-                  <div class="flex items-center justify-between gap-1 text-[10px]">
-                    <button type="button" onclick="toggleRouteVisibility('${r.id}')" class="px-2 py-0.5 rounded border ${isVis ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300' : 'bg-carbon-800 border-white/10 text-slate-400'} hover:text-white inline-flex items-center gap-1 font-bold">
-                      ${getVisibilityEyeSvg(isVis, 'w-3 h-3')}
-                      <span>${isVis ? 'Visível' : 'Oculta'}</span>
-                    </button>
-                    <div class="flex items-center gap-1">
-                      <button type="button" onclick="selectActiveRoute('${r.id}'); setMapToolMode('draw_route');" class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500 hover:text-black font-bold">
-                        + Traçar
-                      </button>
-                      <button type="button" onclick="openMapRouteModal('${r.id}')" class="px-1.5 py-0.5 rounded bg-carbon-800 text-slate-300 hover:text-white" title="Editar Rota">
-                        ✎
-                      </button>
-                      <button type="button" onclick="deleteMapRoute('${r.id}')" class="px-1.5 py-0.5 rounded bg-carbon-800 text-rose-400 hover:bg-rose-500 hover:text-white" title="Excluir Rota">
-                        ✕
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              `;
-            }).join('')}
-          </div>
-        </div>
-      `;
+      // Atualiza os contadores nos botões das 3 sub-abas
+      const btnPois = document.getElementById('mapSubTabPoisBtn');
+      const btnRoutes = document.getElementById('mapSubTabRoutesBtn');
+      const btnPins = document.getElementById('mapSubTabPinsBtn');
+      if (btnPois) btnPois.textContent = `📍 Locais (${visiblePois.length})`;
+      if (btnRoutes) btnRoutes.textContent = `🛣️ Rotas (${routes.length})`;
+      if (btnPins) btnPins.textContent = `📌 Pins (${visiblePinsCount}/${pins.length})`;
 
-      // 2. Bloco de Pins Personalizados com Controle Individual e Global de Visível / Oculto (Igual às Rotas)
-      const pinsHtml = `
-        <div class="p-3 rounded-lg bg-carbon-950/90 border border-tactical-cyan/30 space-y-2.5">
-          <div class="flex items-center justify-between gap-1">
-            <span class="font-bold text-tactical-cyanLight uppercase text-[11px] inline-flex items-center gap-1.5">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.5-7-12a7 7 0 1 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
-              <span>2. Meus Pins (${visiblePinsCount}/${pins.length})</span>
-            </span>
-            <div class="flex items-center gap-1">
-              <button type="button" onclick="toggleAllPinsVisibility(true)" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-white/10 text-slate-300 text-[9px] uppercase" title="Mostrar todos os Pins">Ver Todos</button>
-              <button type="button" onclick="toggleAllPinsVisibility(false)" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-white/10 text-slate-400 text-[9px] uppercase" title="Ocultar todos os Pins">Ocultar</button>
-              <button type="button" onclick="setMapToolMode('add_pin')" class="px-2 py-0.5 rounded bg-tactical-cyan/20 text-tactical-cyanLight hover:bg-tactical-cyan hover:text-black text-[10px] font-bold uppercase">
-                + Pin
-              </button>
+      // SUB-ABA 1: CAMADAS & LOCAIS OFICIAIS (PADRÃO)
+      if (currentMapSidebarTab === 'pois') {
+        container.innerHTML = `
+          <div class="p-3 rounded-xl bg-carbon-950/90 border border-white/10 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-tactical-amber uppercase text-[11px]">Camadas do Mapa</span>
+              <div class="flex items-center gap-1 text-[10px]">
+                <button type="button" onclick="toggleAllMapCategories(true)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-tactical-cyan hover:text-black text-slate-200 font-bold uppercase">Todas</button>
+                <button type="button" onclick="toggleAllMapCategories(false)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-rose-500 hover:text-white text-slate-300 font-bold uppercase">Nenhuma</button>
+              </div>
+            </div>
+            <div class="space-y-1">
+              ${SCUM_POI_CATEGORIES.map(cat => {
+                const checked = activeCats.has(cat.id);
+                const totalInCat = SCUM_NATIVE_POIS.filter(p => p.category === cat.id).length;
+                return `
+                  <label class="flex items-center justify-between p-1.5 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
+                    <div class="flex items-center gap-2 min-w-0">
+                      <input type="checkbox" ${checked ? 'checked' : ''} onchange="toggleSingleMapCategory('${cat.id}', this.checked)" class="rounded bg-carbon-900 border-white/20 text-tactical-amber shrink-0" />
+                      ${getPoiCategorySvgIcon(cat.id, 'w-4 h-4 shrink-0')}
+                      <span class="text-slate-200 truncate text-[11px]">${cat.name}</span>
+                    </div>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-carbon-800 text-slate-400 shrink-0">${totalInCat}</span>
+                  </label>
+                `;
+              }).join('')}
             </div>
           </div>
-          <div class="space-y-1.5 max-h-56 overflow-y-auto pr-1">
-            ${pins.length === 0 ? '<div class="text-[11px] text-slate-500">Clique em "+ Colocar Pin no Mapa" para marcar esconderijos, baús ou instruções.</div>' : pins.map(p => {
+
+          <div class="p-3 rounded-xl bg-carbon-950/90 border border-white/10 space-y-2">
+            <div class="font-bold text-slate-300 uppercase text-[11px] flex items-center justify-between">
+              <span>Locais Encontrados (${visiblePois.length})</span>
+              <span class="text-[10px] text-slate-500 font-normal">Clique p/ Focar</span>
+            </div>
+            <div class="space-y-1 max-h-80 overflow-y-auto pr-1">
+              ${visiblePois.map(poi => `
+                <button
+                  type="button"
+                  onclick="focusMapOnCoords(${poi.x}, ${poi.y}, 4.5); showBriefingForPoiById('${poi.id}');"
+                  class="w-full text-left px-2.5 py-1.5 rounded-lg bg-carbon-900/80 hover:bg-carbon-800 border border-white/5 flex items-center justify-between gap-2 transition-colors"
+                >
+                  <span class="inline-flex items-center gap-2 min-w-0">
+                    ${getPoiCategorySvgIcon(poi.category, 'w-3.5 h-3.5 shrink-0')}
+                    <span class="truncate text-slate-200 text-[11px]">${poi.name}</span>
+                  </span>
+                  <span class="px-1.5 py-0.5 rounded bg-carbon-950 text-tactical-amber text-[10px] font-bold shrink-0">${poi.sector}</span>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      // SUB-ABA 2: ROTAS TÁTICAS
+      if (currentMapSidebarTab === 'routes') {
+        container.innerHTML = `
+          <div class="p-3 rounded-xl bg-carbon-950/90 border border-emerald-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-emerald-400 uppercase text-[11px]">Minhas Rotas (${routes.length})</span>
+              <button type="button" onclick="openMapRouteModal()" class="px-2.5 py-1 rounded-lg bg-emerald-500 text-black text-[10px] font-bold uppercase shadow">
+                + Nova Rota
+              </button>
+            </div>
+            <div class="space-y-2">
+              ${routes.map(r => {
+                const isAct = r.id === appData.mapData.activeRouteId;
+                const isVis = r.visible !== false;
+                return `
+                  <div class="p-2.5 rounded-xl bg-carbon-900 border ${isAct ? 'border-emerald-400' : 'border-white/10'} ${isVis ? '' : 'opacity-60'} space-y-2">
+                    <div class="flex items-center justify-between gap-1.5">
+                      <button type="button" onclick="selectActiveRoute('${r.id}')" class="text-left font-bold text-white hover:text-emerald-300 truncate flex-1 inline-flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background:${r.color || '#10b981'}"></span>
+                        <span class="truncate ${isVis ? '' : 'line-through text-slate-400'}">${r.name}</span>
+                      </button>
+                    </div>
+                    <div class="flex items-center justify-between gap-1 text-[10px]">
+                      <button type="button" onclick="toggleRouteVisibility('${r.id}')" class="px-2 py-1 rounded-md border ${isVis ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300' : 'bg-carbon-800 border-white/10 text-slate-400'} hover:text-white inline-flex items-center gap-1 font-bold">
+                        ${getVisibilityEyeSvg(isVis, 'w-3 h-3')}
+                        <span>${isVis ? 'Visível' : 'Oculta'}</span>
+                      </button>
+                      <div class="flex items-center gap-1">
+                        <button type="button" onclick="selectActiveRoute('${r.id}'); setMapToolMode('draw_route');" class="px-2 py-1 rounded-md bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500 hover:text-black font-bold">
+                          + Traçar
+                        </button>
+                        <button type="button" onclick="recalculateRouteAlongRoads('${r.id}')" class="px-2 py-1 rounded-md bg-tactical-cyan/20 text-tactical-cyanLight hover:bg-tactical-cyan hover:text-black font-bold" title="Alinhar pela estrada">
+                          🛣️
+                        </button>
+                        <button type="button" onclick="openMapRouteModal('${r.id}')" class="px-2 py-1 rounded-md bg-carbon-800 text-slate-300 hover:text-white" title="Editar Rota">
+                          ✎
+                        </button>
+                        <button type="button" onclick="deleteMapRoute('${r.id}')" class="px-2 py-1 rounded-md bg-carbon-800 text-rose-400 hover:bg-rose-500 hover:text-white" title="Excluir Rota">
+                          ✕
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      // SUB-ABA 3: MEUS PINS PERSONALIZADOS
+      container.innerHTML = `
+        <div class="p-3 rounded-xl bg-carbon-950/90 border border-tactical-cyan/30 space-y-3">
+          <div class="flex items-center justify-between gap-1">
+            <span class="font-bold text-tactical-cyanLight uppercase text-[11px]">Meus Pins (${visiblePinsCount}/${pins.length})</span>
+            <div class="flex items-center gap-1">
+              <button type="button" onclick="toggleAllPinsVisibility(true)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-white/10 text-slate-300 text-[9px] uppercase">Ver Todos</button>
+              <button type="button" onclick="toggleAllPinsVisibility(false)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-white/10 text-slate-400 text-[9px] uppercase">Ocultar</button>
+              <button type="button" onclick="setMapToolMode('add_pin')" class="px-2 py-0.5 rounded bg-tactical-cyan text-black text-[10px] font-bold uppercase">+ Pin</button>
+            </div>
+          </div>
+          <div class="space-y-2">
+            ${pins.length === 0 ? '<div class="text-[11px] text-slate-500 py-4 text-center">Clique em "2. + Criar Pin" acima e depois no mapa para marcar um ponto.</div>' : pins.map(p => {
               const isVis = p.visible !== false;
               const sec = getSectorFromCoords(p.x, p.y);
               return `
-                <div class="p-2 rounded bg-carbon-900 border ${isVis ? 'border-white/10' : 'border-white/5 opacity-60'} space-y-1.5">
+                <div class="p-2.5 rounded-xl bg-carbon-900 border ${isVis ? 'border-white/10' : 'border-white/5 opacity-60'} space-y-2">
                   <div class="flex items-center justify-between gap-1.5">
                     <button type="button" onclick="focusMapOnCoords(${p.x}, ${p.y}, 3.6); showBriefingForPin('${p.id}');" class="text-left truncate flex-1 text-slate-200 hover:text-tactical-cyanLight font-semibold inline-flex items-center gap-2">
                       ${getPinTypeSvgIcon(p.iconType || 'loot', p.color || '#06b6d4', 'w-4 h-4 shrink-0')}
@@ -9811,14 +9848,14 @@
                     <span class="px-1.5 py-0.5 rounded bg-carbon-950 text-tactical-amber text-[9px] font-bold shrink-0">${sec}</span>
                   </div>
                   <div class="flex items-center justify-between gap-1 text-[10px]">
-                    <button type="button" onclick="togglePinVisibility('${p.id}')" class="px-2 py-0.5 rounded border ${isVis ? 'bg-tactical-cyan/15 border-tactical-cyan/40 text-tactical-cyanLight' : 'bg-carbon-800 border-white/10 text-slate-400'} hover:text-white inline-flex items-center gap-1 font-bold" title="Alternar entre Visível e Oculto no mapa">
+                    <button type="button" onclick="togglePinVisibility('${p.id}')" class="px-2 py-1 rounded-md border ${isVis ? 'bg-tactical-cyan/15 border-tactical-cyan/40 text-tactical-cyanLight' : 'bg-carbon-800 border-white/10 text-slate-400'} hover:text-white inline-flex items-center gap-1 font-bold">
                       ${getVisibilityEyeSvg(isVis, 'w-3 h-3')}
                       <span>${isVis ? 'Visível' : 'Oculto'}</span>
                     </button>
                     <div class="flex items-center gap-1">
-                      <button type="button" onclick="focusMapOnCoords(${p.x}, ${p.y}, 3.6); showBriefingForPin('${p.id}');" class="px-1.5 py-0.5 rounded bg-carbon-800 text-slate-300 hover:text-white" title="Focar Pin no Mapa">Ir</button>
-                      <button type="button" onclick="openMapPinModal('${p.id}')" class="px-1.5 py-0.5 rounded bg-carbon-800 text-slate-300 hover:text-white" title="Editar Pin">✎</button>
-                      <button type="button" onclick="deleteMapPinDirect('${p.id}')" class="px-1.5 py-0.5 rounded bg-carbon-800 text-rose-400 hover:bg-rose-500 hover:text-white" title="Excluir Pin">✕</button>
+                      <button type="button" onclick="focusMapOnCoords(${p.x}, ${p.y}, 3.6); showBriefingForPin('${p.id}');" class="px-2 py-1 rounded-md bg-carbon-800 text-slate-300 hover:text-white">Ir</button>
+                      <button type="button" onclick="openMapPinModal('${p.id}')" class="px-2 py-1 rounded-md bg-carbon-800 text-slate-300 hover:text-white">✎</button>
+                      <button type="button" onclick="deleteMapPinDirect('${p.id}')" class="px-2 py-1 rounded-md bg-carbon-800 text-rose-400 hover:bg-rose-500 hover:text-white">✕</button>
                     </div>
                   </div>
                 </div>
@@ -9827,59 +9864,6 @@
           </div>
         </div>
       `;
-
-      // 3. Categorias Oficiais do Mapa SCUM (scum-map.com)
-      const categoriesHtml = `
-        <div class="p-3 rounded-lg bg-carbon-950/90 border border-white/10 space-y-2">
-          <div class="font-bold text-tactical-amber uppercase text-[11px] inline-flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-            <span>3. Camadas Oficiais (scum-map.com)</span>
-          </div>
-          <div class="space-y-1">
-            ${SCUM_POI_CATEGORIES.map(cat => {
-              const checked = activeCats.has(cat.id);
-              const totalInCat = SCUM_NATIVE_POIS.filter(p => p.category === cat.id).length;
-              return `
-                <label class="flex items-center justify-between p-1.5 rounded hover:bg-white/5 cursor-pointer">
-                  <div class="flex items-center gap-2 min-w-0">
-                    <input type="checkbox" ${checked ? 'checked' : ''} onchange="toggleSingleMapCategory('${cat.id}', this.checked)" class="rounded bg-carbon-900 border-white/20 text-tactical-amber shrink-0" />
-                    ${getPoiCategorySvgIcon(cat.id, 'w-4 h-4 shrink-0')}
-                    <span class="text-slate-200 truncate">${cat.name}</span>
-                  </div>
-                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-carbon-800 text-slate-400 shrink-0">${totalInCat}</span>
-                </label>
-              `;
-            }).join('')}
-          </div>
-        </div>
-      `;
-
-      // 4. Lista Rápida de Locais Filtrados (Clicar dá Super Zoom direto na posição exata do scum-map.com)
-      const poiListHtml = `
-        <div class="p-3 rounded-lg bg-carbon-950/90 border border-white/10 space-y-2">
-          <div class="font-bold text-slate-300 uppercase text-[11px] inline-flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5 text-tactical-cyanLight" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <span>4. Locais Oficiais Exatos (${visiblePois.length})</span>
-          </div>
-          <div class="space-y-1 max-h-60 overflow-y-auto pr-1">
-            ${visiblePois.map(poi => `
-              <button
-                type="button"
-                onclick="focusMapOnCoords(${poi.x}, ${poi.y}, 4.5); showBriefingForPoiById('${poi.id}');"
-                class="w-full text-left px-2 py-1.5 rounded bg-carbon-900/80 hover:bg-carbon-800 border border-white/5 flex items-center justify-between gap-2 transition-colors"
-              >
-                <span class="inline-flex items-center gap-2 min-w-0">
-                  ${getPoiCategorySvgIcon(poi.category, 'w-3.5 h-3.5 shrink-0')}
-                  <span class="truncate text-slate-200">${poi.name}</span>
-                </span>
-                <span class="px-1.5 py-0.5 rounded bg-carbon-950 text-tactical-amber text-[10px] font-bold shrink-0">${poi.sector}</span>
-              </button>
-            `).join('')}
-          </div>
-        </div>
-      `;
-
-      container.innerHTML = routesHtml + pinsHtml + categoriesHtml + poiListHtml;
     }
 
     function toggleSingleMapCategory(catId, enabled) {
@@ -9887,16 +9871,18 @@
       if (enabled) set.add(catId);
       else set.delete(catId);
       appData.mapData.activeCategories = Array.from(set);
+      invalidatePoiCache();
       saveMapStateToStorage();
       renderMapSidebarFilters();
-      drawTacticalMap();
+      scheduleMapRender();
     }
 
     function toggleAllMapCategories(enableAll) {
       appData.mapData.activeCategories = enableAll ? SCUM_POI_CATEGORIES.map(c => c.id) : [];
+      invalidatePoiCache();
       saveMapStateToStorage();
       renderMapSidebarFilters();
-      drawTacticalMap();
+      scheduleMapRender();
     }
 
     function focusMapOnCoords(wx, wy, targetZoom = 4.0) {
