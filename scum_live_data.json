@@ -156,7 +156,9 @@
     }
   ],
   "mapData": {
-    "activeCategories": [],
+    "activeCategories": [
+      "industrial"
+    ],
     "activeRouteId": "",
     "showAllRoutes": true,
     "customPins": [
@@ -208,7 +210,7 @@
     "customRoutes": [],
     "_calibratedScumMapExactV3": true
   },
-  "_cloudTimestamp": 1793218763652,
+  "_cloudTimestamp": 1793218852752,
   "githubRepoConfig": {
     "owner": "maephprismaticr117",
     "repo": "SADA-Project-Compendium",
