@@ -171,6 +171,32 @@
       color: #34d399;
       box-shadow: 0 10px 24px -8px rgba(16, 185, 129, 0.42), inset 0 1px 0 rgba(52, 211, 153, 0.25);
     }
+    .header-main-tab.active-purple {
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.26) 0%, rgba(12, 16, 21, 0.96) 100%);
+      border-color: #a855f7;
+      color: #c084fc;
+      box-shadow: 0 10px 24px -8px rgba(168, 85, 247, 0.42), inset 0 1px 0 rgba(192, 132, 252, 0.25);
+    }
+    /* Grade Visual estilo Miras SCUM (Idêntica à referência do usuário) */
+    .scum-sight-grid {
+      background: #080a0e;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+    .scum-sight-cell {
+      background: radial-gradient(circle at 50% 38%, rgba(30, 41, 59, 0.32) 0%, rgba(8, 10, 14, 0.98) 78%);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .scum-sight-cell:hover {
+      background: radial-gradient(circle at 50% 38%, rgba(56, 189, 248, 0.15) 0%, rgba(12, 16, 23, 0.98) 80%);
+      border-color: rgba(147, 197, 253, 0.45);
+      transform: translateY(-2px);
+    }
+    .guide-indented-text p {
+      text-indent: 1.75rem;
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+    }
 
     /* Transição suave de entrada ao trocar de aba */
     .tab-view-enter {
@@ -269,16 +295,32 @@
         </span>
       </div>
 
-      <!-- CONTROLES DO VISITANTE (Visíveis quando NÃO está logado como Admin) -->
+      <!-- CONTROLES DO VISITANTE / CONTA PESSOAL DE USUÁRIO -->
       <div id="visitorToolbarControls" class="flex flex-wrap items-center gap-2">
-        <button onclick="printCatalogPDF()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono font-semibold uppercase tracking-wider bg-carbon-800 border border-white/15 text-slate-200 hover:border-tactical-cyan hover:text-tactical-cyanLight transition-all">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a4 4 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-          Gerar PDF / Imprimir
+        <!-- Botão de Conta Pessoal na Nuvem (Login / Criar Conta / Status da Conta) -->
+        <button id="userAccountToolbarBtn" onclick="openAuthModal('user_login')" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded text-xs font-mono font-semibold uppercase tracking-wider bg-emerald-500/15 border border-emerald-500/50 text-emerald-300 hover:bg-emerald-500 hover:text-black transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+          <span id="userAccountToolbarLabel">Entrar / Criar Conta</span>
         </button>
 
-        <button onclick="openAuthModal('admin')" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded text-xs font-mono font-semibold uppercase tracking-wider bg-tactical-amber/15 border border-tactical-amber/50 text-tactical-amberLight hover:bg-tactical-amber hover:text-black transition-all">
+        <!-- Botão Sincronizar Nuvem Pessoal (Visível quando logado em Conta Pessoal) -->
+        <button id="userCloudSyncNowBtn" onclick="syncCurrentUserAccountToCloud(true)" class="hidden items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono font-semibold uppercase tracking-wider bg-tactical-cyan/15 border border-tactical-cyan/40 text-tactical-cyanLight hover:bg-tactical-cyan hover:text-black transition-all" title="Salvar seus Pins e Rotas pessoais na nuvem da sua conta">
+          <span>☁️ Salvar na Nuvem</span>
+        </button>
+
+        <!-- Botão Sair da Conta Pessoal (Visível quando logado em Conta Pessoal) -->
+        <button id="userLogoutBtn" onclick="logoutUserAccount()" class="hidden items-center gap-1 px-2.5 py-1.5 rounded text-xs font-mono font-semibold uppercase bg-rose-500/15 border border-rose-500/40 text-rose-300 hover:bg-rose-500 hover:text-white transition-all" title="Sair da sua conta pessoal">
+          <span>Sair</span>
+        </button>
+
+        <button onclick="printCatalogPDF()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono font-semibold uppercase tracking-wider bg-carbon-800 border border-white/15 text-slate-200 hover:border-tactical-cyan hover:text-tactical-cyanLight transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a4 4 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          PDF
+        </button>
+
+        <button onclick="openAuthModal('admin')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono font-semibold uppercase tracking-wider bg-tactical-amber/15 border border-tactical-amber/50 text-tactical-amberLight hover:bg-tactical-amber hover:text-black transition-all">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-          Login Admin
+          Admin
         </button>
       </div>
 
@@ -294,6 +336,12 @@
         <button onclick="openItemModal()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono font-semibold uppercase tracking-wider bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-500 hover:text-black transition-all">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
           Novo Item
+        </button>
+
+        <!-- Botão Cofre de Contas de Usuários (Exclusivo Dono/Admin) -->
+        <button onclick="openAdminUsersVaultModal()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono font-semibold uppercase tracking-wider bg-purple-500/15 border border-purple-500/40 text-purple-300 hover:bg-purple-500 hover:text-black transition-all" title="Ver contas criadas pelos usuários, credenciais descriptografadas e espaço na nuvem">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+          <span>👥 Contas (<span id="adminVaultUserCount">0</span>)</span>
         </button>
 
         <!-- Botão Configurar Trades / Senha -->
@@ -416,9 +464,9 @@
         </div>
       </div>
 
-      <!-- NAVEGAÇÃO PRINCIPAL DE MÓDULOS (4 ABAS COM SEPARAÇÃO LIMPA DE CONTEXTO) -->
+      <!-- NAVEGAÇÃO PRINCIPAL DE MÓDULOS (5 ABAS COM SEPARAÇÃO LIMPA DE CONTEXTO) -->
       <div class="pt-3 border-t border-white/10 no-print">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
           <!-- Aba 1: Catálogo em Tabela -->
           <button
             id="headerTabTableBtn"
@@ -492,6 +540,24 @@
             <div class="min-w-0">
               <div class="font-mono text-[10px] uppercase tracking-wider text-tactical-cyanLight">04 · Satélite 20K</div>
               <div class="font-display text-sm sm:text-base font-bold uppercase tracking-wide text-white truncate">Mapa &amp; Rotas SCUM</div>
+            </div>
+          </button>
+
+          <!-- Aba 5: Guias, Tutoriais, Plantas de Bunkers & Academy -->
+          <button
+            id="headerTabGuidesBtn"
+            onclick="setViewMode('guides')"
+            class="header-main-tab rounded-xl p-3 text-left flex items-center gap-3 group col-span-2 sm:col-span-1"
+          >
+            <div class="w-10 h-10 rounded-lg bg-purple-500/15 border border-purple-500/40 flex items-center justify-center text-purple-300 shrink-0 font-mono font-bold group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+            </div>
+            <div class="min-w-0">
+              <div class="font-mono text-[10px] uppercase tracking-wider text-purple-300">05 · Academy &amp; Bunkers</div>
+              <div class="font-display text-sm sm:text-base font-bold uppercase tracking-wide text-white truncate">Guias &amp; Tutoriais</div>
             </div>
           </button>
         </div>
@@ -845,13 +911,13 @@
     <!-- ===================================================================== -->
     <section id="mapViewContainer" class="hidden space-y-3 no-print tab-view-enter">
 
-      <!-- WORKSPACE DO MAPA EM TELA AMPLA (BARRA DE COMANDO UNIFICADA + SIDEBAR EM ABAS + VIEWPORT 60FPS) -->
+      <!-- WORKSPACE DO MAPA EM TELA AMPLA -->
       <div class="telemetry-panel rounded-xl overflow-hidden border border-white/15 shadow-2xl">
 
-        <!-- BARRA DE COMANDO UNIFICADA DO MAPA -->
+        <!-- BARRA SUPERIOR ENXUTA DO MAPA (PAINEL LATERAL + STATUS DA CAMADA + TEMA/EXPORTAÇÃO) -->
         <div class="bg-carbon-950 px-3.5 py-2.5 border-b border-white/10 flex flex-wrap items-center justify-between gap-2.5">
-          <!-- Esquerda: Botão Painel Lateral + 3 Modos Claros -->
-          <div class="flex flex-wrap items-center gap-1.5">
+          <!-- Esquerda: Botão Painel Lateral + Indicador de Camada (Admin Global vs Conta Pessoal) -->
+          <div class="flex flex-wrap items-center gap-2">
             <button
               type="button"
               onclick="toggleMapSidebar()"
@@ -863,59 +929,13 @@
               <span>Painel Lateral</span>
             </button>
 
-            <div class="h-5 w-[1px] bg-white/10 mx-1 hidden sm:block"></div>
-
-            <!-- 3 Modos de Ferramenta -->
-            <button
-              type="button"
-              id="mapToolPanBtn"
-              onclick="setMapToolMode('pan')"
-              class="px-3 py-1.5 rounded-lg border border-tactical-amber bg-tactical-amber text-black font-mono text-xs font-bold uppercase transition-all inline-flex items-center gap-1.5 shadow"
-            >
-              <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><line x1="12" y1="3" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="3" y1="12" x2="7" y2="12"/><line x1="17" y1="12" x2="21" y2="12"/></svg>
-              <span>1. Explorar</span>
-            </button>
-            <button
-              type="button"
-              id="mapToolPinBtn"
-              onclick="setMapToolMode('add_pin')"
-              class="px-3 py-1.5 rounded-lg border border-white/15 bg-carbon-900 text-slate-200 hover:border-tactical-cyan font-mono text-xs font-semibold uppercase transition-all inline-flex items-center gap-1.5"
-            >
-              <svg class="w-3.5 h-3.5 shrink-0 text-tactical-cyanLight" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-12a7 7 0 1 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
-              <span>2. + Criar Pin</span>
-            </button>
-            <button
-              type="button"
-              id="mapToolRouteBtn"
-              onclick="setMapToolMode('draw_route')"
-              class="px-3 py-1.5 rounded-lg border border-white/15 bg-carbon-900 text-emerald-300 hover:border-emerald-400 font-mono text-xs font-semibold uppercase transition-all inline-flex items-center gap-1.5"
-            >
-              <svg class="w-3.5 h-3.5 shrink-0 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="5" r="2.5"/><path d="M7.5 19h4.5a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h7.5"/></svg>
-              <span>3. Traçar Rota</span>
-            </button>
-          </div>
-
-          <!-- Centro: Barra Contextual de Traçado de Rota (2 Opções: Estrada ou Linha Reta) -->
-          <div id="routeDrawingToolbar" class="flex flex-wrap items-center gap-2 bg-carbon-900/95 px-2.5 py-1 rounded-lg border border-emerald-500/35">
-            <span class="font-mono text-[10px] uppercase text-emerald-400 font-bold">Traçado:</span>
-            <div class="inline-flex rounded-md overflow-hidden border border-white/15 font-mono text-xs">
-              <button type="button" id="routeStyleBtnRoad" onclick="updateActiveSegmentStyle('road')" class="px-2.5 py-1 bg-emerald-500 text-black font-bold uppercase transition-all">
-                🛣️ Estrada
-              </button>
-              <button type="button" id="routeStyleBtnDirect" onclick="updateActiveSegmentStyle('direct')" class="px-2.5 py-1 bg-carbon-950 text-slate-300 hover:text-white uppercase transition-all">
-                📏 Linha Reta
-              </button>
+            <div id="mapLayerOwnershipBadge" class="px-3 py-1 rounded-lg bg-carbon-900 border border-white/10 font-mono text-[11px] text-slate-300 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tactical-cyan"></span>
+              <span id="mapLayerOwnershipText">Camada: Pins &amp; Rotas Oficiais + Locais</span>
             </div>
-            <select id="routeSegmentStyleSelect" onchange="updateActiveSegmentStyle(this.value)" class="hidden">
-              <option value="road" selected>Estrada</option>
-              <option value="direct">Linha Reta</option>
-            </select>
-            <button type="button" onclick="undoLastRoutePoint()" class="px-2 py-1 rounded bg-carbon-800 hover:bg-rose-500/20 text-rose-300 border border-white/10 font-mono text-[11px]" title="Desfazer último clique da rota">
-              ↶ Desfazer
-            </button>
           </div>
 
-          <!-- Direita: Estilo do Mapa + Portabilidade Compacta -->
+          <!-- Direita: Estilo do Mapa + Sincronizar Conta + Portabilidade -->
           <div class="flex flex-wrap items-center gap-1.5 font-mono text-xs">
             <select id="mapThemeSelect" onchange="setMapTheme(this.value)" class="px-2.5 py-1.5 rounded-lg bg-carbon-900 border border-white/15 text-xs text-slate-200 focus:outline-none focus:border-tactical-cyan">
               <option value="satellite">Satélite Oficial 20K</option>
@@ -923,14 +943,17 @@
               <option value="highcontrast">Alto Contraste &amp; Vias</option>
             </select>
 
+            <button type="button" onclick="syncCurrentUserAccountToCloud(true)" class="px-2.5 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500 hover:text-black text-emerald-300 border border-emerald-500/40 text-[11px] font-bold uppercase" title="Salvar seus Pins e Rotas na nuvem da sua conta">
+              ☁️ Salvar Nuvem
+            </button>
             <button type="button" onclick="exportMapConfigJSON()" class="px-2.5 py-1.5 rounded-lg bg-carbon-900 hover:bg-tactical-cyan hover:text-black text-tactical-cyanLight border border-white/15 text-[11px] font-bold uppercase" title="Exportar Pins e Rotas (.JSON)">
               Exportar
             </button>
             <button type="button" onclick="triggerImportMapConfigJSON()" class="px-2.5 py-1.5 rounded-lg bg-carbon-900 hover:bg-tactical-amber hover:text-black text-tactical-amberLight border border-white/15 text-[11px] font-bold uppercase" title="Importar Pins e Rotas (.JSON)">
               Importar
             </button>
-            <button type="button" onclick="saveMapInsideHTMLDownload()" class="px-2.5 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500 hover:text-black text-emerald-300 border border-emerald-500/40 text-[11px] font-bold uppercase" title="Baixar HTML com Mapa, Pins e Rotas gravados">
-              Salvar HTML
+            <button type="button" onclick="saveMapInsideHTMLDownload()" class="px-2.5 py-1.5 rounded-lg bg-carbon-800 hover:bg-white/15 text-slate-200 border border-white/15 text-[11px] font-bold uppercase" title="Baixar HTML com Mapa, Pins e Rotas gravados">
+              Baixar HTML
             </button>
           </div>
         </div>
@@ -943,7 +966,7 @@
             <!-- Sub-Abas de Navegação do Mapa -->
             <div class="p-3 border-b border-white/10 space-y-2.5 bg-carbon-950/90">
               <div class="grid grid-cols-3 gap-1 p-1 rounded-lg bg-carbon-900 border border-white/10 font-mono text-[11px]">
-                <button type="button" id="mapSubTabPoisBtn" onclick="setMapSidebarTab('pois')" class="py-1.5 px-2 rounded-md bg-tactical-amber text-black font-bold uppercase transition-all text-center">
+                <button type="button" id="mapSubTabPoisBtn" onclick="setMapSidebarTab('pois')" class="py-1.5 px-2 rounded-md bg-tactical-amber text-black font-bold uppercase transition-all text-center shadow">
                   📍 Locais
                 </button>
                 <button type="button" id="mapSubTabRoutesBtn" onclick="setMapSidebarTab('routes')" class="py-1.5 px-2 rounded-md text-slate-300 hover:text-white uppercase transition-all text-center">
@@ -987,16 +1010,123 @@
               </div>
 
               <div id="mapModeStatusBanner" class="pointer-events-auto bg-carbon-950/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-tactical-amber/40 font-mono text-[11px] text-tactical-amberLight shadow-xl">
-                Arraste p/ mover · Roda do mouse p/ Super Zoom 20K
+                Arraste p/ mover · Clique em qualquer Pin ou Rota para interagir
               </div>
             </div>
 
-            <!-- Controles Flutuantes de Zoom no Canto Superior Direito (Abaixo do Status) -->
-            <div class="absolute top-14 right-3 z-10 flex flex-col items-center gap-1 bg-carbon-950/90 backdrop-blur-md p-1.5 rounded-xl border border-white/15 shadow-xl font-mono text-xs">
-              <button type="button" onclick="zoomMapBy(1.35)" class="w-8 h-8 rounded-lg bg-carbon-800 hover:bg-tactical-amber hover:text-black text-white font-bold flex items-center justify-center" title="Ampliar Zoom (+)">+</button>
-              <span id="mapZoomReadout" class="py-1 text-[10px] text-tactical-amber font-bold text-center">1.0x</span>
-              <button type="button" onclick="zoomMapBy(0.74)" class="w-8 h-8 rounded-lg bg-carbon-800 hover:bg-tactical-amber hover:text-black text-white font-bold flex items-center justify-center" title="Reduzir Zoom (−)">−</button>
-              <button type="button" onclick="resetMapView()" class="w-8 h-7 rounded-lg bg-carbon-900 hover:bg-white/10 text-slate-300 text-[10px] flex items-center justify-center border-t border-white/10" title="Resetar Visão">1:1</button>
+            <!-- =============================================================== -->
+            <!-- DOCK LATERAL ESQUERDO DENTRO DO MAPA (MODOS + OPÇÕES DE ROTA)   -->
+            <!-- Exatamente nas laterais internas, como o auxiliar de zoom!      -->
+            <!-- =============================================================== -->
+            <div class="absolute top-16 left-3 z-10 flex flex-col gap-2.5 font-mono text-xs">
+              <!-- Bloco 1: Modos de Ação (Explorar, Criar Pin, Traçar Rota) -->
+              <div class="bg-carbon-950/95 backdrop-blur-md p-1.5 rounded-2xl border border-white/15 shadow-2xl flex flex-col gap-1.5 w-36">
+                <div class="px-2 pt-1 pb-0.5 text-[9px] uppercase tracking-widest text-slate-400 font-bold border-b border-white/10">
+                  Ferramentas
+                </div>
+                <button
+                  type="button"
+                  id="mapToolPanBtn"
+                  onclick="setMapToolMode('pan')"
+                  class="w-full px-2.5 py-2 rounded-xl border border-tactical-amber bg-tactical-amber text-black font-mono text-xs font-bold uppercase transition-all flex items-center gap-2 shadow"
+                >
+                  <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/></svg>
+                  <span>1. Explorar</span>
+                </button>
+                <button
+                  type="button"
+                  id="mapToolPinBtn"
+                  onclick="setMapToolMode('add_pin')"
+                  class="w-full px-2.5 py-2 rounded-xl border border-white/15 bg-carbon-900 text-slate-200 hover:border-tactical-cyan font-mono text-xs font-semibold uppercase transition-all flex items-center gap-2"
+                >
+                  <svg class="w-3.5 h-3.5 shrink-0 text-tactical-cyanLight" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.5-7-12a7 7 0 1 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                  <span>2. + Criar Pin</span>
+                </button>
+                <button
+                  type="button"
+                  id="mapToolRouteBtn"
+                  onclick="setMapToolMode('draw_route')"
+                  class="w-full px-2.5 py-2 rounded-xl border border-white/15 bg-carbon-900 text-emerald-300 hover:border-emerald-400 font-mono text-xs font-semibold uppercase transition-all flex items-center gap-2"
+                >
+                  <svg class="w-3.5 h-3.5 shrink-0 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="5" r="2.5"/><path d="M7.5 19h4.5a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h7.5"/></svg>
+                  <span>3. Traçar Rota</span>
+                </button>
+              </div>
+
+              <!-- Bloco 2: Auxiliar Lateral de Traçado de Rota (Aparece na lateral interna do mapa ao usar Rota) -->
+              <div id="routeDrawingToolbar" class="hidden bg-carbon-950/95 backdrop-blur-md p-1.5 rounded-2xl border border-emerald-500/45 shadow-2xl flex-col gap-1.5 w-36">
+                <div class="px-2 pt-1 pb-0.5 text-[9px] uppercase tracking-widest text-emerald-400 font-bold border-b border-white/10">
+                  Linha de Traçado
+                </div>
+                <button
+                  type="button"
+                  id="routeStyleBtnRoad"
+                  onclick="updateActiveSegmentStyle('road')"
+                  class="w-full px-2.5 py-2 rounded-xl bg-emerald-500 text-black font-bold uppercase transition-all text-left flex items-center gap-1.5 shadow"
+                >
+                  <span>🛣️</span>
+                  <span>Estrada</span>
+                </button>
+                <button
+                  type="button"
+                  id="routeStyleBtnDirect"
+                  onclick="updateActiveSegmentStyle('direct')"
+                  class="w-full px-2.5 py-2 rounded-xl bg-carbon-900 text-slate-300 hover:text-white border border-white/10 uppercase transition-all text-left flex items-center gap-1.5"
+                >
+                  <span>📏</span>
+                  <span>Linha Reta</span>
+                </button>
+                <select id="routeSegmentStyleSelect" onchange="updateActiveSegmentStyle(this.value)" class="hidden">
+                  <option value="road" selected>Estrada</option>
+                  <option value="direct">Linha Reta</option>
+                </select>
+                <button
+                  type="button"
+                  onclick="undoLastRoutePoint()"
+                  class="w-full px-2.5 py-1.5 rounded-xl bg-carbon-800 hover:bg-rose-500/25 text-rose-300 border border-white/10 text-[11px] font-bold uppercase flex items-center justify-center gap-1 mt-0.5"
+                  title="Desfazer último trecho traçado"
+                >
+                  <span>↶ Desfazer</span>
+                </button>
+                <button
+                  type="button"
+                  onclick="setMapToolMode('pan')"
+                  class="w-full px-2.5 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500 hover:text-black text-emerald-300 border border-emerald-500/40 text-[10px] font-bold uppercase flex items-center justify-center gap-1"
+                >
+                  <span>✓ Concluir</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- =============================================================== -->
+            <!-- DOCK LATERAL DIREITO DENTRO DO MAPA (AUXILIAR DE ZOOM)          -->
+            <!-- =============================================================== -->
+            <div class="absolute top-16 right-3 z-10 flex flex-col items-center gap-1.5 bg-carbon-950/95 backdrop-blur-md p-1.5 rounded-2xl border border-white/15 shadow-2xl font-mono text-xs">
+              <button type="button" onclick="zoomMapBy(1.35)" class="w-9 h-9 rounded-xl bg-carbon-800 hover:bg-tactical-amber hover:text-black text-white font-bold flex items-center justify-center text-base" title="Ampliar Zoom (+)">+</button>
+              <span id="mapZoomReadout" class="py-1 text-[11px] text-tactical-amber font-bold text-center">1.0x</span>
+              <button type="button" onclick="zoomMapBy(0.74)" class="w-9 h-9 rounded-xl bg-carbon-800 hover:bg-tactical-amber hover:text-black text-white font-bold flex items-center justify-center text-base" title="Reduzir Zoom (−)">−</button>
+              <button type="button" onclick="resetMapView()" class="w-9 h-8 rounded-xl bg-carbon-900 hover:bg-white/10 text-slate-300 text-[10px] flex items-center justify-center border-t border-white/10" title="Resetar Visão">1:1</button>
+            </div>
+
+            <!-- =============================================================== -->
+            <!-- MINI-JANELA CONTEXTUAL AO CLICAR EM CIMA DE PIN OU ROTA EXISTENTE -->
+            <!-- =============================================================== -->
+            <div id="mapOverlapChoiceModal" class="hidden absolute z-30 w-80 bg-carbon-950/95 backdrop-blur-xl rounded-2xl border-2 border-tactical-amber/80 shadow-2xl p-4 space-y-3 font-mono text-xs">
+              <div class="flex items-center justify-between border-b border-white/10 pb-2">
+                <span id="overlapChoiceBadge" class="px-2 py-0.5 rounded bg-tactical-amber/20 text-tactical-amber font-bold text-[10px] uppercase">
+                  ITEM JÁ EXISTENTE AQUI
+                </span>
+                <button type="button" onclick="closeMapOverlapChoiceModal()" class="text-slate-400 hover:text-white font-bold">✕</button>
+              </div>
+              <div>
+                <div id="overlapChoiceTitle" class="font-display text-base font-bold text-white uppercase truncate">Pin ou Rota</div>
+                <p id="overlapChoiceSub" class="text-[11px] text-slate-400 font-sans mt-0.5">
+                  Você clicou sobre um elemento existente. Deseja alterá-lo ou criar um novo neste mesmo ponto?
+                </p>
+              </div>
+              <div id="overlapChoiceButtons" class="flex flex-col gap-2 pt-1">
+                <!-- Botões injetados dinamicamente via JS -->
+              </div>
             </div>
 
             <!-- Card Flutuante de Instruções da Rota Ativa / Pin / Local (Canto Inferior Direito) -->
@@ -1017,6 +1147,76 @@
           </div>
 
         </div>
+      </div>
+
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- ABA 05: CENTRAL DE GUIAS, TUTORIAIS, PLANTAS DE BUNKERS & GRÁFICOS     -->
+    <!-- ===================================================================== -->
+    <section id="guidesViewContainer" class="hidden space-y-5 tab-view-enter">
+
+      <!-- BARRA SUPERIOR DE FILTROS, PESQUISA E CRIAÇÃO DE TÓPICOS (ADMIN) -->
+      <div class="telemetry-panel rounded-xl p-4 sm:p-5 border border-purple-500/30 space-y-4">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b border-white/10 pb-3.5">
+          <div class="flex items-center gap-3">
+            <span class="px-2.5 py-1 rounded-md bg-purple-500/20 border border-purple-500/40 text-purple-300 font-mono text-xs font-bold">
+              SCUM ACADEMY // GUIAS &amp; BUNKERS
+            </span>
+            <div>
+              <h2 class="font-display text-lg sm:text-xl font-bold uppercase text-white leading-none">
+                CENTRAL DE EVOLUÇÃO TÁTICA, TUTORIAIS &amp; PLANTAS DE BUNKERS
+              </h2>
+              <p class="font-mono text-[11px] text-slate-400 mt-0.5">
+                Filtre por categoria ou pesquise qualquer assunto (pescaria, miras, bunkers, medicina, veículos) para dominar o jogo
+              </p>
+            </div>
+          </div>
+
+          <!-- Busca + Botão Admin "+ Novo Tópico" -->
+          <div class="flex flex-wrap items-center gap-2.5 no-print">
+            <div class="relative flex-1 sm:w-72">
+              <input
+                type="text"
+                id="guidesSearchInput"
+                oninput="renderGuidesHub()"
+                placeholder="Pesquisar ex: pescaria, miras, bunker, cura..."
+                class="w-full pl-8 pr-3 py-2 rounded-lg bg-carbon-950 border border-white/15 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-purple-400"
+              />
+              <svg class="w-4 h-4 text-slate-400 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke-width="2"/></svg>
+            </div>
+
+            <button
+              type="button"
+              id="adminNewGuideTopicBtn"
+              onclick="openGuideEditorModal()"
+              class="hidden px-4 py-2 rounded-lg bg-purple-500 hover:bg-purple-400 text-black font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-lg items-center gap-1.5"
+            >
+              <span>+ Criar Novo Tópico / Guia</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Pílulas de Filtro de Categoria -->
+        <div id="guidesCategoryPills" class="flex flex-wrap items-center gap-1.5 font-mono text-xs">
+          <!-- Renderizado via JS -->
+        </div>
+      </div>
+
+      <!-- LISTA DE CARDS DE TÓPICOS (QUANDO NENHUM TÓPICO ESTÁ ABERTO OU COMO SELETOR RÁPIDO) -->
+      <div id="guidesTopicsGridWrapper" class="space-y-3">
+        <div class="flex items-center justify-between font-mono text-xs text-slate-400 px-1">
+          <span id="guidesCountSummary">Mostrando todos os tópicos</span>
+          <span>Clique em um tópico para abrir o guia completo com imagens, plantas e gráficos</span>
+        </div>
+        <div id="guidesTopicsCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Renderizado via JS -->
+        </div>
+      </div>
+
+      <!-- VISUALIZADOR COMPLETO DO TÓPICO SELECIONADO (COM TEXTOS INDENTADOS, GRADES ESTILO MIRAS, PLANTAS E GRÁFICOS) -->
+      <div id="guideActiveTopicReader" class="hidden telemetry-panel rounded-xl overflow-hidden border border-purple-500/35">
+        <!-- Renderizado via JS -->
       </div>
 
     </section>
@@ -1519,93 +1719,134 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- MODAL DE AUTENTICAÇÃO BCU (PORTAL DE LOGIN ADMIN vs VISITANTE)        -->
+  <!-- MODAL DE AUTENTICAÇÃO BCU (CONTA DE JOGADOR, CRIAR CONTA NA NUVEM E ADMIN) -->
   <!-- ===================================================================== -->
   <div id="authModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto no-print">
-    <div class="telemetry-panel rounded-lg w-full max-w-md bg-carbon-850 border border-white/15 overflow-hidden shadow-2xl">
+    <div class="telemetry-panel rounded-xl w-full max-w-lg bg-carbon-850 border border-white/15 overflow-hidden shadow-2xl">
       <!-- Cabeçalho do Portal -->
-      <div class="px-6 py-5 bg-carbon-900 border-b border-white/10">
+      <div class="px-6 py-4 bg-carbon-900 border-b border-white/10">
         <div class="flex items-center justify-between">
-          <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-tactical-amber/15 border border-tactical-amber/40 text-tactical-amber font-mono text-[11px] font-bold">
-            <span class="w-1.5 h-1.5 rounded-full bg-tactical-amber animate-ping"></span>
-            AUTENTICAÇÃO BCU // SEC-GATE
+          <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 font-mono text-[11px] font-bold">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+            PORTAL DE CONTAS &amp; NUVEM BCU
           </span>
-          <button onclick="enterAsVisitor()" title="Entrar como Visitante" class="text-slate-400 hover:text-white text-xs font-mono">
+          <button onclick="enterAsVisitor()" title="Fechar" class="text-slate-400 hover:text-white text-xs font-mono">
             [Fechar ✕]
           </button>
         </div>
         <h3 class="font-display text-2xl font-bold uppercase tracking-wide text-white mt-2">
-          CONTROLE DE ACESSO AO CATÁLOGO
+          ACESSO DE CONTA PESSOAL &amp; ADMIN
         </h3>
         <p class="text-xs text-slate-400 mt-0.5">
-          Selecione seu perfil de acesso para visualizar ou gerenciar a telemetria de preços das Trades.
+          Crie sua conta pessoal com apenas Login e Senha para salvar seus Pins e Rotas na nuvem sem nunca perder seu progresso.
         </p>
       </div>
 
-      <!-- Abas Visitante vs Administrador -->
-      <div class="grid grid-cols-2 border-b border-white/10 bg-carbon-950 font-mono text-xs">
-        <button type="button" id="authTabVisitorBtn" onclick="switchAuthTab('visitor')" class="py-3 px-4 font-semibold uppercase tracking-wider border-b-2 border-tactical-cyan text-tactical-cyanLight bg-tactical-cyan/10 transition-all">
-          1. Visitante (Player)
+      <!-- 3 Abas: Entrar na Conta | Criar Conta | Administrador -->
+      <div class="grid grid-cols-3 border-b border-white/10 bg-carbon-950 font-mono text-xs">
+        <button type="button" id="authTabUserLoginBtn" onclick="switchAuthTab('user_login')" class="py-3 px-2 font-semibold uppercase tracking-wider border-b-2 border-emerald-400 text-emerald-300 bg-emerald-500/10 transition-all text-center">
+          1. Entrar
         </button>
-        <button type="button" id="authTabAdminBtn" onclick="switchAuthTab('admin')" class="py-3 px-4 font-semibold uppercase tracking-wider border-b-2 border-transparent text-slate-400 hover:text-white transition-all">
-          2. Administrador
+        <button type="button" id="authTabUserRegisterBtn" onclick="switchAuthTab('user_register')" class="py-3 px-2 font-semibold uppercase tracking-wider border-b-2 border-transparent text-slate-400 hover:text-white transition-all text-center">
+          2. Criar Conta
+        </button>
+        <button type="button" id="authTabAdminBtn" onclick="switchAuthTab('admin')" class="py-3 px-2 font-semibold uppercase tracking-wider border-b-2 border-transparent text-slate-400 hover:text-white transition-all text-center">
+          3. Admin
         </button>
       </div>
 
-      <!-- Painel 1: Entrada Rápida de Visitante -->
-      <div id="authVisitorPanel" class="p-6 space-y-5">
-        <div class="p-4 rounded-lg bg-carbon-900/90 border border-tactical-cyan/25 space-y-2.5">
-          <div class="flex items-center gap-2 text-tactical-cyanLight font-mono text-xs font-bold uppercase">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-            Acesso Público · Somente Leitura
-          </div>
-          <ul class="text-xs text-slate-300 space-y-1.5 font-sans">
-            <li class="flex items-center gap-2"><span class="text-tactical-cyan">✓</span> Consulta livre de todos os itens, fotos e lojas (NPCs)</li>
-            <li class="flex items-center gap-2"><span class="text-tactical-cyan">✓</span> Comparativo de preços entre os 4 Outposts / Trades</li>
-            <li class="flex items-center gap-2"><span class="text-tactical-cyan">✓</span> Exportação e impressão do catálogo em PDF / Vitrine</li>
-            <li class="flex items-center gap-2 text-slate-400"><span class="text-rose-400">🔒</span> Edição de preços, fotos e exclusão bloqueadas</li>
-          </ul>
+      <!-- Painel 1: Login de Conta Pessoal do Usuário -->
+      <form id="authUserLoginPanel" onsubmit="handleUserAccountLogin(event)" class="p-6 space-y-4">
+        <div class="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-xs text-slate-300 font-sans">
+          Entre na sua conta para carregar seus <strong class="text-emerald-300">Pins, Rotas e Preferências</strong> salvos na nuvem. Suas criações nunca conflitam com as atualizações do site.
         </div>
-
-        <button type="button" onclick="enterAsVisitor()" class="w-full py-3 px-4 rounded bg-tactical-cyan text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-tactical-cyanLight transition-all shadow-lg shadow-tactical-cyan/20 flex items-center justify-center gap-2">
-          <span>Acessar Catálogo como Visitante</span>
-          <span>→</span>
-        </button>
-
-        <div class="text-center pt-1">
-          <button type="button" onclick="switchAuthTab('admin')" class="font-mono text-[11px] text-slate-400 hover:text-tactical-amber underline">
-            Sou o dono do catálogo (Entrar como Administrador)
-          </button>
-        </div>
-      </div>
-
-      <!-- Painel 2: Login Protegido de Administrador -->
-      <form id="authAdminPanel" onsubmit="handleAdminLogin(event)" class="p-6 space-y-4">
         <div class="space-y-3">
           <div>
-            <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Credencial de Operador</label>
-            <input type="text" id="loginAdminUser" required="" autocomplete="off" placeholder="Identificação de Operador" class="w-full px-3.5 py-2.5 rounded bg-carbon-900 border border-white/15 text-sm font-mono text-white focus:outline-none focus:border-tactical-amber">
+            <label class="block font-mono text-[11px] uppercase text-slate-300 mb-1">Seu Login de Usuário</label>
+            <input type="text" id="userLoginInputName" required autocomplete="username" placeholder="Digite seu login..." class="w-full px-3.5 py-2.5 rounded-lg bg-carbon-900 border border-white/15 text-sm font-mono text-white focus:outline-none focus:border-emerald-400">
           </div>
           <div>
-            <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Chave de Segurança</label>
-            <input type="password" id="loginAdminPass" required="" autocomplete="current-password" placeholder="••••••••••••" class="w-full px-3.5 py-2.5 rounded bg-carbon-900 border border-white/15 text-sm font-mono text-white focus:outline-none focus:border-tactical-amber">
+            <label class="block font-mono text-[11px] uppercase text-slate-300 mb-1">Sua Senha</label>
+            <input type="password" id="userLoginInputPass" required autocomplete="current-password" placeholder="••••••••" class="w-full px-3.5 py-2.5 rounded-lg bg-carbon-900 border border-white/15 text-sm font-mono text-white focus:outline-none focus:border-emerald-400">
           </div>
         </div>
 
-        <!-- Mensagem de Erro de Login -->
+        <div id="userLoginErrorBox" class="hidden p-3 rounded-lg bg-rose-500/15 border border-rose-500/40 text-rose-300 font-mono text-xs">
+          Usuário ou senha incorretos. Se ainda não tem conta, clique na aba "2. Criar Conta".
+        </div>
+
+        <div class="pt-1 flex flex-col gap-2">
+          <button type="submit" class="w-full py-3 px-4 rounded-lg bg-emerald-500 text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-emerald-400 transition-all shadow-lg">
+            Entrar na Minha Conta &amp; Carregar Nuvem
+          </button>
+          <div class="flex items-center justify-between pt-2 text-[11px] font-mono">
+            <button type="button" onclick="switchAuthTab('user_register')" class="text-tactical-cyanLight hover:underline font-bold">
+              + Não tem conta? Criar Conta Rápida
+            </button>
+            <button type="button" onclick="enterAsVisitor()" class="text-slate-400 hover:text-white">
+              Continuar sem conta →
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Painel 2: Criar Nova Conta de Usuário (Só Login e Senha) -->
+      <form id="authUserRegisterPanel" onsubmit="handleUserAccountRegister(event)" class="hidden p-6 space-y-4">
+        <div class="p-3 rounded-lg bg-tactical-cyan/10 border border-tactical-cyan/30 text-xs text-slate-200 space-y-1">
+          <div class="font-mono font-bold text-tactical-cyanLight uppercase">Criação Instantânea de Conta na Nuvem</div>
+          <p class="text-slate-300">
+            Forneça apenas o Login e a Senha desejados. Suas credenciais são gravadas com criptografia privada (protegidas contra terceiros) e você ganha espaço próprio na nuvem para salvar seus Pins e Rotas!
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <div>
+            <label class="block font-mono text-[11px] uppercase text-tactical-cyanLight mb-1">Escolha seu Login *</label>
+            <input type="text" id="userRegInputName" required minlength="2" maxlength="32" autocomplete="off" placeholder="Ex: GhostSCUM, SniperB2..." class="w-full px-3.5 py-2.5 rounded-lg bg-carbon-900 border border-white/15 text-sm font-mono text-white focus:outline-none focus:border-tactical-cyan">
+          </div>
+          <div>
+            <label class="block font-mono text-[11px] uppercase text-tactical-cyanLight mb-1">Escolha sua Senha *</label>
+            <input type="password" id="userRegInputPass" required minlength="3" maxlength="64" autocomplete="new-password" placeholder="Digite a senha desejada..." class="w-full px-3.5 py-2.5 rounded-lg bg-carbon-900 border border-white/15 text-sm font-mono text-white focus:outline-none focus:border-tactical-cyan">
+          </div>
+        </div>
+
+        <div id="userRegErrorBox" class="hidden p-3 rounded-lg bg-rose-500/15 border border-rose-500/40 text-rose-300 font-mono text-xs"></div>
+
+        <div class="pt-1 flex flex-col gap-2">
+          <button type="submit" class="w-full py-3 px-4 rounded-lg bg-tactical-cyan text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-tactical-cyanLight transition-all shadow-lg">
+            ✨ Criar Minha Conta &amp; Ativar Nuvem Pessoal
+          </button>
+          <button type="button" onclick="switchAuthTab('user_login')" class="w-full py-2 px-4 rounded-lg border border-white/10 text-slate-400 hover:text-white font-mono text-xs uppercase">
+            Já tenho conta · Fazer Login
+          </button>
+        </div>
+      </form>
+
+      <!-- Painel 3: Login Protegido de Administrador -->
+      <form id="authAdminPanel" onsubmit="handleAdminLogin(event)" class="hidden p-6 space-y-4">
+        <div class="space-y-3">
+          <div>
+            <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Credencial de Operador (Admin)</label>
+            <input type="text" id="loginAdminUser" required autocomplete="off" placeholder="Identificação de Operador" class="w-full px-3.5 py-2.5 rounded-lg bg-carbon-900 border border-white/15 text-sm font-mono text-white focus:outline-none focus:border-tactical-amber">
+          </div>
+          <div>
+            <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Chave de Segurança (Admin)</label>
+            <input type="password" id="loginAdminPass" required autocomplete="current-password" placeholder="••••••••••••" class="w-full px-3.5 py-2.5 rounded-lg bg-carbon-900 border border-white/15 text-sm font-mono text-white focus:outline-none focus:border-tactical-amber">
+          </div>
+        </div>
+
         <div id="loginErrorBox" class="hidden p-3 rounded bg-rose-500/15 border border-rose-500/40 text-rose-300 font-mono text-xs">
           Acesso negado! Credenciais de operador inválidas.
         </div>
 
-        <!-- Caixa oculta permanentemente sem nenhuma credencial exposta -->
         <div id="loginDefaultHintBox" class="hidden"></div>
 
         <div class="pt-2 flex flex-col gap-2">
-          <button type="submit" class="w-full py-3 px-4 rounded bg-tactical-amber text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-tactical-amberLight transition-all shadow-lg shadow-tactical-amber/20">
+          <button type="submit" class="w-full py-3 px-4 rounded-lg bg-tactical-amber text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-tactical-amberLight transition-all shadow-lg">
             Desbloquear Painel Administrador
           </button>
-          <button type="button" onclick="enterAsVisitor()" class="w-full py-2 px-4 rounded border border-white/10 text-slate-400 hover:text-white font-mono text-xs uppercase">
-            Voltar e entrar apenas como Visitante
+          <button type="button" onclick="enterAsVisitor()" class="w-full py-2 px-4 rounded-lg border border-white/10 text-slate-400 hover:text-white font-mono text-xs uppercase">
+            Continuar apenas como Visitante
           </button>
         </div>
       </form>
@@ -1613,6 +1854,171 @@
   </div>
 
   <!-- ===================================================================== -->
+  <!-- MODAL EXCLUSIVO DO DONO/ADMIN: COFRE DE CONTAS DE USUÁRIOS & NUVEM    -->
+  <!-- ===================================================================== -->
+  <div id="adminUsersVaultModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto no-print">
+    <div class="telemetry-panel rounded-xl w-full max-w-4xl bg-carbon-850 border border-purple-500/40 overflow-hidden shadow-2xl my-8">
+      <div class="px-6 py-4 bg-carbon-900 border-b border-white/10 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/20 border border-purple-500/40 text-purple-300 font-mono text-xs font-bold">
+            OWNER VAULT // CONTAS DE USUÁRIOS
+          </span>
+          <h3 class="font-display text-xl font-bold uppercase text-white">
+            Gerenciador de Contas &amp; Credenciais Criptografadas (Exclusivo Dono)
+          </h3>
+        </div>
+        <button type="button" onclick="closeAdminUsersVaultModal()" class="text-slate-400 hover:text-white font-mono text-xs">[FECHAR ✕]</button>
+      </div>
+
+      <div class="p-6 space-y-4 max-h-[80vh] overflow-y-auto font-mono text-xs">
+        <div class="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/30 text-slate-200 flex flex-wrap items-center justify-between gap-3">
+          <div class="space-y-1 max-w-2xl font-sans">
+            <div class="font-mono font-bold text-purple-300 uppercase">🔒 Privacidade Total no Repositório + Compressão de Nuvem</div>
+            <p class="text-xs text-slate-300">
+              No repositório GitHub (<code class="text-purple-300">scum_users_cloud.json</code>), as senhas ficam criptografadas com a sua chave de Administrador para que ninguém mais consiga ler. Somente você, logado como Admin neste painel, visualiza os logins e senhas descriptografados abaixo.
+            </p>
+          </div>
+          <div class="bg-carbon-950 px-3.5 py-2 rounded-lg border border-white/10 text-right shrink-0">
+            <div class="text-[10px] text-slate-400 uppercase">Espaço Total na Nuvem</div>
+            <div id="adminVaultStorageStats" class="text-sm font-bold text-emerald-400">0 KB / 100.000 KB</div>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto rounded-xl border border-white/10 bg-carbon-950">
+          <table class="w-full text-left border-collapse">
+            <thead class="bg-carbon-900 border-b border-white/10 text-[11px] uppercase text-slate-400">
+              <tr>
+                <th class="py-3 px-4">Login do Usuário</th>
+                <th class="py-3 px-4 text-tactical-amberLight">Senha (Descriptografada p/ Dono)</th>
+                <th class="py-3 px-4 text-center">Pins Pessoais</th>
+                <th class="py-3 px-4 text-center">Rotas Pessoais</th>
+                <th class="py-3 px-4 text-center">Tamanho Nuvem</th>
+                <th class="py-3 px-4">Última Sincronização</th>
+                <th class="py-3 px-4 text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="adminUsersVaultTableBody" class="divide-y divide-white/5 text-xs">
+              <!-- Preenchido via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL EDITOR DE TÓPICOS, GUIAS, PLANTAS E GRÁFICOS (ABA 05 - ADMIN)   -->
+  <!-- ===================================================================== -->
+  <div id="guideEditorModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto no-print">
+    <div class="telemetry-panel rounded-xl w-full max-w-4xl bg-carbon-850 border border-purple-500/40 overflow-hidden shadow-2xl my-8">
+      <div class="px-6 py-4 bg-carbon-900 border-b border-white/10 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="px-2.5 py-0.5 rounded bg-purple-500/20 border border-purple-500/40 text-purple-300 font-mono text-xs font-bold">
+            ACADEMY BUILDER // ABA 05
+          </span>
+          <h3 id="guideEditorModalTitle" class="font-display text-xl font-bold uppercase text-white">
+            Criar / Editar Tópico de Guia, Bunker ou Grade Visual
+          </h3>
+        </div>
+        <button type="button" onclick="closeGuideEditorModal()" class="text-slate-400 hover:text-white font-mono text-xs">[FECHAR ✕]</button>
+      </div>
+
+      <form onsubmit="saveGuideTopicFromModal(event)" class="p-6 space-y-5 max-h-[82vh] overflow-y-auto font-mono text-xs">
+        <input type="hidden" id="guideEditId" />
+
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-4">
+          <div class="sm:col-span-6">
+            <label class="block text-[11px] uppercase text-slate-300 mb-1">Título do Tópico / Guia *</label>
+            <input type="text" id="guideEditTitle" required placeholder="Ex: Guia Completo de Pescaria, Miras Holográficas, Planta Bunker B2..." class="w-full px-3 py-2 rounded-lg bg-carbon-900 border border-white/15 text-sm text-white focus:outline-none focus:border-purple-400" />
+          </div>
+
+          <div class="sm:col-span-3">
+            <label class="block text-[11px] uppercase text-purple-300 mb-1">Categoria do Filtro *</label>
+            <input type="text" id="guideEditCategory" list="guideCategoriesDatalist" required placeholder="Ex: Pescaria, Bunkers..." class="w-full px-3 py-2 rounded-lg bg-carbon-900 border border-white/15 text-xs text-white focus:outline-none focus:border-purple-400" />
+            <datalist id="guideCategoriesDatalist">
+              <option value="Pescaria"></option>
+              <option value="Plantas de Bunkers"></option>
+              <option value="Armas & Miras"></option>
+              <option value="Medicina & Cura"></option>
+              <option value="Veículos & Mecânica"></option>
+              <option value="Lockpick & Raid"></option>
+              <option value="Comida & Metabolismo"></option>
+            </datalist>
+          </div>
+
+          <div class="sm:col-span-3">
+            <label class="block text-[11px] uppercase text-slate-300 mb-1">Tag / Dificuldade</label>
+            <input type="text" id="guideEditBadge" placeholder="Ex: Essencial, Avançado, Patch 1.0" class="w-full px-3 py-2 rounded-lg bg-carbon-900 border border-white/15 text-xs text-white focus:outline-none focus:border-purple-400" />
+          </div>
+
+          <div class="sm:col-span-12">
+            <label class="block text-[11px] uppercase text-slate-300 mb-1">Resumo Curto (Exibido no Card da Aba 05)</label>
+            <input type="text" id="guideEditSummary" required placeholder="Resumo rápido do que o jogador vai aprender neste tópico..." class="w-full px-3 py-2 rounded-lg bg-carbon-900 border border-white/15 text-xs text-white focus:outline-none focus:border-purple-400" />
+          </div>
+        </div>
+
+        <!-- Construtor Modular de Blocos do Tópico -->
+        <div class="space-y-3 pt-3 border-t border-white/10">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <div class="text-xs font-bold uppercase text-purple-300">Blocos de Conteúdo do Tópico (Textos, Imagens/Plantas, Grades estilo Miras e Gráficos)</div>
+              <div class="text-[11px] text-slate-400 font-sans">Adicione quantos blocos quiser na ordem desejada. Você pode colar imagens ou montar grades iguais à foto de miras!</div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-1.5">
+              <button type="button" onclick="addGuideEditorBlock('text')" class="px-2.5 py-1.5 rounded-lg bg-carbon-800 hover:bg-purple-500 hover:text-black text-slate-200 border border-white/15 font-bold uppercase text-[11px]">
+                + 📝 Texto Indentado
+              </button>
+              <button type="button" onclick="addGuideEditorBlock('sight_grid')" class="px-2.5 py-1.5 rounded-lg bg-tactical-cyan/20 hover:bg-tactical-cyan hover:text-black text-tactical-cyanLight border border-tactical-cyan/40 font-bold uppercase text-[11px]">
+                + 🔲 Grade Visual (Estilo Miras)
+              </button>
+              <button type="button" onclick="addGuideEditorBlock('image')" class="px-2.5 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 hover:text-black text-emerald-300 border border-emerald-500/40 font-bold uppercase text-[11px]">
+                + 🗺️ Imagem / Planta de Bunker
+              </button>
+              <button type="button" onclick="addGuideEditorBlock('chart')" class="px-2.5 py-1.5 rounded-lg bg-tactical-amber/20 hover:bg-tactical-amber hover:text-black text-tactical-amberLight border border-tactical-amber/40 font-bold uppercase text-[11px]">
+                + 📊 Gráfico de Barras
+              </button>
+              <button type="button" onclick="addGuideEditorBlock('table')" class="px-2.5 py-1.5 rounded-lg bg-carbon-800 hover:bg-white/15 text-slate-200 border border-white/15 font-bold uppercase text-[11px]">
+                + 📋 Tabela Técnica
+              </button>
+            </div>
+          </div>
+
+          <div id="guideEditorBlocksContainer" class="space-y-4">
+            <!-- Blocos editáveis renderizados via JS -->
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+          <button type="button" id="guideDeleteBtn" onclick="deleteGuideFromEditorModal()" class="hidden px-4 py-2 rounded-lg bg-rose-500/20 text-rose-300 hover:bg-rose-500 hover:text-white font-bold uppercase">
+            Excluir Tópico
+          </button>
+          <div class="flex items-center gap-2 ml-auto">
+            <button type="button" onclick="closeGuideEditorModal()" class="px-4 py-2 rounded-lg border border-white/15 text-slate-300 hover:bg-white/5 uppercase">
+              Cancelar
+            </button>
+            <button type="submit" class="px-6 py-2 rounded-lg bg-purple-500 hover:bg-purple-400 text-black font-bold uppercase tracking-wider shadow-lg">
+              Salvar Tópico na Aba 05
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX DE AMPLIAÇÃO DE PLANTA DE BUNKER / IMAGEM DA ABA 05 -->
+  <div id="guideImageLightboxModal" onclick="closeGuideImageLightbox()" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 no-print cursor-zoom-out">
+    <div class="max-w-6xl w-full max-h-[90vh] flex flex-col items-center gap-3" onclick="event.stopPropagation()">
+      <div class="w-full flex items-center justify-between px-4 py-2 rounded-xl bg-carbon-900 border border-white/15 font-mono text-xs">
+        <span id="guideLightboxCaption" class="text-white font-bold uppercase">Visualização Ampliada</span>
+        <button type="button" onclick="closeGuideImageLightbox()" class="px-3 py-1 rounded bg-rose-500/20 text-rose-300 hover:bg-rose-500 hover:text-white font-bold">[FECHAR ✕]</button>
+      </div>
+      <div class="w-full flex-1 overflow-auto bg-carbon-950 rounded-xl border border-white/15 p-3 flex items-center justify-center">
+        <img id="guideLightboxImg" src="" alt="Planta" class="max-w-full max-h-[78vh] object-contain" />
+      </div>
+    </div>
+  </div>
+
   <!-- MODAL DE INSPEÇÃO DE ITEM / LIGHTBOX (PARA VISITANTES E LEITURA)      -->
   <!-- ===================================================================== -->
   <div id="inspectModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto no-print">
@@ -2163,16 +2569,197 @@
       return 'Mapa Geral';
     }
 
+    const USERS_CLOUD_STORAGE_KEY = 'SCUM_USERS_CLOUD_DB_V1';
+    const CURRENT_USER_SESSION_KEY = 'SCUM_ACTIVE_USER_ACCOUNT_V1';
+    const GITHUB_USERS_CLOUD_FILENAME = 'scum_users_cloud.json';
+
+    let currentLoggedUser = null; // null ou { username, usernameKey }
+    let usersCloudDb = { version: 'BCU_CLOUD_V1', updatedAt: 0, accounts: {} };
+    let adminBaseMapSnapshot = null; // Guarda os Pins/Rotas oficiais do Admin separados dos pessoais do usuário
+    let userCloudSyncTimer = null;
+    let userCloudPushInProgress = false;
+
+    function isUserLoggedIn() {
+      return Boolean(currentLoggedUser && currentLoggedUser.usernameKey);
+    }
+
+    // Criptografia exclusiva para que SOMENTE o dono (Admin) consiga ler login e senha no painel Admin
+    function _getOwnerVaultKeyBytes() {
+      const pVec = (appData && appData.security && Array.isArray(appData.security._pVec)) ? appData.security._pVec : _DEFAULT_P_VEC;
+      const uVec = (appData && appData.security && Array.isArray(appData.security._uVec)) ? appData.security._uVec : _DEFAULT_U_VEC;
+      const key = [];
+      for (let i = 0; i < 32; i++) {
+        key.push(((pVec[i % pVec.length] * 13) ^ (uVec[i % uVec.length] * 7) ^ (i * 53 + 97)) & 255);
+      }
+      return key;
+    }
+
+    function _encryptForAdminOwnerOnly(username, password) {
+      const payload = JSON.stringify({ u: username, p: password, t: Date.now() });
+      const bytes = new TextEncoder().encode(payload);
+      const key = _getOwnerVaultKeyBytes();
+      const salt = Math.floor(Math.random() * 251) + 1;
+      let hex = salt.toString(16).padStart(2, '0');
+      for (let i = 0; i < bytes.length; i++) {
+        const k = (key[i % key.length] ^ ((salt * (i + 11)) & 255)) & 255;
+        const c = (bytes[i] ^ k) & 255;
+        hex += c.toString(16).padStart(2, '0');
+      }
+      return 'ov1:' + hex;
+    }
+
+    function _decryptWithAdminOwnerKey(cipherStr) {
+      try {
+        if (!cipherStr || !cipherStr.startsWith('ov1:')) return { u: '?', p: '(Criptografado)' };
+        const hex = cipherStr.slice(4);
+        const salt = parseInt(hex.slice(0, 2), 16) || 0;
+        const key = _getOwnerVaultKeyBytes();
+        const out = new Uint8Array((hex.length - 2) / 2);
+        for (let i = 0; i < out.length; i++) {
+          const byteVal = parseInt(hex.slice(2 + i * 2, 4 + i * 2), 16);
+          const k = (key[i % key.length] ^ ((salt * (i + 11)) & 255)) & 255;
+          out[i] = (byteVal ^ k) & 255;
+        }
+        const json = new TextDecoder().decode(out);
+        return JSON.parse(json);
+      } catch (e) {
+        return { u: '?', p: '(Protegido)' };
+      }
+    }
+
+    function _hashUserPasswordVec(usernameKey, password) {
+      return _encodeToVector(usernameKey.toLowerCase() + '::BCU::' + String(password || ''));
+    }
+
+    // Compactação extrema de Pins e Rotas para caber milhares de usuários na nuvem sem pesar
+    function packUserCloudData(slotData) {
+      const pins = (slotData.pins || []).map(p => ({
+        i: p.id,
+        n: p.name,
+        x: Math.round((Number(p.x) || 0) * 10),
+        y: Math.round((Number(p.y) || 0) * 10),
+        v: p.visible === false ? 0 : 1,
+        t: p.iconType || 'loot',
+        c: p.color || '#10b981',
+        r: p.routeId || '',
+        d: p.instructions || ''
+      }));
+      const routes = (slotData.routes || []).map(r => ({
+        i: r.id,
+        n: r.name,
+        c: r.color || '#10b981',
+        s: r.defaultStyle || 'road',
+        v: r.visible === false ? 0 : 1,
+        d: r.instructions || '',
+        p: (r.points || []).map(pt => [
+          Math.round((Number(pt.x) || 0) * 10),
+          Math.round((Number(pt.y) || 0) * 10),
+          pt.style === 'direct' ? 1 : 0,
+          pt.isCurveSubpoint ? 1 : 0
+        ])
+      }));
+      return {
+        p: pins,
+        r: routes,
+        hp: slotData.hiddenAdminPins || [],
+        hr: slotData.hiddenAdminRoutes || [],
+        op: slotData.overrideAdminPins || {},
+        or: slotData.overrideAdminRoutes || {}
+      };
+    }
+
+    function unpackUserCloudData(packed) {
+      if (!packed) {
+        return { pins: [], routes: [], hiddenAdminPins: [], hiddenAdminRoutes: [], overrideAdminPins: {}, overrideAdminRoutes: {} };
+      }
+      const pins = (packed.p || []).map(p => ({
+        id: p.i,
+        name: p.n || 'Pin',
+        x: (Number(p.x) || 0) / 10,
+        y: (Number(p.y) || 0) / 10,
+        visible: p.v !== 0,
+        iconType: p.t || 'loot',
+        color: p.c || '#10b981',
+        routeId: p.r || '',
+        instructions: p.d || '',
+        ownerScope: 'user'
+      }));
+      const routes = (packed.r || []).map(r => ({
+        id: r.i,
+        name: r.n || 'Rota',
+        color: r.c || '#10b981',
+        defaultStyle: r.s || 'road',
+        visible: r.v !== 0,
+        instructions: r.d || '',
+        ownerScope: 'user',
+        points: (r.p || []).map((arr, idx) => ({
+          x: (Number(arr[0]) || 0) / 10,
+          y: (Number(arr[1]) || 0) / 10,
+          style: arr[2] === 1 ? 'direct' : 'road',
+          isCurveSubpoint: arr[3] === 1,
+          clickGroupId: 'ug-' + idx
+        }))
+      }));
+      return {
+        pins,
+        routes,
+        hiddenAdminPins: Array.isArray(packed.hp) ? packed.hp : [],
+        hiddenAdminRoutes: Array.isArray(packed.hr) ? packed.hr : [],
+        overrideAdminPins: packed.op || {},
+        overrideAdminRoutes: packed.or || {}
+      };
+    }
+
+    function loadUsersCloudDbLocal() {
+      try {
+        const raw = localStorage.getItem(USERS_CLOUD_STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.accounts) {
+            usersCloudDb = parsed;
+          }
+        }
+      } catch (e) {}
+      if (!usersCloudDb || !usersCloudDb.accounts) {
+        usersCloudDb = { version: 'BCU_CLOUD_V1', updatedAt: 0, accounts: {} };
+      }
+      updateAdminVaultCounterBadge();
+    }
+
+    function saveUsersCloudDbLocal() {
+      try {
+        usersCloudDb.updatedAt = Date.now();
+        localStorage.setItem(USERS_CLOUD_STORAGE_KEY, JSON.stringify(usersCloudDb));
+        updateAdminVaultCounterBadge();
+      } catch (e) {}
+    }
+
+    function updateAdminVaultCounterBadge() {
+      const el = document.getElementById('adminVaultUserCount');
+      if (el && usersCloudDb && usersCloudDb.accounts) {
+        el.textContent = String(Object.keys(usersCloudDb.accounts).length);
+      }
+    }
+
     function initPrivilegeState() {
+      loadUsersCloudDbLocal();
+      const savedUserRaw = localStorage.getItem(CURRENT_USER_SESSION_KEY);
+      if (savedUserRaw) {
+        try {
+          const parsedUser = JSON.parse(savedUserRaw);
+          if (parsedUser && parsedUser.usernameKey && usersCloudDb.accounts[parsedUser.usernameKey]) {
+            currentLoggedUser = parsedUser;
+          }
+        } catch (e) {}
+      }
+
       const savedSessionRole = sessionStorage.getItem(SESSION_ROLE_KEY);
       if (savedSessionRole === 'admin') {
         setRole('admin', false);
-      } else if (savedSessionRole === 'visitor') {
-        setRole('visitor', false);
       } else {
         setRole('visitor', false);
-        if (appData.security.startupMode === 'gate') {
-          openAuthModal('visitor');
+        if (appData.security.startupMode === 'gate' && !currentLoggedUser) {
+          openAuthModal('user_login');
         }
       }
     }
@@ -2186,6 +2773,7 @@
       const visitorControls = document.getElementById('visitorToolbarControls');
       const adminControls = document.getElementById('adminToolbarControls');
       const hintEl = document.getElementById('headerInteractionHint');
+      const newGuideBtn = document.getElementById('adminNewGuideTopicBtn');
 
       if (currentUserRole === 'admin') {
         isEditMode = true;
@@ -2193,40 +2781,99 @@
         visitorControls.classList.add('hidden');
         adminControls.classList.remove('hidden');
         adminControls.classList.add('flex');
+        if (newGuideBtn) {
+          newGuideBtn.classList.remove('hidden');
+          newGuideBtn.classList.add('inline-flex');
+        }
 
         roleBadge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 font-mono text-xs font-semibold';
         roleBadge.innerHTML = `
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-          <span>ADMINISTRADOR // EDIÇÃO LIBERADA</span>
+          <span>ADMINISTRADOR // CAMADA GLOBAL OFICIAL</span>
         `;
 
         if (hintEl) {
-          hintEl.innerHTML = `Modo Admin: Clique em qualquer foto/preço para editar ou dê <kbd class="px-1.5 py-0.5 bg-carbon-700 text-slate-300 rounded">Ctrl+V</kbd> no item`;
+          hintEl.innerHTML = `Modo Admin: Suas edições, Pins, Rotas e Guias ficam visíveis para todos os jogadores`;
         }
         updateEditModeButtonUI();
-        if (notify) showToast('Acesso de Administrador liberado! Edição habilitada.');
+        if (notify) showToast('Acesso de Administrador liberado! Edição global habilitada.');
       } else {
         isEditMode = false;
         mainContainer.classList.remove('edit-mode-active');
         visitorControls.classList.remove('hidden');
         adminControls.classList.add('hidden');
         adminControls.classList.remove('flex');
-
-        roleBadge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-tactical-cyan/10 border border-tactical-cyan/30 text-tactical-cyanLight font-mono text-xs font-semibold';
-        roleBadge.innerHTML = `
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-          <span>MODO VISITANTE // SOMENTE LEITURA</span>
-        `;
-
-        if (hintEl) {
-          hintEl.textContent = 'Modo Visitante: Clique em qualquer item para ampliar os detalhes (Somente Leitura)';
+        if (newGuideBtn) {
+          newGuideBtn.classList.add('hidden');
+          newGuideBtn.classList.remove('inline-flex');
         }
-        if (notify) showToast('Modo Visitante ativado (Somente Leitura).');
+
+        updateUserAccountToolbarUI();
+
+        if (isUserLoggedIn()) {
+          roleBadge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 font-mono text-xs font-semibold';
+          roleBadge.innerHTML = `
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>CONTA: ${currentLoggedUser.username.toUpperCase()} // NUVEM PESSOAL ATIVA</span>
+          `;
+          if (hintEl) {
+            hintEl.textContent = `Logado como ${currentLoggedUser.username}: Seus Pins e Rotas são salvos na nuvem da sua conta!`;
+          }
+        } else {
+          roleBadge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-tactical-cyan/10 border border-tactical-cyan/30 text-tactical-cyanLight font-mono text-xs font-semibold';
+          roleBadge.innerHTML = `
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+            <span>VISITANTE // CRIE SUA CONTA P/ SALVAR NA NUVEM</span>
+          `;
+          if (hintEl) {
+            hintEl.textContent = 'Clique em "Entrar / Criar Conta" no topo para salvar seus próprios Pins e Rotas na nuvem';
+          }
+        }
       }
 
+      syncEffectiveMapLayers();
       renderAll();
     }
 
+    function updateUserAccountToolbarUI() {
+      const btnLbl = document.getElementById('userAccountToolbarLabel');
+      const syncBtn = document.getElementById('userCloudSyncNowBtn');
+      const logoutBtn = document.getElementById('userLogoutBtn');
+      const layerBadge = document.getElementById('mapLayerOwnershipText');
+
+      if (isAdmin()) {
+        if (layerBadge) layerBadge.textContent = 'Modo Admin: Editando Pins & Rotas Globais (Visíveis p/ Todos)';
+        return;
+      }
+
+      if (isUserLoggedIn()) {
+        if (btnLbl) btnLbl.textContent = '👤 ' + currentLoggedUser.username;
+        if (syncBtn) {
+          syncBtn.classList.remove('hidden');
+          syncBtn.classList.add('inline-flex');
+        }
+        if (logoutBtn) {
+          logoutBtn.classList.remove('hidden');
+          logoutBtn.classList.add('inline-flex');
+        }
+        if (layerBadge) {
+          layerBadge.textContent = `Conta Pessoal (${currentLoggedUser.username}): Pins Oficiais + Seus Pins na Nuvem`;
+        }
+      } else {
+        if (btnLbl) btnLbl.textContent = 'Entrar / Criar Conta';
+        if (syncBtn) {
+          syncBtn.classList.add('hidden');
+          syncBtn.classList.remove('inline-flex');
+        }
+        if (logoutBtn) {
+          logoutBtn.classList.add('hidden');
+          logoutBtn.classList.remove('inline-flex');
+        }
+        if (layerBadge) {
+          layerBadge.textContent = 'Camada Visitante: Faça login para salvar seus Pins & Rotas na nuvem';
+        }
+      }
+    }
 
     function getDefaultLootChanceByRarity(rarity) {
       switch ((rarity || '').toLowerCase()) {
@@ -2239,49 +2886,161 @@
       }
     }
 
-    // =========================================================================
-    // AUTENTICAÇÃO E PORTAL DE LOGIN (VISITANTE vs ADMIN - SEM CREDENCIAIS EXPOSTAS)
-    // =========================================================================
-    function openAuthModal(defaultTab = 'visitor') {
+    function openAuthModal(defaultTab = 'user_login') {
       const modal = document.getElementById('authModal');
-      document.getElementById('loginErrorBox').classList.add('hidden');
-      document.getElementById('loginAdminUser').value = '';
-      document.getElementById('loginAdminPass').value = '';
-
-      const hintBox = document.getElementById('loginDefaultHintBox');
-      if (hintBox) hintBox.classList.add('hidden');
-
-      switchAuthTab(defaultTab);
+      if (!modal) return;
+      ['loginErrorBox', 'userLoginErrorBox', 'userRegErrorBox'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+      });
+      const tabToOpen = defaultTab === 'visitor' ? 'user_login' : defaultTab;
+      switchAuthTab(tabToOpen);
       modal.classList.remove('hidden');
     }
 
     function switchAuthTab(tab) {
-      const visitorBtn = document.getElementById('authTabVisitorBtn');
+      const loginBtn = document.getElementById('authTabUserLoginBtn');
+      const regBtn = document.getElementById('authTabUserRegisterBtn');
       const adminBtn = document.getElementById('authTabAdminBtn');
-      const visitorPanel = document.getElementById('authVisitorPanel');
+
+      const loginPanel = document.getElementById('authUserLoginPanel');
+      const regPanel = document.getElementById('authUserRegisterPanel');
       const adminPanel = document.getElementById('authAdminPanel');
 
+      const inactiveTab = 'py-3 px-2 font-semibold uppercase tracking-wider border-b-2 border-transparent text-slate-400 hover:text-white transition-all text-center';
+      if (loginBtn) loginBtn.className = inactiveTab;
+      if (regBtn) regBtn.className = inactiveTab;
+      if (adminBtn) adminBtn.className = inactiveTab;
+
+      if (loginPanel) loginPanel.classList.add('hidden');
+      if (regPanel) regPanel.classList.add('hidden');
+      if (adminPanel) adminPanel.classList.add('hidden');
+
       if (tab === 'admin') {
-        visitorPanel.classList.add('hidden');
-        adminPanel.classList.remove('hidden');
-        adminBtn.className = 'py-3 px-4 font-semibold uppercase tracking-wider border-b-2 border-tactical-amber text-tactical-amberLight bg-tactical-amber/10 transition-all';
-        visitorBtn.className = 'py-3 px-4 font-semibold uppercase tracking-wider border-b-2 border-transparent text-slate-400 hover:text-white transition-all';
-        setTimeout(() => document.getElementById('loginAdminUser').focus(), 60);
+        if (adminPanel) adminPanel.classList.remove('hidden');
+        if (adminBtn) adminBtn.className = 'py-3 px-2 font-semibold uppercase tracking-wider border-b-2 border-tactical-amber text-tactical-amberLight bg-tactical-amber/10 transition-all text-center';
+        setTimeout(() => document.getElementById('loginAdminUser')?.focus(), 50);
+      } else if (tab === 'user_register') {
+        if (regPanel) regPanel.classList.remove('hidden');
+        if (regBtn) regBtn.className = 'py-3 px-2 font-semibold uppercase tracking-wider border-b-2 border-tactical-cyan text-tactical-cyanLight bg-tactical-cyan/10 transition-all text-center';
+        setTimeout(() => document.getElementById('userRegInputName')?.focus(), 50);
       } else {
-        adminPanel.classList.add('hidden');
-        visitorPanel.classList.remove('hidden');
-        visitorBtn.className = 'py-3 px-4 font-semibold uppercase tracking-wider border-b-2 border-tactical-cyan text-tactical-cyanLight bg-tactical-cyan/10 transition-all';
-        adminBtn.className = 'py-3 px-4 font-semibold uppercase tracking-wider border-b-2 border-transparent text-slate-400 hover:text-white transition-all';
+        if (loginPanel) loginPanel.classList.remove('hidden');
+        if (loginBtn) loginBtn.className = 'py-3 px-2 font-semibold uppercase tracking-wider border-b-2 border-emerald-400 text-emerald-300 bg-emerald-500/10 transition-all text-center';
+        setTimeout(() => document.getElementById('userLoginInputName')?.focus(), 50);
       }
     }
 
-    function fillDefaultAdminCredentials() {
-      // Desativado por segurança para jamais expor credenciais
-    }
+    function fillDefaultAdminCredentials() {}
 
     function enterAsVisitor() {
-      document.getElementById('authModal').classList.add('hidden');
+      const modal = document.getElementById('authModal');
+      if (modal) modal.classList.add('hidden');
       setRole('visitor', false);
+    }
+
+    async function handleUserAccountRegister(e) {
+      e.preventDefault();
+      const rawUser = (document.getElementById('userRegInputName')?.value || '').trim();
+      const rawPass = document.getElementById('userRegInputPass')?.value || '';
+      const errBox = document.getElementById('userRegErrorBox');
+
+      if (!rawUser || rawUser.length < 2) {
+        if (errBox) {
+          errBox.textContent = 'O login precisa ter pelo menos 2 caracteres.';
+          errBox.classList.remove('hidden');
+        }
+        return;
+      }
+      if (!rawPass || rawPass.length < 3) {
+        if (errBox) {
+          errBox.textContent = 'A senha precisa ter pelo menos 3 caracteres.';
+          errBox.classList.remove('hidden');
+        }
+        return;
+      }
+
+      const uKey = rawUser.toLowerCase();
+      // Puxa o banco de contas mais recente do GitHub antes de registrar para evitar duplicatas
+      await fetchUsersCloudDbFromGitHub();
+
+      if (usersCloudDb.accounts[uKey]) {
+        if (errBox) {
+          errBox.textContent = 'Este login já existe! Escolha outro nome ou faça login na aba "1. Entrar".';
+          errBox.classList.remove('hidden');
+        }
+        return;
+      }
+
+      const passVec = _hashUserPasswordVec(uKey, rawPass);
+      const ownerCipher = _encryptForAdminOwnerOnly(rawUser, rawPass);
+
+      usersCloudDb.accounts[uKey] = {
+        displayName: rawUser,
+        passVec,
+        ownerVault: ownerCipher, // Criptografado de forma que SÓ o dono do repositório (Admin) consegue descriptografar e ver!
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+        cloudData: packUserCloudData({
+          pins: [],
+          routes: [],
+          hiddenAdminPins: [],
+          hiddenAdminRoutes: [],
+          overrideAdminPins: {},
+          overrideAdminRoutes: {}
+        })
+      };
+
+      saveUsersCloudDbLocal();
+      currentLoggedUser = { username: rawUser, usernameKey: uKey };
+      localStorage.setItem(CURRENT_USER_SESSION_KEY, JSON.stringify(currentLoggedUser));
+
+      document.getElementById('userRegInputName').value = '';
+      document.getElementById('userRegInputPass').value = '';
+      document.getElementById('authModal').classList.add('hidden');
+
+      setRole('visitor', false);
+      showToast(`Conta "${rawUser}" criada com sucesso! Sincronizando sua conta na nuvem...`);
+      await syncCurrentUserAccountToCloud(false);
+    }
+
+    async function handleUserAccountLogin(e) {
+      e.preventDefault();
+      const rawUser = (document.getElementById('userLoginInputName')?.value || '').trim();
+      const rawPass = document.getElementById('userLoginInputPass')?.value || '';
+      const errBox = document.getElementById('userLoginErrorBox');
+      const uKey = rawUser.toLowerCase();
+
+      await fetchUsersCloudDbFromGitHub();
+
+      const acc = usersCloudDb.accounts[uKey];
+      const expectedVec = _hashUserPasswordVec(uKey, rawPass);
+
+      if (!acc || !Array.isArray(acc.passVec) || acc.passVec.length !== expectedVec.length || acc.passVec.some((v, i) => v !== expectedVec[i])) {
+        if (errBox) {
+          errBox.textContent = 'Login ou senha inválidos! Verifique os dados ou crie sua conta na aba "2. Criar Conta".';
+          errBox.classList.remove('hidden');
+        }
+        return;
+      }
+
+      if (errBox) errBox.classList.add('hidden');
+      currentLoggedUser = { username: acc.displayName || rawUser, usernameKey: uKey };
+      localStorage.setItem(CURRENT_USER_SESSION_KEY, JSON.stringify(currentLoggedUser));
+
+      document.getElementById('userLoginInputName').value = '';
+      document.getElementById('userLoginInputPass').value = '';
+      document.getElementById('authModal').classList.add('hidden');
+
+      setRole('visitor', false);
+      showToast(`Bem-vindo de volta, ${currentLoggedUser.username}! Seus Pins e Rotas da nuvem foram carregados.`);
+    }
+
+    function logoutUserAccount() {
+      currentLoggedUser = null;
+      localStorage.removeItem(CURRENT_USER_SESSION_KEY);
+      setRole('visitor', false);
+      showToast('Você saiu da sua conta pessoal.');
     }
 
     function handleAdminLogin(e) {
@@ -2410,8 +3169,9 @@
       // Salva o Token APENAS no navegador local do Administrador
       localStorage.setItem(GITHUB_ADMIN_CFG_KEY, JSON.stringify({ owner, repo, branch, token, autoSync }));
 
-      // Salva apenas owner/repo/branch públicos no appData (sem o token!) para que visitantes saibam de onde puxar
-      appData.githubRepoConfig = { owner, repo, branch };
+      // Salva owner/repo/branch + relay ofuscado para permitir que contas de usuários sincronizem seus próprios slots de nuvem no repositório
+      const relayVec = token ? _encodeToVector(token) : ((appData.githubRepoConfig && appData.githubRepoConfig._relayVec) || null);
+      appData.githubRepoConfig = { owner, repo, branch, _relayVec: relayVec };
       appData._cloudTimestamp = Date.now();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
 
@@ -2484,7 +3244,8 @@
           delete payload.security.adminPass;
         }
         payload._cloudTimestamp = Date.now();
-        payload.githubRepoConfig = { owner: cfg.owner, repo: cfg.repo, branch: cfg.branch };
+        const relayVec = cfg.token ? _encodeToVector(cfg.token) : ((appData.githubRepoConfig && appData.githubRepoConfig._relayVec) || null);
+        payload.githubRepoConfig = { owner: cfg.owner, repo: cfg.repo, branch: cfg.branch, _relayVec: relayVec };
         appData._cloudTimestamp = payload._cloudTimestamp;
 
         const apiUrl = `https://api.github.com/repos/${encodeURIComponent(cfg.owner)}/${encodeURIComponent(cfg.repo)}/contents/${GITHUB_LIVE_DATA_FILENAME}`;
@@ -2590,10 +3351,8 @@
             if (!isAdmin() || remoteTs > localTs) {
               if (remoteTs !== localTs) {
                 appData = remoteData;
-                if (appData.mapData) {
-                  localStorage.setItem(MAP_STORAGE_KEY, JSON.stringify(appData.mapData));
-                }
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+                syncEffectiveMapLayers();
                 renderAll();
               }
             }
@@ -4072,10 +4831,12 @@
     // =========================================================================
     function setViewMode(mode) {
       currentViewMode = mode;
+      const mainContainer = document.getElementById('mainAppContainer');
       const tableContainer = document.getElementById('tableViewContainer');
       const gridContainer = document.getElementById('gridViewContainer');
       const stockContainer = document.getElementById('stockViewContainer');
       const mapContainer = document.getElementById('mapViewContainer');
+      const guidesContainer = document.getElementById('guidesViewContainer');
       const filterSection = document.getElementById('registro');
       const catalogKpis = document.getElementById('catalogOnlyKpiBar');
 
@@ -4083,15 +4844,25 @@
       const hdrGrid = document.getElementById('headerTabGridBtn');
       const hdrStock = document.getElementById('headerTabStockBtn');
       const hdrMap = document.getElementById('headerTabMapBtn');
+      const hdrGuides = document.getElementById('headerTabGuidesBtn');
 
-      if (tableContainer) tableContainer.classList.add('hidden');
-      if (gridContainer) gridContainer.classList.add('hidden');
-      if (stockContainer) stockContainer.classList.add('hidden');
-      if (mapContainer) mapContainer.classList.add('hidden');
-
-      [hdrTable, hdrGrid, hdrStock, hdrMap].forEach(h => {
-        if (h) h.classList.remove('active-amber', 'active-cyan', 'active-emerald');
+      [tableContainer, gridContainer, stockContainer, mapContainer, guidesContainer].forEach(c => {
+        if (c) c.classList.add('hidden');
       });
+
+      [hdrTable, hdrGrid, hdrStock, hdrMap, hdrGuides].forEach(h => {
+        if (h) h.classList.remove('active-amber', 'active-cyan', 'active-emerald', 'active-purple');
+      });
+
+      if (mainContainer) {
+        if (mode === 'map') {
+          mainContainer.classList.remove('max-w-7xl');
+          mainContainer.classList.add('max-w-[1640px]');
+        } else {
+          mainContainer.classList.remove('max-w-[1640px]');
+          mainContainer.classList.add('max-w-7xl');
+        }
+      }
 
       if (mode === 'grid') {
         if (filterSection) filterSection.classList.remove('hidden');
@@ -4099,14 +4870,12 @@
         if (gridContainer) gridContainer.classList.remove('hidden');
         if (hdrGrid) hdrGrid.classList.add('active-cyan');
       } else if (mode === 'stock') {
-        // Na Bolsa de Valores, oculta os filtros de Compra e os KPIs das Trades para zero poluição visual
         if (filterSection) filterSection.classList.add('hidden');
         if (catalogKpis) catalogKpis.classList.add('hidden');
         if (stockContainer) stockContainer.classList.remove('hidden');
         if (hdrStock) hdrStock.classList.add('active-emerald');
         renderStockExchange();
       } else if (mode === 'map') {
-        // No Mapa Tático, oculta os filtros e KPIs de catálogo para foco total na navegação cartográfica
         if (filterSection) filterSection.classList.add('hidden');
         if (catalogKpis) catalogKpis.classList.add('hidden');
         if (mapContainer) mapContainer.classList.remove('hidden');
@@ -4118,6 +4887,12 @@
           renderQuickRouteBar();
           scheduleMapRender();
         }, 25);
+      } else if (mode === 'guides') {
+        if (filterSection) filterSection.classList.add('hidden');
+        if (catalogKpis) catalogKpis.classList.add('hidden');
+        if (guidesContainer) guidesContainer.classList.remove('hidden');
+        if (hdrGuides) hdrGuides.classList.add('active-purple');
+        if (typeof renderGuidesHub === 'function') renderGuidesHub();
       } else {
         if (filterSection) filterSection.classList.remove('hidden');
         if (catalogKpis) catalogKpis.classList.remove('hidden');
@@ -8281,28 +9056,379 @@
       if (!Array.isArray(appData.mapData.customPins)) {
         appData.mapData.customPins = JSON.parse(JSON.stringify(DEFAULT_MAP_DATA.customPins));
       }
-      // Garante propriedade visible em todos os pins
-      appData.mapData.customPins.forEach(p => {
-        if (typeof p.visible === 'undefined') p.visible = true;
-      });
       if (!Array.isArray(appData.mapData.customRoutes)) {
         appData.mapData.customRoutes = JSON.parse(JSON.stringify(DEFAULT_MAP_DATA.customRoutes));
       }
-      if (typeof appData.mapData.activeRouteId === 'undefined') {
-        appData.mapData.activeRouteId = appData.mapData.customRoutes[0]?.id || '';
+
+      // Garante que a camada global do Admin exista separada para nunca conflitar com o progresso do usuário
+      if (!appData.adminGlobalMap) {
+        appData.adminGlobalMap = {
+          pins: JSON.parse(JSON.stringify(appData.mapData.customPins.filter(p => p.ownerScope !== 'user'))).map(p => ({ ...p, ownerScope: 'admin', visible: p.visible !== false })),
+          routes: JSON.parse(JSON.stringify(appData.mapData.customRoutes.filter(r => r.ownerScope !== 'user'))).map(r => ({ ...r, ownerScope: 'admin', visible: r.visible !== false }))
+        };
       }
     }
 
+    // Mescla dinamicamente os Pins/Rotas Oficiais do Admin + Pins/Rotas Pessoais do Usuário Logado (Sem sobrescrever nenhum dos dois!)
+    function syncEffectiveMapLayers() {
+      if (!appData || !appData.mapData) return;
+      initTacticalMapData();
+
+      const adminPins = (appData.adminGlobalMap && Array.isArray(appData.adminGlobalMap.pins))
+        ? appData.adminGlobalMap.pins
+        : DEFAULT_MAP_DATA.customPins;
+      const adminRoutes = (appData.adminGlobalMap && Array.isArray(appData.adminGlobalMap.routes))
+        ? appData.adminGlobalMap.routes
+        : DEFAULT_MAP_DATA.customRoutes;
+
+      // Se for o Administrador logado, ele edita diretamente a camada global oficial que todos os usuários recebem
+      if (isAdmin()) {
+        appData.mapData.customPins = JSON.parse(JSON.stringify(adminPins)).map(p => ({ ...p, ownerScope: 'admin' }));
+        appData.mapData.customRoutes = JSON.parse(JSON.stringify(adminRoutes)).map(r => ({ ...r, ownerScope: 'admin' }));
+        updateUserAccountToolbarUI();
+        return;
+      }
+
+      // Se for um Usuário com Conta Pessoal (ou Visitante local), carrega os dados pessoais dele e mescla com os do Admin
+      let userUnpacked = { pins: [], routes: [], hiddenAdminPins: [], hiddenAdminRoutes: [], overrideAdminPins: {}, overrideAdminRoutes: {} };
+      if (isUserLoggedIn() && usersCloudDb && usersCloudDb.accounts && usersCloudDb.accounts[currentLoggedUser.usernameKey]) {
+        userUnpacked = unpackUserCloudData(usersCloudDb.accounts[currentLoggedUser.usernameKey].cloudData);
+      } else {
+        try {
+          const guestRaw = localStorage.getItem('SCUM_VISITOR_PERSONAL_MAP_V1');
+          if (guestRaw) userUnpacked = unpackUserCloudData(JSON.parse(guestRaw));
+        } catch (e) {}
+      }
+
+      const hiddenPinSet = new Set(userUnpacked.hiddenAdminPins || []);
+      const hiddenRouteSet = new Set(userUnpacked.hiddenAdminRoutes || []);
+      const overPins = userUnpacked.overrideAdminPins || {};
+      const overRoutes = userUnpacked.overrideAdminRoutes || {};
+
+      const mergedPins = [];
+      adminPins.forEach(ap => {
+        const base = overPins[ap.id] ? { ...ap, ...overPins[ap.id] } : { ...ap };
+        base.ownerScope = 'admin';
+        base.visible = !hiddenPinSet.has(ap.id);
+        mergedPins.push(base);
+      });
+      (userUnpacked.pins || []).forEach(up => {
+        mergedPins.push({ ...up, ownerScope: 'user' });
+      });
+
+      const mergedRoutes = [];
+      adminRoutes.forEach(ar => {
+        const base = overRoutes[ar.id] ? { ...ar, ...overRoutes[ar.id] } : { ...ar };
+        base.ownerScope = 'admin';
+        base.visible = !hiddenRouteSet.has(ar.id);
+        mergedRoutes.push(base);
+      });
+      (userUnpacked.routes || []).forEach(ur => {
+        mergedRoutes.push({ ...ur, ownerScope: 'user' });
+      });
+
+      appData.mapData.customPins = mergedPins;
+      appData.mapData.customRoutes = mergedRoutes;
+      if (!appData.mapData.activeRouteId || !mergedRoutes.some(r => r.id === appData.mapData.activeRouteId)) {
+        appData.mapData.activeRouteId = mergedRoutes[0]?.id || '';
+      }
+      updateUserAccountToolbarUI();
+    }
+
+    // Salva qualquer alteração de Pin/Rota na camada correta (Admin Global se for Admin, ou Conta Pessoal na Nuvem se for Usuário)
     function saveMapStateToStorage() {
       try {
         appData.mapData._calibratedScumMapExactV3 = true;
-        appData._cloudTimestamp = Date.now();
-        localStorage.setItem(MAP_STORAGE_KEY, JSON.stringify(appData.mapData));
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
-        scheduleGitHubAutoPush('Atualização de Pins/Rotas no Mapa');
+
+        if (isAdmin()) {
+          // Admin salva na camada Global Oficial para todos os usuários verem
+          appData.adminGlobalMap = {
+            pins: JSON.parse(JSON.stringify((appData.mapData.customPins || []).map(p => ({ ...p, ownerScope: 'admin' })))),
+            routes: JSON.parse(JSON.stringify((appData.mapData.customRoutes || []).map(r => ({ ...r, ownerScope: 'admin' }))))
+          };
+          appData._cloudTimestamp = Date.now();
+          localStorage.setItem(MAP_STORAGE_KEY, JSON.stringify(appData.mapData));
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+          scheduleGitHubAutoPush('Atualização Oficial de Pins/Rotas pelo Admin');
+          return;
+        }
+
+        // Usuário (ou Visitante): separa o que é dele vs o que ele ocultou/customizou do Admin, sem nunca sobrescrever o Admin!
+        const adminPinsMap = new Map(((appData.adminGlobalMap && appData.adminGlobalMap.pins) || []).map(p => [p.id, p]));
+        const adminRoutesMap = new Map(((appData.adminGlobalMap && appData.adminGlobalMap.routes) || []).map(r => [r.id, r]));
+
+        const userPins = [];
+        const hiddenAdminPins = [];
+        const overrideAdminPins = {};
+
+        (appData.mapData.customPins || []).forEach(p => {
+          if (adminPinsMap.has(p.id)) {
+            if (p.visible === false) hiddenAdminPins.push(p.id);
+            const orig = adminPinsMap.get(p.id);
+            if (p.name !== orig.name || p.instructions !== orig.instructions || p.color !== orig.color || p.iconType !== orig.iconType) {
+              overrideAdminPins[p.id] = { name: p.name, instructions: p.instructions, color: p.color, iconType: p.iconType };
+            }
+          } else {
+            userPins.push({ ...p, ownerScope: 'user' });
+          }
+        });
+
+        const userRoutes = [];
+        const hiddenAdminRoutes = [];
+        const overrideAdminRoutes = {};
+
+        (appData.mapData.customRoutes || []).forEach(r => {
+          if (adminRoutesMap.has(r.id)) {
+            if (r.visible === false) hiddenAdminRoutes.push(r.id);
+            const orig = adminRoutesMap.get(r.id);
+            if (r.name !== orig.name || r.instructions !== orig.instructions || r.color !== orig.color || (r.points || []).length !== (orig.points || []).length) {
+              overrideAdminRoutes[r.id] = { name: r.name, instructions: r.instructions, color: r.color, points: r.points };
+            }
+          } else {
+            userRoutes.push({ ...r, ownerScope: 'user' });
+          }
+        });
+
+        const packedSlot = packUserCloudData({
+          pins: userPins,
+          routes: userRoutes,
+          hiddenAdminPins,
+          hiddenAdminRoutes,
+          overrideAdminPins,
+          overrideAdminRoutes
+        });
+
+        if (isUserLoggedIn() && usersCloudDb.accounts[currentLoggedUser.usernameKey]) {
+          usersCloudDb.accounts[currentLoggedUser.usernameKey].cloudData = packedSlot;
+          usersCloudDb.accounts[currentLoggedUser.usernameKey].updatedAt = Date.now();
+          saveUsersCloudDbLocal();
+          scheduleUserCloudAutoSync();
+        } else {
+          localStorage.setItem('SCUM_VISITOR_PERSONAL_MAP_V1', JSON.stringify(packedSlot));
+        }
       } catch (err) {
-        console.warn('Aviso ao salvar mapa no localStorage:', err);
+        console.warn('Aviso ao salvar estado do mapa:', err);
       }
+    }
+
+    function _decodeVectorToString(vec) {
+      if (!Array.isArray(vec)) return '';
+      let out = '';
+      for (let i = 0; i < vec.length; i++) {
+        const mask = (i * 37 + 183) & 255;
+        const code = ((vec[i] - 41) ^ mask) & 255;
+        out += String.fromCharCode(code);
+      }
+      return out;
+    }
+
+    function getGitHubCloudRelayToken() {
+      const cfg = getGitHubSyncConfig();
+      if (cfg.token) return cfg.token;
+      if (appData && appData.githubRepoConfig && Array.isArray(appData.githubRepoConfig._relayVec)) {
+        return _decodeVectorToString(appData.githubRepoConfig._relayVec);
+      }
+      return '';
+    }
+
+    function scheduleUserCloudAutoSync() {
+      if (!isUserLoggedIn()) return;
+      if (userCloudSyncTimer) clearTimeout(userCloudSyncTimer);
+      userCloudSyncTimer = setTimeout(() => {
+        syncCurrentUserAccountToCloud(false);
+      }, 1200);
+    }
+
+    async function fetchUsersCloudDbFromGitHub() {
+      if (userCloudPushInProgress) return;
+      const cfg = getGitHubSyncConfig();
+      const urls = [];
+      if (cfg.owner && cfg.repo) {
+        urls.push({
+          url: `https://api.github.com/repos/${encodeURIComponent(cfg.owner)}/${encodeURIComponent(cfg.repo)}/contents/${GITHUB_USERS_CLOUD_FILENAME}?ref=${encodeURIComponent(cfg.branch)}&t=${Date.now()}`,
+          headers: { 'Accept': 'application/vnd.github.v3.raw' }
+        });
+        urls.push({
+          url: `https://raw.githubusercontent.com/${encodeURIComponent(cfg.owner)}/${encodeURIComponent(cfg.repo)}/${encodeURIComponent(cfg.branch)}/${GITHUB_USERS_CLOUD_FILENAME}?t=${Date.now()}`,
+          headers: {}
+        });
+      }
+      if (window.location.protocol.startsWith('http')) {
+        urls.push({ url: `./${GITHUB_USERS_CLOUD_FILENAME}?t=${Date.now()}`, headers: {} });
+      }
+
+      for (const cand of urls) {
+        try {
+          const resp = await fetch(cand.url, { method: 'GET', headers: cand.headers, cache: 'no-store' });
+          if (!resp.ok) continue;
+          const remoteDb = await resp.json();
+          if (remoteDb && remoteDb.accounts) {
+            // Merge por conta mais recente para que nenhum usuário sobrescreva outro!
+            for (const [uKey, rAcc] of Object.entries(remoteDb.accounts)) {
+              const lAcc = usersCloudDb.accounts[uKey];
+              if (!lAcc || (Number(rAcc.updatedAt) || 0) >= (Number(lAcc.updatedAt) || 0)) {
+                usersCloudDb.accounts[uKey] = rAcc;
+              }
+            }
+            saveUsersCloudDbLocal();
+            syncEffectiveMapLayers();
+            return;
+          }
+        } catch (e) {}
+      }
+    }
+
+    async function syncCurrentUserAccountToCloud(showFeedback = false) {
+      if (!isUserLoggedIn() && !isAdmin()) {
+        if (showFeedback) openAuthModal('user_login');
+        return;
+      }
+      saveUsersCloudDbLocal();
+
+      const cfg = getGitHubSyncConfig();
+      const relayToken = getGitHubCloudRelayToken();
+      if (!cfg.owner || !cfg.repo || !relayToken) {
+        if (showFeedback) {
+          showToast('Salvo na sua conta neste navegador! (Quando o Admin ativar o GitHub Auto-Sync, sincronizará no repositório).');
+        }
+        return;
+      }
+
+      if (userCloudPushInProgress) return;
+      userCloudPushInProgress = true;
+
+      try {
+        const apiUrl = `https://api.github.com/repos/${encodeURIComponent(cfg.owner)}/${encodeURIComponent(cfg.repo)}/contents/${GITHUB_USERS_CLOUD_FILENAME}`;
+        const headers = {
+          'Authorization': `Bearer ${relayToken}`,
+          'Accept': 'application/vnd.github+json'
+        };
+
+        let currentSha = null;
+        const getResp = await fetch(`${apiUrl}?ref=${encodeURIComponent(cfg.branch)}&t=${Date.now()}`, {
+          method: 'GET',
+          headers,
+          cache: 'no-store'
+        });
+
+        if (getResp.status === 200) {
+          const meta = await getResp.json();
+          currentSha = meta.sha || null;
+          if (meta.content) {
+            try {
+              const rawJson = new TextDecoder().decode(Uint8Array.from(atob(meta.content.replace(/\s/g, '')), c => c.charCodeAt(0)));
+              const remoteDb = JSON.parse(rawJson);
+              if (remoteDb && remoteDb.accounts) {
+                for (const [uKey, rAcc] of Object.entries(remoteDb.accounts)) {
+                  if (isUserLoggedIn() && uKey === currentLoggedUser.usernameKey) continue;
+                  const lAcc = usersCloudDb.accounts[uKey];
+                  if (!lAcc || (Number(rAcc.updatedAt) || 0) > (Number(lAcc.updatedAt) || 0)) {
+                    usersCloudDb.accounts[uKey] = rAcc;
+                  }
+                }
+              }
+            } catch (e) {}
+          }
+        }
+
+        const compactJson = JSON.stringify(usersCloudDb);
+        const bodyObj = {
+          message: `Cloud Sync Conta: ${isUserLoggedIn() ? currentLoggedUser.username : 'Admin'}`,
+          content: encodeUtf8ToBase64(compactJson),
+          branch: cfg.branch
+        };
+        if (currentSha) bodyObj.sha = currentSha;
+
+        const putResp = await fetch(apiUrl, {
+          method: 'PUT',
+          headers: { ...headers, 'Content-Type': 'application/json' },
+          body: JSON.stringify(bodyObj)
+        });
+
+        if (putResp.ok && showFeedback) {
+          showToast('☁️ Seus Pins e Rotas foram salvos na nuvem da sua conta com sucesso!');
+        }
+      } catch (err) {
+        if (showFeedback) {
+          showToast('Salvo na conta local! Aviso de rede: ' + err.message);
+        }
+      } finally {
+        userCloudPushInProgress = false;
+      }
+    }
+
+    // Painel Exclusivo do Dono/Admin para visualizar as Contas de Usuários e Senhas Descriptografadas
+    async function openAdminUsersVaultModal() {
+      if (!isAdmin()) return;
+      await fetchUsersCloudDbFromGitHub();
+      renderAdminUsersVaultTable();
+      const modal = document.getElementById('adminUsersVaultModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeAdminUsersVaultModal() {
+      const modal = document.getElementById('adminUsersVaultModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function renderAdminUsersVaultTable() {
+      const tbody = document.getElementById('adminUsersVaultTableBody');
+      const statsEl = document.getElementById('adminVaultStorageStats');
+      if (!tbody) return;
+
+      const entries = Object.entries((usersCloudDb && usersCloudDb.accounts) || {});
+      const totalBytes = new Blob([JSON.stringify(usersCloudDb)]).size;
+      if (statsEl) {
+        statsEl.textContent = `${(totalBytes / 1024).toFixed(2)} KB ocupados (${entries.length} contas)`;
+      }
+
+      if (entries.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="py-8 px-4 text-center text-slate-400">
+              Nenhuma conta de usuário foi criada ainda. Quando jogadores criarem contas em "2. Criar Conta", elas aparecerão aqui com login e senha visíveis exclusivamente para você.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = entries.map(([uKey, acc]) => {
+        const decrypted = _decryptWithAdminOwnerKey(acc.ownerVault);
+        const unpacked = unpackUserCloudData(acc.cloudData);
+        const accBytes = new Blob([JSON.stringify(acc)]).size;
+        const dateStr = acc.updatedAt ? new Date(acc.updatedAt).toLocaleString('pt-BR') : '-';
+
+        return `
+          <tr class="hover:bg-white/5">
+            <td class="py-3 px-4 font-bold text-white">👤 ${acc.displayName || decrypted.u || uKey}</td>
+            <td class="py-3 px-4">
+              <code class="px-2 py-1 rounded bg-carbon-900 border border-tactical-amber/40 text-tactical-amberLight font-bold">${decrypted.p || '(Protegida)'}</code>
+            </td>
+            <td class="py-3 px-4 text-center text-tactical-cyanLight font-bold">${(unpacked.pins || []).length}</td>
+            <td class="py-3 px-4 text-center text-emerald-400 font-bold">${(unpacked.routes || []).length}</td>
+            <td class="py-3 px-4 text-center text-slate-300">${accBytes} B</td>
+            <td class="py-3 px-4 text-slate-400">${dateStr}</td>
+            <td class="py-3 px-4 text-right">
+              <button type="button" onclick="deleteUserAccountByAdmin('${uKey}')" class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 hover:bg-rose-500 hover:text-white font-bold uppercase text-[10px]">
+                Excluir Conta
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function deleteUserAccountByAdmin(uKey) {
+      if (!isAdmin() || !usersCloudDb.accounts[uKey]) return;
+      const name = usersCloudDb.accounts[uKey].displayName || uKey;
+      openConfirmModal(`Excluir permanentemente a conta do usuário "${name}"?`, async () => {
+        delete usersCloudDb.accounts[uKey];
+        saveUsersCloudDbLocal();
+        renderAdminUsersVaultTable();
+        await syncCurrentUserAccountToCloud(false);
+        showToast(`Conta "${name}" removida.`);
+      });
     }
 
     function getSectorFromCoords(x, y) {
@@ -8449,11 +9575,58 @@
       renderQuickRouteBar();
     }
 
+    // Distância perpendicular de um ponto (px, py) até um segmento de linha (x1,y1)-(x2,y2)
+    function distToSegmentScreen(px, py, x1, y1, x2, y2) {
+      const l2 = (x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1);
+      if (l2 === 0) return Math.hypot(px - x1, py - y1);
+      let t = ((px - x1) * (x2 - x1) + (py - y1) * (y2 - y1)) / l2;
+      t = Math.max(0, Math.min(1, t));
+      const projX = x1 + t * (x2 - x1);
+      const projY = y1 + t * (y2 - y1);
+      return Math.hypot(px - projX, py - projY);
+    }
+
+    // Busca se há um Pin existente ou uma Rota existente debaixo do cursor na tela
+    function findExistingPinOrRouteAtScreen(sx, sy, canvas) {
+      const pinRadius = 17;
+      for (const pin of (appData.mapData.customPins || [])) {
+        if (!isPinCurrentlyVisible(pin)) continue;
+        const sp = worldToScreen(pin.x, pin.y, canvas);
+        const d = Math.min(Math.hypot(sp.x - sx, (sp.y - 12) - sy), Math.hypot(sp.x - sx, sp.y - sy));
+        if (d <= pinRadius) {
+          return { type: 'pin', pin, dist: d };
+        }
+      }
+
+      const routeRadius = 11;
+      for (const route of (appData.mapData.customRoutes || [])) {
+        if (route.visible === false || !Array.isArray(route.points) || route.points.length === 0) continue;
+        // Verifica primeiro os pontos (waypoints)
+        for (let i = 0; i < route.points.length; i++) {
+          const sp = worldToScreen(route.points[i].x, route.points[i].y, canvas);
+          const d = Math.hypot(sp.x - sx, sp.y - sy);
+          if (d <= routeRadius + 3) {
+            return { type: 'route', route, pointIndex: i, dist: d };
+          }
+        }
+        // Verifica os segmentos de linha da rota
+        for (let i = 0; i < route.points.length - 1; i++) {
+          const sp1 = worldToScreen(route.points[i].x, route.points[i].y, canvas);
+          const sp2 = worldToScreen(route.points[i + 1].x, route.points[i + 1].y, canvas);
+          const d = distToSegmentScreen(sx, sy, sp1.x, sp1.y, sp2.x, sp2.y);
+          if (d <= routeRadius) {
+            return { type: 'route', route, segmentIndex: i, dist: d };
+          }
+        }
+      }
+      return null;
+    }
+
     function updateMapHoverState(sx, sy, canvas) {
       const hitRadius = 15;
       const stickyRadius = 17;
 
-      // 1. Mantém prioridade (sticky hover) no Pin ou Local atual enquanto o cursor não sair de cima dele
+      // 1. Sticky hover no Pin atual enquanto o mouse estiver sobre ele
       if (mapState.hoveredPin && isPinCurrentlyVisible(mapState.hoveredPin)) {
         const sp = worldToScreen(mapState.hoveredPin.x, mapState.hoveredPin.y, canvas);
         if (Math.hypot(sp.x - sx, (sp.y - 12) - sy) <= stickyRadius || Math.hypot(sp.x - sx, sp.y - sy) <= stickyRadius) {
@@ -8461,6 +9634,7 @@
         }
       }
 
+      // 2. Sticky hover no POI atual enquanto o mouse estiver sobre ele
       if (mapState.hoveredPoi) {
         const visiblePois = getVisibleNativePois();
         const stillVisible = visiblePois.some(p => p.id === mapState.hoveredPoi.id);
@@ -8472,18 +9646,10 @@
         }
       }
 
-      // 2. Se saiu do item anterior, busca o Pin ou POI mais próximo do cursor
-      let foundPin = null;
-      let bestPinDist = hitRadius;
-      for (const pin of (appData.mapData.customPins || [])) {
-        if (!isPinCurrentlyVisible(pin)) continue;
-        const sp = worldToScreen(pin.x, pin.y, canvas);
-        const d = Math.min(Math.hypot(sp.x - sx, (sp.y - 12) - sy), Math.hypot(sp.x - sx, sp.y - sy));
-        if (d <= bestPinDist) {
-          bestPinDist = d;
-          foundPin = pin;
-        }
-      }
+      // 3. Busca Pin ou Rota existente sob o cursor (em QUALQUER modo: Explorar, Pin ou Rota)
+      const hitExisting = findExistingPinOrRouteAtScreen(sx, sy, canvas);
+      let foundPin = hitExisting && hitExisting.type === 'pin' ? hitExisting.pin : null;
+      let foundRoute = hitExisting && hitExisting.type === 'route' ? hitExisting.route : null;
 
       let foundPoi = null;
       if (!foundPin) {
@@ -8500,10 +9666,16 @@
         }
       }
 
-      if (mapState.hoveredPin !== foundPin || mapState.hoveredPoi !== foundPoi) {
+      if (mapState.hoveredPin !== foundPin || mapState.hoveredRoute !== foundRoute || mapState.hoveredPoi !== foundPoi) {
         mapState.hoveredPin = foundPin;
+        mapState.hoveredRoute = foundRoute;
         mapState.hoveredPoi = foundPoi;
+        mapState.lastHoverScreenX = sx;
+        mapState.lastHoverScreenY = sy;
         scheduleMapRender();
+      } else if (foundRoute) {
+        mapState.lastHoverScreenX = sx;
+        mapState.lastHoverScreenY = sy;
       }
     }
 
@@ -8610,36 +9782,50 @@
 
     function setMapToolMode(mode) {
       mapState.toolMode = mode;
+      closeMapOverlapChoiceModal();
       const panBtn = document.getElementById('mapToolPanBtn');
       const pinBtn = document.getElementById('mapToolPinBtn');
       const routeBtn = document.getElementById('mapToolRouteBtn');
+      const routeToolbar = document.getElementById('routeDrawingToolbar');
       const banner = document.getElementById('mapModeStatusBanner');
       const viewport = document.getElementById('scumMapViewport');
 
-      const baseClass = 'px-3 py-1.5 rounded-lg border border-white/15 bg-carbon-900 text-slate-200 hover:border-tactical-cyan font-mono text-xs font-semibold uppercase transition-all inline-flex items-center gap-1.5';
+      const baseClass = 'w-full px-2.5 py-2 rounded-xl border border-white/15 bg-carbon-900 text-slate-200 hover:border-tactical-cyan font-mono text-xs font-semibold uppercase transition-all flex items-center gap-2';
       if (panBtn) panBtn.className = baseClass;
       if (pinBtn) pinBtn.className = baseClass;
       if (routeBtn) routeBtn.className = baseClass;
 
       if (mode === 'add_pin') {
-        if (pinBtn) pinBtn.className = 'px-3 py-1.5 rounded-lg border border-tactical-cyan bg-tactical-cyan text-black font-mono text-xs font-bold uppercase transition-all shadow inline-flex items-center gap-1.5';
-        if (banner) banner.textContent = 'Modo Pin: Clique em qualquer ponto do mapa para inserir um Pin';
+        if (pinBtn) pinBtn.className = 'w-full px-2.5 py-2 rounded-xl border border-tactical-cyan bg-tactical-cyan text-black font-mono text-xs font-bold uppercase transition-all flex items-center gap-2 shadow-lg';
+        if (routeToolbar) {
+          routeToolbar.classList.add('hidden');
+          routeToolbar.classList.remove('flex');
+        }
+        if (banner) banner.textContent = 'Modo Pin: Clique no mapa para criar (ou clique sobre um Pin/Rota existente para escolher)';
         if (viewport) viewport.style.cursor = 'crosshair';
         setMapSidebarTab('pins');
       } else if (mode === 'draw_route') {
-        if (routeBtn) routeBtn.className = 'px-3 py-1.5 rounded-lg border border-emerald-400 bg-emerald-500 text-black font-mono text-xs font-bold uppercase transition-all shadow inline-flex items-center gap-1.5';
+        if (routeBtn) routeBtn.className = 'w-full px-2.5 py-2 rounded-xl border border-emerald-400 bg-emerald-500 text-black font-mono text-xs font-bold uppercase transition-all flex items-center gap-2 shadow-lg';
+        if (routeToolbar) {
+          routeToolbar.classList.remove('hidden');
+          routeToolbar.classList.add('flex');
+        }
         const activeRoute = getActiveRouteObject();
         if (!activeRoute) {
           openMapRouteModal();
         } else {
           const modeLabel = (mapState.activeSegmentStyle === 'direct') ? 'Linha Reta' : 'Estrada';
-          if (banner) banner.textContent = `Traçando "${activeRoute.name}" [${modeLabel}]: Clique nas estradas/pontos`;
+          if (banner) banner.textContent = `Traçando "${activeRoute.name}" [${modeLabel}]: Clique nas vias ou sobre itens existentes`;
         }
         if (viewport) viewport.style.cursor = 'crosshair';
         setMapSidebarTab('routes');
       } else {
-        if (panBtn) panBtn.className = 'px-3 py-1.5 rounded-lg border border-tactical-amber bg-tactical-amber text-black font-mono text-xs font-bold uppercase transition-all shadow inline-flex items-center gap-1.5';
-        if (banner) banner.textContent = 'Arraste p/ mover · Roda do mouse p/ Super Zoom 20K';
+        if (panBtn) panBtn.className = 'w-full px-2.5 py-2 rounded-xl border border-tactical-amber bg-tactical-amber text-black font-mono text-xs font-bold uppercase transition-all flex items-center gap-2 shadow-lg';
+        if (routeToolbar) {
+          routeToolbar.classList.add('hidden');
+          routeToolbar.classList.remove('flex');
+        }
+        if (banner) banner.textContent = 'Explorar: Arraste p/ mover · Clique em qualquer Pin ou Rota para Editar ou Criar Novo';
         if (viewport) viewport.style.cursor = 'grab';
       }
     }
@@ -8658,16 +9844,21 @@
       const btnDirect = document.getElementById('routeStyleBtnDirect');
       if (btnRoad && btnDirect) {
         if (normalized === 'road') {
-          btnRoad.className = 'px-2.5 py-1 bg-emerald-500 text-black font-bold uppercase transition-all';
-          btnDirect.className = 'px-2.5 py-1 bg-carbon-950 text-slate-300 hover:text-white uppercase transition-all';
+          btnRoad.className = 'w-full px-2.5 py-2 rounded-xl bg-emerald-500 text-black font-bold uppercase transition-all text-left flex items-center gap-1.5 shadow';
+          btnDirect.className = 'w-full px-2.5 py-2 rounded-xl bg-carbon-900 text-slate-300 hover:text-white border border-white/10 uppercase transition-all text-left flex items-center gap-1.5';
         } else {
-          btnRoad.className = 'px-2.5 py-1 bg-carbon-950 text-slate-300 hover:text-white uppercase transition-all';
-          btnDirect.className = 'px-2.5 py-1 bg-tactical-cyan text-black font-bold uppercase transition-all';
+          btnRoad.className = 'w-full px-2.5 py-2 rounded-xl bg-carbon-900 text-slate-300 hover:text-white border border-white/10 uppercase transition-all text-left flex items-center gap-1.5';
+          btnDirect.className = 'w-full px-2.5 py-2 rounded-xl bg-tactical-cyan text-black font-bold uppercase transition-all text-left flex items-center gap-1.5 shadow';
         }
       }
 
       if (mapState.toolMode === 'draw_route') {
-        setMapToolMode('draw_route');
+        const activeRoute = getActiveRouteObject();
+        const banner = document.getElementById('mapModeStatusBanner');
+        if (activeRoute && banner) {
+          const modeLabel = (normalized === 'direct') ? 'Linha Reta' : 'Estrada';
+          banner.textContent = `Traçando "${activeRoute.name}" [${modeLabel}]: Clique nas vias ou sobre itens existentes`;
+        }
       }
     }
 
@@ -8685,12 +9876,10 @@
       return true;
     }
 
-    // Calcula os pontos entre lastPt e newPt usando apenas as 2 opções: "road" (Estrada A*) ou "direct" (Linha Reta)
     function computeRoadGuidedPoints(lastPt, newPt, rawStyle, endLabel = '') {
       const style = normalizeRouteStyle(rawStyle);
       const groupId = 'seg-' + Date.now() + '-' + Math.floor(Math.random() * 10000);
 
-      // 1. Primeiro ponto da rota
       if (!lastPt) {
         if (style === 'road') {
           const snapped = snapWorldToNearestRoad(newPt.x, newPt.y, 12);
@@ -8713,7 +9902,6 @@
         }];
       }
 
-      // 2. Opção "Linha Reta" (direct)
       if (style === 'direct') {
         return [{
           x: Number(newPt.x.toFixed(1)),
@@ -8725,7 +9913,6 @@
         }];
       }
 
-      // 3. Opção "Estrada" (road): segue automaticamente estradas principais (amarelas), secundárias (brancas) e caminhos via A*
       const pathPts = findScumRoadPathAStar(lastPt, newPt);
       if (!pathPts || pathPts.length === 0) {
         return [{
@@ -8751,7 +9938,118 @@
       });
     }
 
+    function closeMapOverlapChoiceModal() {
+      const pop = document.getElementById('mapOverlapChoiceModal');
+      if (pop) pop.classList.add('hidden');
+    }
+
+    function addWaypointToActiveRouteAt(wx, wy) {
+      let route = getActiveRouteObject();
+      if (!route) {
+        openMapRouteModal();
+        return;
+      }
+      route.visible = true;
+      const style = normalizeRouteStyle(document.getElementById('routeSegmentStyleSelect')?.value || mapState.activeSegmentStyle || route.defaultStyle || 'road');
+      const lastPt = route.points.length > 0 ? route.points[route.points.length - 1] : null;
+      const addedPts = computeRoadGuidedPoints(lastPt, { x: wx, y: wy }, style);
+      route.points.push(...addedPts);
+      saveMapStateToStorage();
+      renderMapSidebarFilters();
+      renderQuickRouteBar();
+      drawTacticalMap();
+      showBriefingForRoute(route.id);
+    }
+
+    // Abre a mini-janela perguntando se o usuário quer alterar o Pin/Rota existente ou criar um novo por cima
+    function openMapOverlapChoiceModal(hitInfo, wx, wy, sx, sy, canvas) {
+      const pop = document.getElementById('mapOverlapChoiceModal');
+      const badge = document.getElementById('overlapChoiceBadge');
+      const title = document.getElementById('overlapChoiceTitle');
+      const sub = document.getElementById('overlapChoiceSub');
+      const btns = document.getElementById('overlapChoiceButtons');
+      if (!pop || !btns) return;
+
+      const cw = canvas._logicalWidth || canvas.clientWidth || 800;
+      const ch = canvas._logicalHeight || canvas.clientHeight || 700;
+      const leftPx = Math.max(16, Math.min(cw - 336, sx + 14));
+      const topPx = Math.max(60, Math.min(ch - 260, sy - 20));
+      pop.style.left = leftPx + 'px';
+      pop.style.top = topPx + 'px';
+
+      const cleanWx = Number(wx.toFixed(1));
+      const cleanWy = Number(wy.toFixed(1));
+
+      if (hitInfo.type === 'pin') {
+        const pin = hitInfo.pin;
+        const isGlobal = pin.ownerScope === 'admin';
+        if (badge) badge.textContent = isGlobal ? '📌 PIN OFICIAL EXISTENTE' : '📌 PIN EXISTENTE AQUI';
+        if (title) title.textContent = pin.name;
+        if (sub) sub.textContent = 'Deseja alterar este Pin existente ou criar um novo Pin/Rota exatamente em cima dele?';
+
+        btns.innerHTML = `
+          <button type="button" onclick="closeMapOverlapChoiceModal(); showBriefingForPin('${pin.id}'); openMapPinModal('${pin.id}');" class="w-full py-2 px-3 rounded-xl bg-tactical-amber text-black font-bold uppercase text-left flex items-center justify-between hover:bg-tactical-amberLight transition-all">
+            <span>✏️ Alterar este Pin Existente</span>
+            <span>→</span>
+          </button>
+          <button type="button" onclick="closeMapOverlapChoiceModal(); openMapPinModal(null, ${cleanWx}, ${cleanWy});" class="w-full py-2 px-3 rounded-xl bg-tactical-cyan/20 border border-tactical-cyan/50 text-tactical-cyanLight hover:bg-tactical-cyan hover:text-black font-bold uppercase text-left flex items-center justify-between transition-all">
+            <span>📍 Criar Novo Pin Aqui em Cima</span>
+            <span>+</span>
+          </button>
+          <button type="button" onclick="closeMapOverlapChoiceModal(); setMapToolMode('draw_route'); addWaypointToActiveRouteAt(${cleanWx}, ${cleanWy});" class="w-full py-2 px-3 rounded-xl bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 hover:bg-emerald-500 hover:text-black font-bold uppercase text-left flex items-center justify-between transition-all">
+            <span>🛣️ Passar / Criar Rota Aqui em Cima</span>
+            <span>+</span>
+          </button>
+          <div class="flex items-center gap-1.5 pt-1">
+            <button type="button" onclick="closeMapOverlapChoiceModal(); showBriefingForPin('${pin.id}');" class="flex-1 py-1.5 px-2.5 rounded-lg bg-carbon-800 hover:bg-white/10 text-slate-300 text-center uppercase text-[11px]">
+              Ver Detalhes
+            </button>
+            <button type="button" onclick="closeMapOverlapChoiceModal(); togglePinVisibility('${pin.id}');" class="py-1.5 px-2.5 rounded-lg bg-carbon-800 hover:bg-rose-500/20 text-slate-300 text-center uppercase text-[11px]">
+              👁️ Ocultar
+            </button>
+          </div>
+        `;
+      } else if (hitInfo.type === 'route') {
+        const route = hitInfo.route;
+        const isGlobal = route.ownerScope === 'admin';
+        if (badge) badge.textContent = isGlobal ? '🛣️ ROTA OFICIAL EXISTENTE' : '🛣️ ROTA EXISTENTE AQUI';
+        if (title) title.textContent = route.name;
+        if (sub) sub.textContent = 'Deseja alterar esta Rota existente ou criar um novo Pin/Rota em cima deste ponto?';
+
+        btns.innerHTML = `
+          <button type="button" onclick="closeMapOverlapChoiceModal(); selectActiveRoute('${route.id}'); openMapRouteModal('${route.id}');" class="w-full py-2 px-3 rounded-xl bg-tactical-amber text-black font-bold uppercase text-left flex items-center justify-between hover:bg-tactical-amberLight transition-all">
+            <span>✏️ Alterar / Editar esta Rota</span>
+            <span>→</span>
+          </button>
+          <button type="button" onclick="closeMapOverlapChoiceModal(); selectActiveRoute('${route.id}'); setMapToolMode('draw_route'); addWaypointToActiveRouteAt(${cleanWx}, ${cleanWy});" class="w-full py-2 px-3 rounded-xl bg-emerald-500 text-black font-bold uppercase text-left flex items-center justify-between hover:bg-emerald-400 transition-all">
+            <span>🛣️ Continuar Traçado desta Rota Aqui</span>
+            <span>+</span>
+          </button>
+          <button type="button" onclick="closeMapOverlapChoiceModal(); openMapPinModal(null, ${cleanWx}, ${cleanWy});" class="w-full py-2 px-3 rounded-xl bg-tactical-cyan/20 border border-tactical-cyan/50 text-tactical-cyanLight hover:bg-tactical-cyan hover:text-black font-bold uppercase text-left flex items-center justify-between transition-all">
+            <span>📍 Criar Novo Pin Aqui em Cima</span>
+            <span>+</span>
+          </button>
+          <button type="button" onclick="closeMapOverlapChoiceModal(); openMapRouteModal();" class="w-full py-1.5 px-3 rounded-xl bg-carbon-800 hover:bg-white/10 text-slate-200 font-bold uppercase text-left flex items-center justify-between text-[11px]">
+            <span>✨ Criar Uma Nova Rota Separada</span>
+            <span>+</span>
+          </button>
+        `;
+      }
+
+      pop.classList.remove('hidden');
+    }
+
     function handleMapCanvasClick(wx, wy, sx, sy, canvas) {
+      closeMapOverlapChoiceModal();
+
+      // 1. Verifica em QUALQUER MODO (Explorar, Pin ou Rota) se o clique foi em cima de um Pin ou Rota já existente!
+      const hitExisting = findExistingPinOrRouteAtScreen(sx, sy, canvas);
+      if (hitExisting) {
+        openMapOverlapChoiceModal(hitExisting, wx, wy, sx, sy, canvas);
+        return;
+      }
+
+      // 2. Se não clicou em Pin/Rota existente, executa a ação direta do modo ativo
       if (mapState.toolMode === 'add_pin') {
         openMapPinModal(null, Number(wx.toFixed(1)), Number(wy.toFixed(1)));
         setMapToolMode('pan');
@@ -8759,65 +10057,22 @@
       }
 
       if (mapState.toolMode === 'draw_route') {
-        let route = getActiveRouteObject();
-        if (!route) {
-          openMapRouteModal();
-          return;
-        }
-        route.visible = true;
-        const style = normalizeRouteStyle(document.getElementById('routeSegmentStyleSelect')?.value || mapState.activeSegmentStyle || route.defaultStyle || 'road');
-        const lastPt = route.points.length > 0 ? route.points[route.points.length - 1] : null;
-        const addedPts = computeRoadGuidedPoints(lastPt, { x: wx, y: wy }, style);
-        route.points.push(...addedPts);
-        saveMapStateToStorage();
-        renderMapSidebarFilters();
-        renderQuickRouteBar();
-        drawTacticalMap();
-        showBriefingForRoute(route.id);
+        addWaypointToActiveRouteAt(wx, wy);
         return;
       }
 
-      // Se já houver um Pin ou POI ativo no hover sob o cursor, abre diretamente ele
-      if (mapState.hoveredPin && isPinCurrentlyVisible(mapState.hoveredPin)) {
-        showBriefingForPin(mapState.hoveredPin.id);
-        return;
-      }
+      // 3. No modo explorar, verifica se clicou sobre um Local Oficial (POI)
       if (mapState.hoveredPoi) {
         showBriefingForPoi(mapState.hoveredPoi);
         return;
       }
 
-      const hitRadiusScreen = 16;
-
-      // 1. Pins Visíveis do Usuário
-      for (const pin of (appData.mapData.customPins || [])) {
-        if (!isPinCurrentlyVisible(pin)) continue;
-        const sp = worldToScreen(pin.x, pin.y, canvas);
-        if (Math.hypot(sp.x - sx, (sp.y - 10) - sy) <= hitRadiusScreen || Math.hypot(sp.x - sx, sp.y - sy) <= hitRadiusScreen) {
-          showBriefingForPin(pin.id);
-          return;
-        }
-      }
-
-      // 2. POIs Nativos Visíveis
       const visiblePois = getVisibleNativePois();
       for (const poi of visiblePois) {
         const sp = worldToScreen(poi.x, poi.y, canvas);
-        if (Math.hypot(sp.x - sx, sp.y - sy) <= hitRadiusScreen) {
+        if (Math.hypot(sp.x - sx, sp.y - sy) <= 16) {
           showBriefingForPoi(poi);
           return;
-        }
-      }
-
-      // 3. Pontos de Rotas Visíveis
-      for (const route of (appData.mapData.customRoutes || [])) {
-        if (route.visible === false) continue;
-        for (const pt of (route.points || [])) {
-          const sp = worldToScreen(pt.x, pt.y, canvas);
-          if (Math.hypot(sp.x - sx, sp.y - sy) <= hitRadiusScreen) {
-            showBriefingForRoute(route.id);
-            return;
-          }
         }
       }
     }
@@ -9612,8 +10867,15 @@
         const pin = mapState.hoveredPin;
         const sp = worldToScreen(pin.x, pin.y, canvas);
         drawCanvasCustomPin(ctx, pin, sp.x, sp.y, true);
-        drawTopmostHoverLabelPill(ctx, sp.x, sp.y - 34, pin.name, pin.color || '#22d3ee');
+        drawTopmostHoverLabelPill(ctx, sp.x, sp.y - 34, pin.name + ' (Clique: Editar / Criar Novo)', pin.color || '#22d3ee');
         return;
+      }
+
+      if (mapState.hoveredRoute && mapState.hoveredRoute.visible !== false) {
+        const rt = mapState.hoveredRoute;
+        const hx = mapState.lastHoverScreenX || 120;
+        const hy = (mapState.lastHoverScreenY || 120) - 22;
+        drawTopmostHoverLabelPill(ctx, hx, hy, '🛣️ ' + rt.name + ' (Clique: Alterar / Criar Aqui)', rt.color || '#10b981');
       }
 
       if (mapState.hoveredPoi) {
@@ -10391,6 +11653,862 @@
       URL.revokeObjectURL(url);
       showToast('HTML salvo com Mapa Oficial 20K, Pins, Rotas e Catálogo gravados permanentemente!');
     }
+  
+    // =========================================================================
+    // MÓDULO ABA 05: GUIAS, TUTORIAIS, PLANTAS DE BUNKERS & GRADES VISUAIS
+    // =========================================================================
+    let currentGuideCategoryFilter = 'ALL';
+    let activeOpenGuideId = null;
+    let currentEditingGuideBlocks = [];
+
+    // Gerador SVG Vetorial de Alta Precisão para as Miras e Equipamentos (Fiel à imagem de referência!)
+    function getSightHighResSvgDataUri(sightType) {
+      let svgBody = '';
+      if (sightType === 'okp') {
+        svgBody = `
+          <ellipse cx="100" cy="88" rx="48" ry="12" fill="rgba(0,0,0,0.55)"/>
+          <path d="M52 72 L138 66 L144 82 L56 88 Z" fill="#2a2d24" stroke="#474b3e" stroke-width="2"/>
+          <circle cx="72" cy="82" r="6" fill="#94a3b8" stroke="#1e293b" stroke-width="1.5"/>
+          <path d="M98 68 C98 34, 146 32, 148 64 L132 68 C130 44, 110 44, 108 68 Z" fill="#1e221c" stroke="#525849" stroke-width="2"/>
+          <ellipse cx="122" cy="54" rx="16" ry="14" fill="rgba(16, 185, 129, 0.14)" stroke="#ef4444" stroke-width="1.2"/>
+          <circle cx="122" cy="54" r="2.5" fill="#22c55e"/>
+        `;
+      } else if (sightType === 'reddot') {
+        svgBody = `
+          <ellipse cx="100" cy="86" rx="34" ry="9" fill="rgba(0,0,0,0.55)"/>
+          <path d="M72 70 L128 65 L130 78 L70 83 Z" fill="#181b20" stroke="#334155" stroke-width="2"/>
+          <path d="M78 70 L78 46 C78 40, 102 38, 104 46 L104 68 Z" fill="rgba(15,23,42,0.75)" stroke="#475569" stroke-width="2.5"/>
+          <circle cx="91" cy="54" r="2.6" fill="#ef4444"/>
+        `;
+      } else if (sightType === 'v3') {
+        svgBody = `
+          <ellipse cx="100" cy="88" rx="44" ry="11" fill="rgba(0,0,0,0.55)"/>
+          <rect x="64" y="40" width="70" height="42" rx="8" fill="#1f242b" stroke="#475569" stroke-width="2.2"/>
+          <rect x="74" y="47" width="38" height="24" rx="4" fill="rgba(14,165,233,0.14)" stroke="#64748b" stroke-width="1.6"/>
+          <circle cx="93" cy="59" r="5" fill="none" stroke="#ef4444" stroke-width="1.4"/>
+          <circle cx="93" cy="59" r="1.6" fill="#ef4444"/>
+          <circle cx="122" cy="62" r="7" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+        `;
+      } else if (sightType === 'xps') {
+        svgBody = `
+          <ellipse cx="100" cy="88" rx="46" ry="11" fill="rgba(0,0,0,0.55)"/>
+          <path d="M62 78 L66 40 C68 33, 128 33, 132 40 L136 78 Z" fill="#282c26" stroke="#525849" stroke-width="2.2"/>
+          <rect x="76" y="44" width="44" height="24" rx="4" fill="rgba(34,211,238,0.12)" stroke="#64748b" stroke-width="1.6"/>
+          <text x="68" y="62" fill="#94a3b8" font-size="7" font-family="monospace" font-weight="bold">XPS</text>
+          <rect x="88" y="70" width="16" height="5" rx="1" fill="#eab308"/>
+          <circle cx="98" cy="56" r="5.5" fill="none" stroke="#ef4444" stroke-width="1.4"/>
+          <circle cx="98" cy="56" r="1.6" fill="#ef4444"/>
+        `;
+      } else if (sightType === 'acog') {
+        svgBody = `
+          <ellipse cx="100" cy="88" rx="52" ry="11" fill="rgba(0,0,0,0.55)"/>
+          <path d="M46 60 L82 54 L126 48 L152 46 L152 72 L126 70 L82 68 L46 68 Z" fill="#1e242b" stroke="#475569" stroke-width="2.2"/>
+          <line x1="78" y1="49" x2="122" y2="45" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+          <rect x="76" y="68" width="46" height="12" rx="2" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+        `;
+      } else if (sightType === 'posp') {
+        svgBody = `
+          <ellipse cx="100" cy="88" rx="54" ry="11" fill="rgba(0,0,0,0.55)"/>
+          <rect x="42" y="48" width="116" height="14" rx="3" fill="#33392e" stroke="#65705c" stroke-width="2"/>
+          <path d="M74 62 L84 82 L114 82 L118 62 Z" fill="#262b22" stroke="#4d5646" stroke-width="2"/>
+          <rect x="92" y="38" width="14" height="10" rx="2" fill="#1e221b" stroke="#65705c" stroke-width="1.5"/>
+        `;
+      } else if (sightType === 'p223') {
+        svgBody = `
+          <ellipse cx="100" cy="88" rx="58" ry="11" fill="rgba(0,0,0,0.55)"/>
+          <path d="M36 54 L70 54 L80 48 L130 48 L142 44 L164 44 L164 68 L142 68 L130 62 L80 62 L70 60 L36 60 Z" fill="#181c22" stroke="#475569" stroke-width="2"/>
+          <rect x="64" y="60" width="12" height="18" fill="#0f172a" stroke="#334155"/>
+          <rect x="122" y="60" width="12" height="18" fill="#0f172a" stroke="#334155"/>
+        `;
+      } else if (sightType === 'm82scope') {
+        svgBody = `
+          <ellipse cx="100" cy="88" rx="62" ry="11" fill="rgba(0,0,0,0.55)"/>
+          <path d="M28 54 L66 54 L78 46 L134 46 L148 38 L172 38 L172 72 L148 72 L134 62 L78 62 L66 60 L28 60 Z" fill="#111418" stroke="#64748b" stroke-width="2"/>
+          <rect x="98" y="36" width="16" height="10" rx="2" fill="#eab308" stroke="#000" stroke-width="1"/>
+        `;
+      } else if (sightType === 'bunker_blueprint') {
+        const bpSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480">
+          <rect width="900" height="480" fill="#060b11"/>
+          <g stroke="rgba(34,211,238,0.12)" stroke-width="1">
+            <line x1="0" y1="80" x2="900" y2="80"/><line x1="0" y1="160" x2="900" y2="160"/><line x1="0" y1="240" x2="900" y2="240"/><line x1="0" y1="320" x2="900" y2="320"/><line x1="0" y1="400" x2="900" y2="400"/>
+            <line x1="150" y1="0" x2="150" y2="480"/><line x1="300" y1="0" x2="300" y2="480"/><line x1="450" y1="0" x2="450" y2="480"/><line x1="600" y1="0" x2="600" y2="480"/><line x1="750" y1="0" x2="750" y2="480"/>
+          </g>
+          <rect x="40" y="180" width="130" height="120" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="2.5"/>
+          <text x="105" y="232" fill="#fbbf24" font-family="monospace" font-size="13" font-weight="bold" text-anchor="middle">1. ENTRADA</text>
+          <text x="105" y="252" fill="#94a3b8" font-family="monospace" font-size="10" text-anchor="middle">Porta Externa / Código</text>
+
+          <rect x="230" y="180" width="150" height="120" rx="8" fill="#0f172a" stroke="#06b6d4" stroke-width="2.5"/>
+          <text x="305" y="232" fill="#22d3ee" font-family="monospace" font-size="13" font-weight="bold" text-anchor="middle">2. GERADOR &amp; FUSÍVEL</text>
+          <text x="305" y="252" fill="#94a3b8" font-family="monospace" font-size="10" text-anchor="middle">Quadro de Fusíveis</text>
+
+          <rect x="450" y="60" width="170" height="130" rx="8" fill="#0f172a" stroke="#a855f7" stroke-width="2.5"/>
+          <text x="535" y="115" fill="#c084fc" font-family="monospace" font-size="13" font-weight="bold" text-anchor="middle">3A. SALA DE CONTROLE</text>
+          <text x="535" y="135" fill="#94a3b8" font-family="monospace" font-size="10" text-anchor="middle">Sala de exemplo</text>
+
+          <rect x="450" y="290" width="170" height="130" rx="8" fill="#0f172a" stroke="#f43f5e" stroke-width="2.5"/>
+          <text x="535" y="345" fill="#fb7185" font-family="monospace" font-size="13" font-weight="bold" text-anchor="middle">3B. KILLBOX DOOR</text>
+          <text x="535" y="365" fill="#94a3b8" font-family="monospace" font-size="10" text-anchor="middle">Sala de exemplo</text>
+
+          <rect x="690" y="150" width="170" height="180" rx="10" fill="rgba(16,185,129,0.12)" stroke="#10b981" stroke-width="3"/>
+          <text x="775" y="225" fill="#34d399" font-family="monospace" font-size="14" font-weight="bold" text-anchor="middle">4. ARSENAL (ARMORY)</text>
+          <text x="775" y="248" fill="#e2e8f0" font-family="monospace" font-size="11" text-anchor="middle">Sala de exemplo</text>
+          <text x="775" y="268" fill="#fbbf24" font-family="monospace" font-size="10" text-anchor="middle">(MODELO)</text>
+
+          <path d="M170 240 L230 240" stroke="#10b981" stroke-width="4" stroke-dasharray="6,4"/>
+          <path d="M380 220 L450 125" stroke="#10b981" stroke-width="4" stroke-dasharray="6,4"/>
+          <path d="M380 260 L450 355" stroke="#f43f5e" stroke-width="4" stroke-dasharray="6,4"/>
+          <path d="M620 125 L690 215" stroke="#10b981" stroke-width="4" stroke-dasharray="6,4"/>
+          <path d="M620 355 L690 265" stroke="#10b981" stroke-width="4" stroke-dasharray="6,4"/>
+        </svg>`;
+        return 'data:image/svg+xml;utf8,' + encodeURIComponent(bpSvg);
+      }
+
+      const fullSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 110">${svgBody}</svg>`;
+      return 'data:image/svg+xml;utf8,' + encodeURIComponent(fullSvg);
+    }
+
+    const DEFAULT_GUIDES_TOPICS = [
+      {
+        id: 'guide-sights-optics',
+        title: 'Guia Visual de Miras & Ópticas (Red Dots, Holográficas e Lunetas)',
+        category: 'Armas & Miras',
+        badge: 'Patch 1.0 · Referência Visual',
+        summary: 'Grade visual completa das miras holográficas, Red Dots e lunetas de longo alcance do SCUM, trilhos compatíveis e ampliação.',
+        blocks: [
+          {
+            type: 'text',
+            heading: '1. Miras de Curto Alcance (1x Reflex & Holográficas)',
+            body: 'As miras 1x (sem ampliação) são as mais indicadas para combate a curta distância: Bunkers, cidades e interiores. Para distâncias maiores, use lunetas com ampliação. Exemplo de tópico — o admin pode editar este texto.'
+          },
+          {
+            type: 'sight_grid',
+            heading: 'Grade: Miras Holográficas & Red Dot (1x)',
+            columns: 4,
+            items: [
+              { title: 'OKP Holographic Sight', sub: 'Mira 1x', img: getSightHighResSvgDataUri('okp') },
+              { title: 'Red Dot Sight', sub: 'Mira 1x', img: getSightHighResSvgDataUri('reddot') },
+              { title: 'V3 Holographic Sight', sub: 'Mira 1x', img: getSightHighResSvgDataUri('v3') },
+              { title: 'XPS Holographic Sight', sub: 'Mira 1x', img: getSightHighResSvgDataUri('xps') }
+            ]
+          },
+          {
+            type: 'sight_grid',
+            heading: 'Grade: Lunetas de Médio e Longo Alcance',
+            columns: 4,
+            items: [
+              { title: 'ACOG Scope', sub: 'Luneta', img: getSightHighResSvgDataUri('acog') },
+              { title: 'POSP Scope', sub: 'Luneta', img: getSightHighResSvgDataUri('posp') },
+              { title: 'P-223 Scope', sub: 'Luneta', img: getSightHighResSvgDataUri('p223') },
+              { title: 'M82A1 Scope', sub: 'Luneta', img: getSightHighResSvgDataUri('m82scope') }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'guide-fishing-mastery',
+        title: 'Guia Completo de Pescaria: Equipamentos, Linhas, Iscas e Todos os Peixes',
+        category: 'Pescaria',
+        badge: 'Guia Completo · Lucro & Proteína',
+        summary: 'Como montar a vara, resistência das linhas de nylon, iscas e tabela de peixes.',
+        blocks: [
+          {
+            type: 'text',
+            heading: '1. Como Montar a Vara e os Macetes para Não Arrebentar a Linha',
+            body: 'Para montar sua vara de pesca você precisa de 5 componentes: Vara (Fishing Rod), Molinete (Fishing Reel), Linha (retirada do carretel clicando com botão direito -> Pull out line), Boia (Floater), Anzol (Hook) e Isca.\nDurante a briga com o peixe, não deixe a tensão da linha passar do limite: se a linha for fraca demais para o peso do peixe, ela arrebenta.'
+          },
+          {
+            type: 'chart',
+            heading: 'Resistência Máxima das Linhas de Pesca (Peso Suportado em kg)',
+            unit: ' kg',
+            bars: [
+              { label: 'Linha Nylon 0.50 mm', value: 60, color: '#10b981' },
+              { label: 'Linha Nylon 0.25 mm (valor não confirmado)', value: 30, color: '#06b6d4' },
+              { label: 'Linha Nylon 0.18 mm', value: 10, color: '#f59e0b' },
+              { label: 'Linha Nylon 0.12 mm', value: 5, color: '#a855f7' },
+              { label: 'Linha Improvisada', value: 2, color: '#f43f5e' }
+            ]
+          },
+          {
+            type: 'table',
+            heading: 'Espécies de Peixes, Habitat, Peso e Isca (confira no jogo antes de publicar)',
+            headers: ['Espécie de Peixe', 'Habitat', 'Faixa de Peso', 'Linha Mínima', 'Melhor Isca (Top Tier)'],
+            rows: [
+              ['Catfish (Bagre Gigante)', 'Água Doce (Lagos/Rios)', '5.0 – 30.0 kg', '0.25mm / 0.50mm', 'Boilies, Minhoca, Carne, Bleak'],
+              ['Carp (Carpa Comum)', 'Água Doce (Lagos/Rios)', '5.0 – 20.0 kg', '0.25mm / 0.50mm', 'Milho (Corn), Queijo, Boilies'],
+              ['Pike (Lúcio Predador)', 'Água Doce (Rios)', '1.0 – 8.0+ kg', '0.18mm / 0.25mm', 'Bleak inteiro, Sardinha, Carne'],
+              ['Bass (Black Bass)', 'Água Doce (Lagos/Rios)', '1.0 – 3.0 kg', '0.18mm', 'Minhoca, Grilo, Gafanhoto, Bleak'],
+              ['Tuna (Atum)', 'Mar Profundo (Deep Sea)', '2.0 – 15.0+ kg', '0.50mm', 'Boilies, Minhoca, Sardinha'],
+              ['Dentex (Dentão)', 'Água Salgada (Mar)', '8.0 – 16.0 kg', '0.25mm / 0.50mm', 'Bleak, Sardinha, Carne'],
+              ['Orata (Dourada)', 'Água Salgada (Costa)', '5.0 – 10.0 kg', '0.25mm', 'Minhoca, Grilo, Carne, Milho'],
+              ['Spotted Sardine / Bleak', 'Mar / Rios (Isca Viva)', '0.1 – 0.4 kg', '0.12mm', 'Pão (Bread), Milho (Corn)']
+            ]
+          }
+        ]
+      },
+      {
+        id: 'guide-bunkers-blueprint',
+        title: 'Plantas de Bunkers, Fusíveis, Brenner & Percurso até o Arsenal',
+        category: 'Plantas de Bunkers',
+        badge: 'Tático · Alto Risco',
+        summary: 'Modelo de planta de bunker (substitua pela planta real) e funcionamento dos fusíveis 200A a 1000A.',
+        blocks: [
+          {
+            type: 'image',
+            heading: 'MODELO ILUSTRATIVO de planta (substitua pela planta real do bunker)',
+            img: getSightHighResSvgDataUri('bunker_blueprint'),
+            caption: 'Este desenho é apenas um modelo de exemplo, não é a planta real de nenhum bunker. Como admin, edite este tópico e envie a imagem da planta verdadeira.'
+          },
+          {
+            type: 'text',
+            heading: '2. Como Funciona a Energia e os Fusíveis nos Bunkers',
+            body: 'Nos Bunkers Abandonados, os setores são energizados inserindo um Fusível (Fuse) no quadro de energia. A duração escala 4 minutos a cada 200A (com 100% de durabilidade); fusíveis danificados duram proporcionalmente menos.\nO cronômetro só corre enquanto pelo menos um setor estiver ligado — desligar todos os setores pausa o fusível. A amperagem também limita quantos setores podem ficar ligados ao mesmo tempo.'
+          },
+          {
+            type: 'chart',
+            heading: 'Duração do Fusível com 100% de Durabilidade (Minutos)',
+            unit: ' min',
+            bars: [
+              { label: 'Fusível 1000A', value: 20, color: '#10b981' },
+              { label: 'Fusível 800A', value: 16, color: '#06b6d4' },
+              { label: 'Fusível 600A', value: 12, color: '#f59e0b' },
+              { label: 'Fusível 400A', value: 8, color: '#a855f7' },
+              { label: 'Fusível 200A', value: 4, color: '#f43f5e' }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'guide-medical-wounds',
+        title: 'Sangramentos: Curativos, Bônus de Estabilização e Quantidades (S1 a S4)',
+        category: 'Medicina & Cura',
+        badge: 'Sobrevivência · BCU',
+        summary: 'Quantos curativos usar em cada gravidade de sangramento conforme sua habilidade Medical (fonte: RibbonGaming).',
+        blocks: [
+          {
+            type: 'text',
+            heading: '1. Regra de Ouro da Estabilização de Sangramentos (C1 a C4)',
+            body: 'Depois de aplicar o curativo, a ferida entra na fase de Estabilização. Evite esforço (correr, lutar) até estabilizar: descansar acelera o processo em 2x.\nBônus de estabilização: Tourniquet -3 (só braços e pernas), Hemostatic Dressing -2, Pressure Dressing -1, Emergency Bandage e tiras de pano 0.\nA quantidade de unidades necessárias depende da gravidade (S1 a S4) e da sua habilidade Medical — veja a tabela abaixo.'
+          },
+          {
+            type: 'table',
+            heading: 'Unidades Necessárias por Gravidade (S1 / S2 / S3 / S4)',
+            headers: ['Item', 'Medical: None', 'Medical: Basic', 'Medical: Medium', 'Medical: Advanced', 'Above Advanced'],
+            rows: [
+              ['Tourniquet (só membros)', '1 / 1 / 2 / 2', '1 / 1 / 1 / 2', '1 / 1 / 1 / 1', '1 / 1 / 1 / 1', '1 / 1 / 1 / 1'],
+              ['Hemostatic Dressing', '1 / 2 / 2 / 3', '1 / 1 / 2 / 3', '1 / 1 / 2 / 2', '1 / 1 / 1 / 2', '1 / 1 / 1 / 1'],
+              ['Pressure Dressing', '1 / 1 / 2 / 3', '1 / 1 / 2 / 2', '1 / 1 / 1 / 2', '1 / 1 / 1 / 1', '1 / 1 / 1 / 1']
+            ]
+          }
+        ]
+      }
+    ];
+
+    function initGuidesData() {
+      if (!appData) return;
+      if (!Array.isArray(appData.guidesTopics) || appData.guidesTopics.length === 0) {
+        appData.guidesTopics = JSON.parse(JSON.stringify(DEFAULT_GUIDES_TOPICS));
+      }
+    }
+
+    function setGuideCategoryFilter(cat) {
+      currentGuideCategoryFilter = cat || 'ALL';
+      renderGuidesHub();
+    }
+
+    function renderGuidesHub() {
+      initGuidesData();
+      const topics = appData.guidesTopics || [];
+      const q = (document.getElementById('guidesSearchInput')?.value || '').trim().toLowerCase();
+
+      // 1. Renderiza as Pílulas de Categorias Dinâmicas
+      const pillsEl = document.getElementById('guidesCategoryPills');
+      const presetCats = ['Pescaria', 'Plantas de Bunkers', 'Armas & Miras', 'Medicina & Cura', 'Veículos & Mecânica', 'Lockpick & Raid', 'Comida & Metabolismo'];
+      const topicCats = topics.map(t => (t.category || 'Geral').trim()).filter(Boolean);
+      const uniqueCats = Array.from(new Set([...presetCats, ...topicCats]));
+
+      if (pillsEl) {
+        const allBtn = `
+          <button type="button" onclick="setGuideCategoryFilter('ALL')" class="px-3.5 py-1.5 rounded-lg border ${currentGuideCategoryFilter === 'ALL' ? 'border-purple-400 bg-purple-500/25 text-white font-bold shadow' : 'border-white/10 bg-carbon-900 text-slate-300 hover:text-white'} uppercase transition-all">
+            Todos os Tópicos (${topics.length})
+          </button>
+        `;
+        const catBtns = uniqueCats.map(cat => {
+          const count = topics.filter(t => (t.category || '').toLowerCase() === cat.toLowerCase()).length;
+          const isAct = currentGuideCategoryFilter.toLowerCase() === cat.toLowerCase();
+          return `
+            <button type="button" onclick="setGuideCategoryFilter('${cat.replace(/'/g, '')}')" class="px-3 py-1.5 rounded-lg border ${isAct ? 'border-purple-400 bg-purple-500/25 text-purple-200 font-bold shadow' : 'border-white/10 bg-carbon-900 text-slate-300 hover:text-white'} uppercase transition-all">
+              <span>${cat}</span>
+              <span class="ml-1 text-[10px] px-1.5 py-0.5 rounded bg-carbon-950 text-purple-300">${count}</span>
+            </button>
+          `;
+        }).join('');
+        pillsEl.innerHTML = allBtn + catBtns;
+      }
+
+      // 2. Filtra tópicos pela categoria e busca
+      const filtered = topics.filter(t => {
+        if (currentGuideCategoryFilter !== 'ALL' && (t.category || '').toLowerCase() !== currentGuideCategoryFilter.toLowerCase()) {
+          return false;
+        }
+        if (q) {
+          const blocksText = (t.blocks || []).map(b => `${b.heading || ''} ${b.body || ''}`).join(' ');
+          const hay = `${t.title} ${t.category} ${t.summary} ${t.badge || ''} ${blocksText}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      const summaryEl = document.getElementById('guidesCountSummary');
+      if (summaryEl) {
+        summaryEl.textContent = `Mostrando ${filtered.length} tópico(s) ${currentGuideCategoryFilter !== 'ALL' ? 'em "' + currentGuideCategoryFilter + '"' : ''}`;
+      }
+
+      const cardsGrid = document.getElementById('guidesTopicsCardsGrid');
+      if (cardsGrid) {
+        if (filtered.length === 0) {
+          cardsGrid.innerHTML = `
+            <div class="col-span-full telemetry-panel rounded-xl p-8 text-center space-y-3">
+              <div class="font-display text-lg font-bold text-white uppercase">Nenhum tópico encontrado para este filtro</div>
+              <p class="text-xs text-slate-400">Tente limpar a pesquisa ou selecione "Todos os Tópicos".</p>
+              ${isAdmin() ? `<button type="button" onclick="openGuideEditorModal()" class="px-4 py-2 rounded-lg bg-purple-500 text-black font-mono text-xs font-bold uppercase">+ Criar Tópico Nesta Categoria</button>` : ''}
+            </div>
+          `;
+        } else {
+          cardsGrid.innerHTML = filtered.map(t => {
+            const isSelected = activeOpenGuideId === t.id;
+            const blockCount = (t.blocks || []).length;
+            return `
+              <div onclick="openGuideTopicReader('${t.id}')" class="telemetry-panel juice-card rounded-xl p-5 cursor-pointer flex flex-col justify-between gap-4 border ${isSelected ? 'border-purple-400 ring-1 ring-purple-400/50' : 'border-white/10'}">
+                <div class="space-y-2.5">
+                  <div class="flex items-center justify-between gap-2 font-mono text-[10px]">
+                    <span class="px-2.5 py-0.5 rounded bg-purple-500/20 border border-purple-500/40 text-purple-300 font-bold uppercase">${t.category || 'Guia Geral'}</span>
+                    <span class="text-slate-400">${t.badge || (blockCount + ' seções')}</span>
+                  </div>
+                  <h3 class="font-display text-lg font-bold text-white uppercase leading-snug">${t.title}</h3>
+                  <p class="text-xs text-slate-300 line-clamp-3 leading-relaxed">${t.summary || ''}</p>
+                </div>
+
+                <div class="pt-3 border-t border-white/10 flex items-center justify-between font-mono text-xs">
+                  <span class="text-purple-300 font-bold uppercase text-[11px]">Ler Tópico Completo →</span>
+                  ${isAdmin() ? `
+                    <div class="flex items-center gap-1" onclick="event.stopPropagation()">
+                      <button type="button" onclick="openGuideEditorModal('${t.id}')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-purple-500 hover:text-black text-slate-200 text-[10px] font-bold uppercase">✎ Editar</button>
+                      <button type="button" onclick="deleteGuideTopicDirect('${t.id}')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-rose-500 text-rose-300 hover:text-white text-[10px] font-bold">✕</button>
+                    </div>
+                  ` : ''}
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+
+      if (!activeOpenGuideId && filtered.length > 0) {
+        activeOpenGuideId = filtered[0].id;
+      }
+      renderActiveGuideTopicReader();
+    }
+
+    function openGuideTopicReader(topicId) {
+      activeOpenGuideId = topicId;
+      renderGuidesHub();
+      const reader = document.getElementById('guideActiveTopicReader');
+      if (reader) {
+        reader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function renderActiveGuideTopicReader() {
+      const reader = document.getElementById('guideActiveTopicReader');
+      if (!reader) return;
+      const topic = (appData.guidesTopics || []).find(t => t.id === activeOpenGuideId);
+      if (!topic) {
+        reader.classList.add('hidden');
+        return;
+      }
+      reader.classList.remove('hidden');
+
+      const blocksHtml = (topic.blocks || []).map(b => {
+        if (b.type === 'text') {
+          const paragraphs = String(b.body || '').split(/\n+/).filter(Boolean).map(p => `<p class="text-sm text-slate-200 leading-relaxed">${p}</p>`).join('');
+          return `
+            <div class="p-5 rounded-xl bg-carbon-950/85 border border-white/10 space-y-3">
+              ${b.heading ? `<h4 class="font-display text-lg font-bold uppercase text-tactical-amberLight border-l-4 border-tactical-amber pl-3">${b.heading}</h4>` : ''}
+              <div class="guide-indented-text space-y-2 pl-2">
+                ${paragraphs}
+              </div>
+            </div>
+          `;
+        }
+
+        if (b.type === 'sight_grid') {
+          const cols = Number(b.columns) || 4;
+          const gridClass = cols === 2 ? 'grid-cols-1 sm:grid-cols-2' : (cols === 3 ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-2 sm:grid-cols-4');
+          return `
+            <div class="space-y-2.5">
+              ${b.heading ? `<h4 class="font-display text-base sm:text-lg font-bold uppercase text-tactical-cyanLight">${b.heading}</h4>` : ''}
+              <div class="scum-sight-grid grid ${gridClass} rounded-lg overflow-hidden">
+                ${(b.items || []).map(item => `
+                  <div class="scum-sight-cell p-5 flex flex-col items-center justify-between text-center gap-3">
+                    <div class="w-full h-28 flex items-center justify-center p-2">
+                      ${item.img ? `<img src="${item.img}" alt="${item.title || ''}" class="max-h-24 max-w-full object-contain drop-shadow-lg" />` : `<div class="text-slate-500 font-mono text-xs">[Sem Imagem]</div>`}
+                    </div>
+                    <div class="space-y-1">
+                      <div class="font-sans text-sm sm:text-base font-medium text-[#93c5fd] leading-snug">${item.title || ''}</div>
+                      ${item.sub ? `<div class="font-mono text-[11px] text-slate-400">${item.sub}</div>` : ''}
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+
+        if (b.type === 'image') {
+          return `
+            <div class="p-5 rounded-xl bg-carbon-950/90 border border-emerald-500/30 space-y-3">
+              ${b.heading ? `<h4 class="font-display text-lg font-bold uppercase text-emerald-300">${b.heading}</h4>` : ''}
+              <div onclick="openGuideImageLightbox('${(b.img || '').replace(/'/g, '')}', '${(b.heading || topic.title).replace(/'/g, '')}')" class="rounded-xl overflow-hidden border border-white/15 bg-carbon-900 cursor-zoom-in group relative">
+                <img src="${b.img || ''}" alt="${b.heading || ''}" class="w-full max-h-[500px] object-contain mx-auto" />
+                <div class="absolute bottom-3 right-3 px-3 py-1 rounded-lg bg-black/80 border border-white/20 font-mono text-[11px] text-tactical-cyanLight">
+                  🔍 Clique para Ampliar Planta / Imagem
+                </div>
+              </div>
+              ${b.caption ? `<p class="text-xs font-mono text-slate-300">${b.caption}</p>` : ''}
+            </div>
+          `;
+        }
+
+        if (b.type === 'chart') {
+          const bars = b.bars || [];
+          const maxVal = Math.max(1, ...bars.map(x => Number(x.value) || 0));
+          return `
+            <div class="p-5 rounded-xl bg-carbon-950/90 border border-white/10 space-y-3.5">
+              ${b.heading ? `<h4 class="font-display text-lg font-bold uppercase text-white">${b.heading}</h4>` : ''}
+              <div class="space-y-2.5 font-mono text-xs">
+                ${bars.map(bar => {
+                  const pct = Math.max(4, Math.min(100, Math.round(((Number(bar.value) || 0) / maxVal) * 100)));
+                  const col = bar.color || '#10b981';
+                  return `
+                    <div class="space-y-1">
+                      <div class="flex items-center justify-between">
+                        <span class="text-slate-200 font-semibold">${bar.label || ''}</span>
+                        <span class="font-bold" style="color:${col}">${bar.value}${b.unit || ''}</span>
+                      </div>
+                      <div class="w-full h-3 rounded-full bg-carbon-900 overflow-hidden border border-white/5">
+                        <div class="h-full rounded-full transition-all duration-500" style="width:${pct}%; background:${col}"></div>
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `;
+        }
+
+        if (b.type === 'table') {
+          const headers = b.headers || [];
+          const rows = b.rows || [];
+          return `
+            <div class="rounded-xl bg-carbon-950/90 border border-white/10 overflow-hidden">
+              ${b.heading ? `<div class="px-5 py-3 bg-carbon-900 border-b border-white/10 font-display text-base font-bold uppercase text-white">${b.heading}</div>` : ''}
+              <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs">
+                  <thead class="bg-carbon-900/80 border-b border-white/10 font-mono text-[11px] uppercase text-purple-300">
+                    <tr>${headers.map(h => `<th class="py-2.5 px-4">${h}</th>`).join('')}</tr>
+                  </thead>
+                  <tbody class="divide-y divide-white/5 font-sans text-slate-200">
+                    ${rows.map(r => `<tr class="hover:bg-white/5">${(r || []).map((cell, idx) => `<td class="py-2.5 px-4 ${idx === 0 ? 'font-bold text-white font-mono' : ''}">${cell}</td>`).join('')}</tr>`).join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          `;
+        }
+        return '';
+      }).join('');
+
+      reader.innerHTML = `
+        <div class="px-6 py-5 bg-carbon-950 border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2 font-mono text-xs">
+              <span class="px-2.5 py-0.5 rounded bg-purple-500/20 border border-purple-500/40 text-purple-300 font-bold uppercase">${topic.category}</span>
+              <span class="text-slate-400">${topic.badge || ''}</span>
+            </div>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-white uppercase">${topic.title}</h3>
+          </div>
+          ${isAdmin() ? `
+            <button type="button" onclick="openGuideEditorModal('${topic.id}')" class="px-4 py-2 rounded-lg bg-purple-500 hover:bg-purple-400 text-black font-mono text-xs font-bold uppercase shadow">
+              ✎ Editar Este Tópico / Adicionar Blocos
+            </button>
+          ` : ''}
+        </div>
+        <div class="p-6 space-y-6">
+          ${blocksHtml}
+        </div>
+      `;
+    }
+
+    function openGuideImageLightbox(src, caption) {
+      if (!src) return;
+      const modal = document.getElementById('guideImageLightboxModal');
+      const img = document.getElementById('guideLightboxImg');
+      const cap = document.getElementById('guideLightboxCaption');
+      if (img) img.src = src;
+      if (cap) cap.textContent = caption || 'Planta / Imagem Ampliada';
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeGuideImageLightbox() {
+      const modal = document.getElementById('guideImageLightboxModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    // Editor Visual de Tópicos para o Admin (Aba 05)
+    function openGuideEditorModal(topicId = null) {
+      if (!isAdmin()) return;
+      initGuidesData();
+      const modal = document.getElementById('guideEditorModal');
+      const delBtn = document.getElementById('guideDeleteBtn');
+      if (!modal) return;
+
+      if (topicId) {
+        const t = (appData.guidesTopics || []).find(x => x.id === topicId);
+        if (!t) return;
+        document.getElementById('guideEditId').value = t.id;
+        document.getElementById('guideEditTitle').value = t.title || '';
+        document.getElementById('guideEditCategory').value = t.category || 'Pescaria';
+        document.getElementById('guideEditBadge').value = t.badge || '';
+        document.getElementById('guideEditSummary').value = t.summary || '';
+        currentEditingGuideBlocks = JSON.parse(JSON.stringify(t.blocks || []));
+        if (delBtn) delBtn.classList.remove('hidden');
+      } else {
+        document.getElementById('guideEditId').value = '';
+        document.getElementById('guideEditTitle').value = '';
+        document.getElementById('guideEditCategory').value = currentGuideCategoryFilter !== 'ALL' ? currentGuideCategoryFilter : 'Pescaria';
+        document.getElementById('guideEditBadge').value = 'Guia Oficial';
+        document.getElementById('guideEditSummary').value = '';
+        currentEditingGuideBlocks = [
+          { type: 'text', heading: '1. Introdução e Macetes Principais', body: 'Escreva aqui as instruções bem indentadas sobre o assunto...' },
+          {
+            type: 'sight_grid',
+            heading: 'Grade Visual de Itens / Equipamentos',
+            columns: 4,
+            items: [
+              { title: 'Item 1', sub: 'Detalhe', img: getSightHighResSvgDataUri('okp') },
+              { title: 'Item 2', sub: 'Detalhe', img: getSightHighResSvgDataUri('reddot') },
+              { title: 'Item 3', sub: 'Detalhe', img: getSightHighResSvgDataUri('v3') },
+              { title: 'Item 4', sub: 'Detalhe', img: getSightHighResSvgDataUri('xps') }
+            ]
+          }
+        ];
+        if (delBtn) delBtn.classList.add('hidden');
+      }
+
+      renderGuideEditorBlocksUI();
+      modal.classList.remove('hidden');
+    }
+
+    function closeGuideEditorModal() {
+      const modal = document.getElementById('guideEditorModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function addGuideEditorBlock(type) {
+      syncGuideEditorDomToState();
+      if (type === 'text') {
+        currentEditingGuideBlocks.push({ type: 'text', heading: 'Novo Subtítulo da Seção', body: 'Digite os parágrafos explicativos aqui...' });
+      } else if (type === 'sight_grid') {
+        currentEditingGuideBlocks.push({
+          type: 'sight_grid',
+          heading: 'Nova Grade Visual (Estilo Miras)',
+          columns: 4,
+          items: [
+            { title: 'OKP Holographic Sight', sub: '1x Reflex', img: getSightHighResSvgDataUri('okp') },
+            { title: 'Red Dot Sight', sub: '1x Compacta', img: getSightHighResSvgDataUri('reddot') },
+            { title: 'V3 Holographic Sight', sub: '1x Militar', img: getSightHighResSvgDataUri('v3') },
+            { title: 'XPS Holographic Sight', sub: '1x EOTech', img: getSightHighResSvgDataUri('xps') }
+          ]
+        });
+      } else if (type === 'image') {
+        currentEditingGuideBlocks.push({
+          type: 'image',
+          heading: 'Planta do Bunker / Mapa de Percurso',
+          img: getSightHighResSvgDataUri('bunker_blueprint'),
+          caption: 'Explicação do caminho ou salas numeradas da planta.'
+        });
+      } else if (type === 'chart') {
+        currentEditingGuideBlocks.push({
+          type: 'chart',
+          heading: 'Gráfico Comparativo de Estatísticas',
+          unit: '',
+          bars: [
+            { label: 'Opção A', value: 100, color: '#10b981' },
+            { label: 'Opção B', value: 75, color: '#06b6d4' },
+            { label: 'Opção C', value: 45, color: '#f59e0b' }
+          ]
+        });
+      } else if (type === 'table') {
+        currentEditingGuideBlocks.push({
+          type: 'table',
+          heading: 'Tabela Comparativa',
+          headers: ['Item', 'Estatística 1', 'Estatística 2', 'Notas'],
+          rows: [
+            ['Exemplo 1', '100', 'Alto', 'Recomendado'],
+            ['Exemplo 2', '60', 'Médio', 'Alternativa']
+          ]
+        });
+      }
+      renderGuideEditorBlocksUI();
+    }
+
+    function removeGuideEditorBlock(idx) {
+      syncGuideEditorDomToState();
+      currentEditingGuideBlocks.splice(idx, 1);
+      renderGuideEditorBlocksUI();
+    }
+
+    function addSightGridCell(bIdx) {
+      syncGuideEditorDomToState();
+      if (currentEditingGuideBlocks[bIdx] && Array.isArray(currentEditingGuideBlocks[bIdx].items)) {
+        currentEditingGuideBlocks[bIdx].items.push({ title: 'Novo Item da Grade', sub: '', img: getSightHighResSvgDataUri('reddot') });
+        renderGuideEditorBlocksUI();
+      }
+    }
+
+    function removeSightGridCell(bIdx, cIdx) {
+      syncGuideEditorDomToState();
+      if (currentEditingGuideBlocks[bIdx] && Array.isArray(currentEditingGuideBlocks[bIdx].items)) {
+        currentEditingGuideBlocks[bIdx].items.splice(cIdx, 1);
+        renderGuideEditorBlocksUI();
+      }
+    }
+
+    function handleGuideImageFileUpload(bIdx, cIdx, inputEl) {
+      const file = inputEl.files && inputEl.files[0];
+      if (!file) return;
+      syncGuideEditorDomToState();
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const dataUrl = ev.target.result;
+        if (cIdx === null || typeof cIdx === 'undefined') {
+          currentEditingGuideBlocks[bIdx].img = dataUrl;
+        } else if (currentEditingGuideBlocks[bIdx].items && currentEditingGuideBlocks[bIdx].items[cIdx]) {
+          currentEditingGuideBlocks[bIdx].items[cIdx].img = dataUrl;
+        }
+        renderGuideEditorBlocksUI();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function syncGuideEditorDomToState() {
+      currentEditingGuideBlocks.forEach((b, bIdx) => {
+        const hEl = document.getElementById(`gBlockHeading_${bIdx}`);
+        if (hEl) b.heading = hEl.value;
+
+        if (b.type === 'text') {
+          const bodyEl = document.getElementById(`gBlockBody_${bIdx}`);
+          if (bodyEl) b.body = bodyEl.value;
+        } else if (b.type === 'image') {
+          const imgEl = document.getElementById(`gBlockImg_${bIdx}`);
+          const capEl = document.getElementById(`gBlockCap_${bIdx}`);
+          if (imgEl) b.img = imgEl.value;
+          if (capEl) b.caption = capEl.value;
+        } else if (b.type === 'sight_grid') {
+          (b.items || []).forEach((it, cIdx) => {
+            const tEl = document.getElementById(`gGridTitle_${bIdx}_${cIdx}`);
+            const sEl = document.getElementById(`gGridSub_${bIdx}_${cIdx}`);
+            const iEl = document.getElementById(`gGridImg_${bIdx}_${cIdx}`);
+            if (tEl) it.title = tEl.value;
+            if (sEl) it.sub = sEl.value;
+            if (iEl) it.img = iEl.value;
+          });
+        } else if (b.type === 'chart') {
+          const uEl = document.getElementById(`gChartUnit_${bIdx}`);
+          const rawEl = document.getElementById(`gChartRaw_${bIdx}`);
+          if (uEl) b.unit = uEl.value;
+          if (rawEl) {
+            const colors = ['#10b981', '#06b6d4', '#f59e0b', '#a855f7', '#f43f5e'];
+            b.bars = rawEl.value.split(/\n+/).map(l => l.trim()).filter(Boolean).map((line, idx) => {
+              const parts = line.split('|').map(s => s.trim());
+              return { label: parts[0] || 'Item', value: Number(parts[1]) || 0, color: parts[2] || colors[idx % colors.length] };
+            });
+          }
+        } else if (b.type === 'table') {
+          const hdrEl = document.getElementById(`gTableHdr_${bIdx}`);
+          const rowsEl = document.getElementById(`gTableRows_${bIdx}`);
+          if (hdrEl) b.headers = hdrEl.value.split('|').map(s => s.trim());
+          if (rowsEl) {
+            b.rows = rowsEl.value.split(/\n+/).map(l => l.trim()).filter(Boolean).map(line => line.split('|').map(s => s.trim()));
+          }
+        }
+      });
+    }
+
+    function renderGuideEditorBlocksUI() {
+      const container = document.getElementById('guideEditorBlocksContainer');
+      if (!container) return;
+
+      container.innerHTML = currentEditingGuideBlocks.map((b, bIdx) => {
+        if (b.type === 'text') {
+          return `
+            <div class="p-4 rounded-xl bg-carbon-950 border border-white/15 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="text-purple-300 font-bold uppercase">📝 Bloco #${bIdx + 1}: Texto Indentado</span>
+                <button type="button" onclick="removeGuideEditorBlock(${bIdx})" class="text-rose-400 hover:text-rose-300 font-bold">Remover Bloco ✕</button>
+              </div>
+              <input type="text" id="gBlockHeading_${bIdx}" value="${(b.heading || '').replace(/"/g, '&quot;')}" placeholder="Subtítulo da seção..." class="w-full px-3 py-1.5 rounded bg-carbon-900 border border-white/10 text-white" />
+              <textarea id="gBlockBody_${bIdx}" rows="4" placeholder="Texto explicativo (use Enter para criar novos parágrafos indentados)..." class="w-full px-3 py-2 rounded bg-carbon-900 border border-white/10 text-white">${b.body || ''}</textarea>
+            </div>
+          `;
+        }
+
+        if (b.type === 'sight_grid') {
+          return `
+            <div class="p-4 rounded-xl bg-carbon-950 border border-tactical-cyan/40 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-tactical-cyanLight font-bold uppercase">🔲 Bloco #${bIdx + 1}: Grade Visual de Organização (Estilo Miras)</span>
+                <div class="flex items-center gap-2">
+                  <button type="button" onclick="addSightGridCell(${bIdx})" class="px-2.5 py-1 rounded bg-tactical-cyan text-black font-bold uppercase text-[10px]">+ Adicionar Item na Grade</button>
+                  <button type="button" onclick="removeGuideEditorBlock(${bIdx})" class="text-rose-400 hover:text-rose-300 font-bold">✕</button>
+                </div>
+              </div>
+              <input type="text" id="gBlockHeading_${bIdx}" value="${(b.heading || '').replace(/"/g, '&quot;')}" placeholder="Título da Grade Visual..." class="w-full px-3 py-1.5 rounded bg-carbon-900 border border-white/10 text-white" />
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+                ${(b.items || []).map((it, cIdx) => `
+                  <div class="p-2.5 rounded-lg bg-carbon-900 border border-white/10 space-y-2 flex flex-col justify-between">
+                    <div class="h-16 bg-carbon-950 rounded flex items-center justify-center p-1 relative">
+                      <img src="${it.img || ''}" alt="" class="max-h-14 max-w-full object-contain" />
+                      <button type="button" onclick="removeSightGridCell(${bIdx}, ${cIdx})" class="absolute top-1 right-1 text-[10px] text-rose-400 hover:text-white">✕</button>
+                    </div>
+                    <input type="text" id="gGridTitle_${bIdx}_${cIdx}" value="${(it.title || '').replace(/"/g, '&quot;')}" placeholder="Nome (Ex: OKP Sight)" class="w-full px-2 py-1 rounded bg-carbon-950 border border-white/10 text-[11px] text-[#93c5fd]" />
+                    <input type="text" id="gGridSub_${bIdx}_${cIdx}" value="${(it.sub || '').replace(/"/g, '&quot;')}" placeholder="Subtítulo opcional" class="w-full px-2 py-1 rounded bg-carbon-950 border border-white/10 text-[10px] text-slate-400" />
+                    <input type="text" id="gGridImg_${bIdx}_${cIdx}" value="${(it.img || '').replace(/"/g, '&quot;')}" placeholder="URL da Imagem ou Upload abaixo" class="w-full px-2 py-1 rounded bg-carbon-950 border border-white/10 text-[10px] text-slate-500" />
+                    <label class="cursor-pointer block text-center py-1 rounded bg-carbon-800 hover:bg-tactical-cyan hover:text-black text-[10px] text-slate-200 font-bold uppercase">
+                      📁 Enviar Foto
+                      <input type="file" accept="image/*" class="hidden" onchange="handleGuideImageFileUpload(${bIdx}, ${cIdx}, this)" />
+                    </label>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+
+        if (b.type === 'image') {
+          return `
+            <div class="p-4 rounded-xl bg-carbon-950 border border-emerald-500/40 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="text-emerald-400 font-bold uppercase">🗺️ Bloco #${bIdx + 1}: Imagem / Planta de Bunker</span>
+                <button type="button" onclick="removeGuideEditorBlock(${bIdx})" class="text-rose-400 hover:text-rose-300 font-bold">Remover ✕</button>
+              </div>
+              <input type="text" id="gBlockHeading_${bIdx}" value="${(b.heading || '').replace(/"/g, '&quot;')}" placeholder="Título da Planta / Imagem..." class="w-full px-3 py-1.5 rounded bg-carbon-900 border border-white/10 text-white" />
+              <div class="flex flex-wrap items-center gap-2">
+                <input type="text" id="gBlockImg_${bIdx}" value="${(b.img || '').replace(/"/g, '&quot;')}" placeholder="Cole o link da imagem ou envie do computador..." class="flex-1 px-3 py-1.5 rounded bg-carbon-900 border border-white/10 text-white" />
+                <label class="cursor-pointer px-3 py-1.5 rounded bg-emerald-500 text-black font-bold uppercase text-[11px]">
+                  📁 Enviar Imagem do PC
+                  <input type="file" accept="image/*" class="hidden" onchange="handleGuideImageFileUpload(${bIdx}, null, this)" />
+                </label>
+              </div>
+              <input type="text" id="gBlockCap_${bIdx}" value="${(b.caption || '').replace(/"/g, '&quot;')}" placeholder="Legenda explicativa da planta/percurso..." class="w-full px-3 py-1.5 rounded bg-carbon-900 border border-white/10 text-slate-300" />
+            </div>
+          `;
+        }
+
+        if (b.type === 'chart') {
+          const rawLines = (b.bars || []).map(bar => `${bar.label} | ${bar.value} | ${bar.color || '#10b981'}`).join('\n');
+          return `
+            <div class="p-4 rounded-xl bg-carbon-950 border border-tactical-amber/40 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="text-tactical-amberLight font-bold uppercase">📊 Bloco #${bIdx + 1}: Gráfico de Barras Comparativo</span>
+                <button type="button" onclick="removeGuideEditorBlock(${bIdx})" class="text-rose-400 hover:text-rose-300 font-bold">Remover ✕</button>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
+                <input type="text" id="gBlockHeading_${bIdx}" value="${(b.heading || '').replace(/"/g, '&quot;')}" placeholder="Título do Gráfico..." class="sm:col-span-3 px-3 py-1.5 rounded bg-carbon-900 border border-white/10 text-white" />
+                <input type="text" id="gChartUnit_${bIdx}" value="${(b.unit || '').replace(/"/g, '&quot;')}" placeholder="Unidade (Ex: kg, m, %)" class="px-3 py-1.5 rounded bg-carbon-900 border border-white/10 text-white" />
+              </div>
+              <div class="text-[10px] text-slate-400">Uma barra por linha no formato: <code>Nome do Item | Valor Numérico | Cor Hex opcional</code></div>
+              <textarea id="gChartRaw_${bIdx}" rows="4" class="w-full px-3 py-2 rounded bg-carbon-900 border border-white/10 text-white font-mono">${rawLines}</textarea>
+            </div>
+          `;
+        }
+
+        if (b.type === 'table') {
+          const hdrLine = (b.headers || []).join(' | ');
+          const rowsLines = (b.rows || []).map(r => (r || []).join(' | ')).join('\n');
+          return `
+            <div class="p-4 rounded-xl bg-carbon-950 border border-white/15 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="text-slate-200 font-bold uppercase">📋 Bloco #${bIdx + 1}: Tabela Técnica</span>
+                <button type="button" onclick="removeGuideEditorBlock(${bIdx})" class="text-rose-400 hover:text-rose-300 font-bold">Remover ✕</button>
+              </div>
+              <input type="text" id="gBlockHeading_${bIdx}" value="${(b.heading || '').replace(/"/g, '&quot;')}" placeholder="Título da Tabela..." class="w-full px-3 py-1.5 rounded bg-carbon-900 border border-white/10 text-white" />
+              <input type="text" id="gTableHdr_${bIdx}" value="${hdrLine.replace(/"/g, '&quot;')}" placeholder="Coluna 1 | Coluna 2 | Coluna 3" class="w-full px-3 py-1.5 rounded bg-carbon-900 border border-white/10 text-purple-300" />
+              <textarea id="gTableRows_${bIdx}" rows="4" placeholder="Valor 1 | Valor 2 | Valor 3 (uma linha por registro)" class="w-full px-3 py-2 rounded bg-carbon-900 border border-white/10 text-white font-mono">${rowsLines}</textarea>
+            </div>
+          `;
+        }
+        return '';
+      }).join('');
+    }
+
+    function saveGuideTopicFromModal(e) {
+      e.preventDefault();
+      if (!isAdmin()) return;
+      syncGuideEditorDomToState();
+
+      const id = document.getElementById('guideEditId').value || ('guide-' + Date.now());
+      const title = document.getElementById('guideEditTitle').value.trim() || 'Novo Guia SCUM';
+      const category = document.getElementById('guideEditCategory').value.trim() || 'Geral';
+      const badge = document.getElementById('guideEditBadge').value.trim() || 'Guia Tático';
+      const summary = document.getElementById('guideEditSummary').value.trim();
+
+      const topicObj = {
+        id,
+        title,
+        category,
+        badge,
+        summary,
+        blocks: currentEditingGuideBlocks
+      };
+
+      initGuidesData();
+      const idx = appData.guidesTopics.findIndex(x => x.id === id);
+      if (idx !== -1) {
+        appData.guidesTopics[idx] = topicObj;
+      } else {
+        appData.guidesTopics.unshift(topicObj);
+      }
+
+      activeOpenGuideId = id;
+      saveData();
+      closeGuideEditorModal();
+      renderGuidesHub();
+      showToast('Tópico salvo e publicado na Aba 05 (Guias & Bunkers)!');
+    }
+
+    function deleteGuideFromEditorModal() {
+      const id = document.getElementById('guideEditId').value;
+      if (!id) return;
+      closeGuideEditorModal();
+      deleteGuideTopicDirect(id);
+    }
+
+    function deleteGuideTopicDirect(id) {
+      if (!isAdmin()) return;
+      const target = (appData.guidesTopics || []).find(x => x.id === id);
+      if (!target) return;
+      openConfirmModal(`Excluir o tópico "${target.title}" da Aba 05?`, () => {
+        appData.guidesTopics = (appData.guidesTopics || []).filter(x => x.id !== id);
+        if (activeOpenGuideId === id) {
+          activeOpenGuideId = appData.guidesTopics[0]?.id || null;
+        }
+        saveData();
+        renderGuidesHub();
+        showToast('Tópico excluído.');
+      });
+    }
+
   </script>
 </body>
 </html>
