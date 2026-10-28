@@ -211,7 +211,7 @@
         "name": "Rota Militar Oficial: Aeroporto B2 → Boot Camp B3 → Venda B4 Outpost",
         "color": "#10b981",
         "defaultStyle": "road",
-        "visible": true,
+        "visible": false,
         "instructions": "1. Inicie no Aeroporto Central B2 e saqueie os hangares.\n2. Siga para oeste passando pelo Posto e Delegacia de Spickovina (B2).\n3. Faça parada tática no Boot Camp B3 e na Delegacia de Mirkovci (B3).\n4. Passe pela Delegacia/Posto de Preko (B4) e venda todo o loot no B4 Outpost.",
         "points": [
           {
@@ -1461,7 +1461,7 @@
         "name": "Rota Norte: Samobor D4 → Represa C2 → Venda C2 Outpost",
         "color": "#f59e0b",
         "defaultStyle": "road",
-        "visible": true,
+        "visible": false,
         "instructions": "Rota de alto rendimento no norte: saqueie a metrópole e Delegacia de Samobor (D4), abasteça no Posto de Samobor (D3), passe pelo Bunker Secreto C3 e pela Represa C2 (Dam), finalizando na Safezone C2 Outpost.",
         "points": [
           {
@@ -2047,7 +2047,7 @@
         "name": "frfr",
         "color": "#10b981",
         "defaultStyle": "road",
-        "visible": true,
+        "visible": false,
         "instructions": "",
         "points": [
           {
@@ -2576,7 +2576,7 @@
     ],
     "_calibratedScumMapExactV3": true
   },
-  "_cloudTimestamp": 1793210176055,
+  "_cloudTimestamp": 1793210184994,
   "githubRepoConfig": {
     "owner": "maephprismaticr117",
     "repo": "SADA-Project-Compendium",
