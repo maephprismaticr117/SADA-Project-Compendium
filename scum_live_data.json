@@ -169,7 +169,8 @@
         "iconType": "stash",
         "color": "#facc15",
         "routeId": "",
-        "instructions": ""
+        "instructions": "",
+        "ownerScope": "admin"
       },
       {
         "id": "pin-1793218482781",
@@ -180,7 +181,8 @@
         "iconType": "danger",
         "color": "#f43f5e",
         "routeId": "",
-        "instructions": ""
+        "instructions": "",
+        "ownerScope": "admin"
       },
       {
         "id": "pin-1793218549268",
@@ -191,7 +193,8 @@
         "iconType": "danger",
         "color": "#f43f5e",
         "routeId": "",
-        "instructions": ""
+        "instructions": "",
+        "ownerScope": "admin"
       },
       {
         "id": "pin-1793218633291",
@@ -202,7 +205,8 @@
         "iconType": "danger",
         "color": "#10b981",
         "routeId": "",
-        "instructions": ""
+        "instructions": "",
+        "ownerScope": "admin"
       },
       {
         "id": "pin-1793219665230",
@@ -213,7 +217,8 @@
         "iconType": "loot",
         "color": "#facc15",
         "routeId": "",
-        "instructions": ""
+        "instructions": "",
+        "ownerScope": "admin"
       }
     ],
     "customRoutes": [
@@ -1889,12 +1894,13 @@
             "clickGroupId": "seg-1793219042656-7104",
             "label": ""
           }
-        ]
+        ],
+        "ownerScope": "admin"
       }
     ],
     "_calibratedScumMapExactV3": true
   },
-  "_cloudTimestamp": 1793219666365,
+  "_cloudTimestamp": 1793229933487,
   "githubRepoConfig": {
     "owner": "maephprismaticr117",
     "repo": "SADA-Project-Compendium",
@@ -1904,42 +1910,42 @@
       221,
       154,
       162,
-      51,
+      166,
       94,
-      203,
-      278,
-      176,
-      148,
-      65,
-      161,
-      103,
-      233,
-      238,
-      170,
-      107,
-      108,
-      143,
-      105,
-      281,
-      205,
-      230,
-      121,
-      106,
-      60,
-      72,
-      216,
-      201,
-      197,
-      125,
-      105,
-      42,
-      68,
-      190,
+      284,
+      249,
+      192,
+      145,
+      139,
+      96,
+      66,
+      285,
       178,
-      173,
-      114,
+      188,
+      154,
+      163,
+      140,
+      68,
+      241,
+      226,
+      192,
+      117,
+      164,
+      72,
+      120,
+      214,
+      209,
+      227,
+      103,
+      141,
+      99,
+      60,
+      186,
+      287,
+      213,
       132,
-      43
+      118,
+      83
     ]
   },
   "adminGlobalMap": {
