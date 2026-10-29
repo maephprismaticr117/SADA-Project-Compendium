@@ -98,7 +98,7 @@
       "spawnCode": "N/A",
       "notes": "N/A",
       "lootChance": 30,
-      "lootAvgQty": 3,
+      "lootAvgQty": 4,
       "lootSlots": 1,
       "lootSource": "Bunker/Hospital",
       "image": "data:image/webp;base64,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",
@@ -2560,7 +2560,7 @@
     ],
     "_calibratedScumMapExactV3": true
   },
-  "_cloudTimestamp": 1793298256660,
+  "_cloudTimestamp": 1793298262937,
   "githubRepoConfig": {
     "owner": "maephprismaticr117",
     "repo": "SADA-Project-Compendium",
