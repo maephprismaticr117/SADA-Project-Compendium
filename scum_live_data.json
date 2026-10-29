@@ -72,7 +72,7 @@
       "prices": {
         "z1": {
           "buy": 2640,
-          "sell": 780
+          "sell": 2000
         },
         "z2": {
           "buy": 0,
@@ -2197,7 +2197,7 @@
     ],
     "_calibratedScumMapExactV3": true
   },
-  "_cloudTimestamp": 1793233171524,
+  "_cloudTimestamp": 1793233178689,
   "githubRepoConfig": {
     "owner": "maephprismaticr117",
     "repo": "SADA-Project-Compendium",
