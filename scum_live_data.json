@@ -57,22 +57,22 @@
   "items": [
     {
       "id": "item-1793234691591",
-      "name": "Curativo de Emergencia (Cópia)",
+      "name": "Curativo de Pressão",
       "trader": "Médico",
       "category": "Medicamento",
       "fame": 0,
-      "rarity": "Comum",
+      "rarity": "Incomum",
       "spawnCode": "N/A",
       "notes": "N/A",
-      "lootChance": 30,
-      "lootAvgQty": 3,
+      "lootChance": 15,
+      "lootAvgQty": 1,
       "lootSlots": 1,
       "lootSource": "Bunker/Hospital",
-      "image": "data:image/webp;base64,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",
+      "image": "data:image/webp;base64,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",
       "prices": {
         "z1": {
-          "buy": 500,
-          "sell": 304
+          "buy": 1000,
+          "sell": 206
         },
         "z2": {
           "buy": 0,
@@ -2560,7 +2560,7 @@
     ],
     "_calibratedScumMapExactV3": true
   },
-  "_cloudTimestamp": 1793234692695,
+  "_cloudTimestamp": 1793234725139,
   "githubRepoConfig": {
     "owner": "maephprismaticr117",
     "repo": "SADA-Project-Compendium",
